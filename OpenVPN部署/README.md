@@ -1,0 +1,1 @@
+openvpn 一键部署，脚本来源https://github.com/Nyr/openvpn-install
