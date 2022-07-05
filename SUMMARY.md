@@ -1,14 +1,20 @@
 # 运维知识库
 
+- Elasitc Search
+  * [ES跨集群迁移](ElasitcSearch/ES跨集群迁移.md)
+  * [基础常用指令](ElasitcSearch/基础常用指令.md)
 - [ELK](ELK/README.md)
   * [1.安装ElasticSearch7.7.1单节点](ELK/1.安装ElasticSearch7.7.1单节点.md)
   * [安装filbeat](ELK/安装filbeat.md)
   * [安装Kibana](ELK/安装Kibana.md)
   * [附加Logstash安装](ELK/附加Logstash安装.md)
   * [附加supervisor进程管理](ELK/附加supervisor进程管理.md)
+- [Golang](golang/README.md)
+  * [Kafka Demo](golang/kafka-demo.md)
 - [K 8 S](K8S/README.md)
   * [1、安装K8S](K8S/1、安装K8S.md)
   * [10、容器抓包](K8S/10、容器抓包.md)
+  * [全链路灰度发布](K8S/全链路灰度发布.md)
   * [动态pv](K8S/动态pv.md)
   * [安装Helm](K8S/安装Helm.md)
   * [安装jenkins](K8S/安装jenkins.md)
