@@ -1,3 +1,4 @@
+git pull
 book sm
 gitbook build
 git add .

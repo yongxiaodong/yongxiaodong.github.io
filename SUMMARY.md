@@ -1,6 +1,6 @@
 # 运维知识库
 
-- Elasitc Search
+- [Elasitc Search](ElasitcSearch/README.md)
   * [ES跨集群迁移](ElasitcSearch/ES跨集群迁移.md)
   * [基础常用指令](ElasitcSearch/基础常用指令.md)
 - [ELK](ELK/README.md)
