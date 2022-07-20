@@ -459,6 +459,19 @@
             
         </li>
     
+        <li class="chapter " data-level="1.5.10" data-path="../K8S/零中断滚动更新.html">
+            
+                <a href="../K8S/零中断滚动更新.html">
+            
+                    
+                    零中断滚动更新
+            
+                </a>
+            
+
+            
+        </li>
+    
 
             </ul>
             
@@ -1107,7 +1120,65 @@
             
         </li>
     
-        <li class="chapter " data-level="1.20" data-path="../系统性能/">
+        <li class="chapter " data-level="1.20" data-path="../实用Demo/">
+            
+                <a href="../实用Demo/">
+            
+                    
+                    实用Demo
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.20.1" data-path="../实用Demo/ES跨集群迁移索引.html">
+            
+                <a href="../实用Demo/ES跨集群迁移索引.html">
+            
+                    
+                    ES跨集群迁移索引
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.20.2" data-path="../实用Demo/expect批量建立ssh互信.html">
+            
+                <a href="../实用Demo/expect批量建立ssh互信.html">
+            
+                    
+                    expect批量建立ssh互信
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.20.3" data-path="../实用Demo/Linux新系统初始化.html">
+            
+                <a href="../实用Demo/Linux新系统初始化.html">
+            
+                    
+                    Linux新系统初始化
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.21" data-path="../系统性能/">
             
                 <a href="../系统性能/">
             
@@ -1121,12 +1192,25 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="1.20.1" data-path="../系统性能/系统繁忙指标的意义.html">
+        <li class="chapter " data-level="1.21.1" data-path="../系统性能/系统繁忙指标的意义.html">
             
                 <a href="../系统性能/系统繁忙指标的意义.html">
             
                     
                     系统繁忙指标的意义
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.21.2" data-path="../系统性能/零侵入应用性能瓶颈分析.html">
+            
+                <a href="../系统性能/零侵入应用性能瓶颈分析.html">
+            
+                    
+                    零侵入应用性能瓶颈分析
             
                 </a>
             
@@ -1185,19 +1269,21 @@
                                 <section class="normal markdown-section">
                                 
                                 <p>&#x67E5;&#x770B;&#x6240;&#x6709;&#x7D22;&#x5F15;</p>
-<p><code>curl -u username:password &apos;es:9200/_cat/indices?v&apos;</code></p>
-<p>&#x5220;&#x9664;&#x7D22;&#x5F15;
-<code>curl -XDELETE  -u username:password &apos;es:9200/dtk_dy_goods&apos;</code></p>
+<pre><code>`curl -u username:password &apos;es:9200/_cat/indices?v&apos;`
+</code></pre><p>&#x5220;&#x9664;&#x7D22;&#x5F15;
+    <code>curl -XDELETE  -u username:password &apos;es:9200/dtk_dy_goods&apos;</code></p>
 <p>&#x67E5;&#x770B;&#x96C6;&#x7FA4;&#x72B6;&#x6001;</p>
-<p><code>curl -XGET &apos;http://es:9200/_cluster/health?pretty&apos;</code></p>
-<p>&#x67E5;&#x770B;&#x5355;&#x4E2A;index&#x7684;&#x72B6;&#x6001;</p>
-<p><code>curl -XGET &apos;http://es:9200/_cluster/health/goods_id?pretty&apos;</code></p>
-<p>&#x67E5;&#x770B;&#x7EBF;&#x7A0B;&#x6C60;&#x60C5;&#x51B5;
-<code>curl -XGET http://es:9200/_cat/GET /_cat/thread_pool/?v&amp;h=id,name,active,rejected,completed,size,type&amp;pretty&amp;s=type</code></p>
-<p>&#x67E5;&#x770B;&#x54EA;&#x4E2A;&#x7EBF;&#x7A0B;CPU&#x5229;&#x7528;&#x7387;&#x6700;&#x9AD8;</p>
-<p><code>curl -XGET http://es:9200/_nodes/hot_threads</code></p>
-<footer class="page-footer"><span class="copyright">Copyright &#xA9; &#x8FD0;&#x7EF4;&#x77E5;&#x8BC6;&#x5E93; all right reserved. &#x8700;ICP&#x5907;16012425&#x53F7;</span><span class="footer-modification">&#x6587;&#x4EF6;&#x4FEE;&#x8BA2;&#x65F6;&#x95F4;&#xFF1A;
-2022-07-05 02:30:48
+<pre><code>`curl -XGET &apos;http://es:9200/_cluster/health?pretty&apos;`
+</code></pre><p>&#x67E5;&#x770B;&#x5355;&#x4E2A;index&#x7684;&#x72B6;&#x6001;</p>
+<pre><code>`curl -XGET &apos;http://es:9200/_cluster/health/goods_id?pretty&apos;`
+</code></pre><p>&#x67E5;&#x770B;&#x7EBF;&#x7A0B;&#x6C60;&#x60C5;&#x51B5;</p>
+<pre><code>`curl -XGET http://es:9200/_cat/GET /_cat/thread_pool/?v&amp;h=id,name,active,rejected,completed,size,type&amp;pretty&amp;s=type`
+</code></pre><p>&#x67E5;&#x770B;&#x54EA;&#x4E2A;&#x7EBF;&#x7A0B;CPU&#x5229;&#x7528;&#x7387;&#x6700;&#x9AD8;</p>
+<pre><code>`curl -XGET http://es:9200/_nodes/hot_threads`
+</code></pre><p>&#x67E5;&#x770B;es&#x914D;&#x7F6E;</p>
+<pre><code>`curl -XGET  -u elastic:qingtaokeDB520 &apos;es-cn-i7m2ro5fb000sl33h.elasticsearch.aliyuncs.com:9200/_settings/_all?pretty&apos;` 
+</code></pre><footer class="page-footer"><span class="copyright">Copyright &#xA9; &#x8FD0;&#x7EF4;&#x77E5;&#x8BC6;&#x5E93; all right reserved. &#x8700;ICP&#x5907;16012425&#x53F7;</span><span class="footer-modification">&#x6587;&#x4EF6;&#x4FEE;&#x8BA2;&#x65F6;&#x95F4;&#xFF1A;
+2022-07-20 11:27:31
 </span></footer>
 <script>console.log("plugin-popup....");document.onclick = function(e){ e.target.tagName === "IMG" && window.open(e.target.src,e.target.src)}</script><style>img{cursor:pointer}</style>
                                 
@@ -1242,7 +1328,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"基础常用指令","level":"1.2.2","depth":2,"next":{"title":"ELK","level":"1.3","depth":1,"path":"ELK/README.md","ref":"ELK/README.md","articles":[{"title":"1.安装ElasticSearch7.7.1单节点","level":"1.3.1","depth":2,"path":"ELK/1.安装ElasticSearch7.7.1单节点.md","ref":"ELK/1.安装ElasticSearch7.7.1单节点.md","articles":[]},{"title":"安装filbeat","level":"1.3.2","depth":2,"path":"ELK/安装filbeat.md","ref":"ELK/安装filbeat.md","articles":[]},{"title":"安装Kibana","level":"1.3.3","depth":2,"path":"ELK/安装Kibana.md","ref":"ELK/安装Kibana.md","articles":[]},{"title":"附加Logstash安装","level":"1.3.4","depth":2,"path":"ELK/附加Logstash安装.md","ref":"ELK/附加Logstash安装.md","articles":[]},{"title":"附加supervisor进程管理","level":"1.3.5","depth":2,"path":"ELK/附加supervisor进程管理.md","ref":"ELK/附加supervisor进程管理.md","articles":[]}]},"previous":{"title":"ES跨集群迁移","level":"1.2.1","depth":2,"path":"ElasitcSearch/ES跨集群迁移.md","ref":"ElasitcSearch/ES跨集群迁移.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-lunr","-search","search-pro","chapter-fold","splitter","back-to-top-button","code","copy-code-button","donate","tbfed-pagefooter","insert-logo","favicon","popup","meta"],"ignores":["node_modules"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"tbfed-pagefooter":{"copyright":"Copyright &copy 运维知识库","modify_label":"文件修订时间：","modify_format":"YYYY-MM-DD HH:mm:ss"},"chapter-fold":{},"meta":{"content":"","data":[{"name":"description","content":"运维知识库是运维知识收集记录平台,是一个记录系统运维、系统安全配置、应用优化、自动化运维、监控、Python运维开发、Shell脚本等知识的IT资料库"},{"name":"keywords","content":"运维知识库,系统安全配置,系统运维,应用优化,自动化运维,监控,Python,Shell脚本,Python运维自动化,运维笔记"},{"name":"referrer","content":"origin"}],"name":""},"splitter":{},"search-pro":{},"popup":{},"code":{"copyButtons":true},"donate":{"alipay":"/static/img/zhi.jpg","alipayText":"支付宝打赏","button":"打赏一下","title":"","wechat":"/static/img/we.png","wechatText":"微信打赏"},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"favicon":{"shortcut":"/static/img/favicon.ico","bookmark":"/static/img/favicon.ico","appleTouch":"/staic/img/favicon.png","appleTouchMore":{"120x120":"img/apple-touch-icon-120x120.png","180x180":"img/apple-touch-icon-180x180.png"}},"back-to-top-button":{},"copy-code-button":{},"sharing":{"facebook":false,"twitter":false,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":[]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"insert-logo":{"style":"background: none; max-height: 30px; min-height: 30px","url":"/static/img/logo.png"}},"theme":"default","author":"BigHead","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"运维知识库","language":"zh-hans","links":{"gitbook":false,"sharing":{"google":false,"facebook":false,"twitter":false,"all":false},"sidebar":{"返回首页":"/"}},"gitbook":"*","description":"运维知识库是运维知识收集记录平台,记录系统安全配置、应用优化、自动化运维、监控、Python、Shell脚本等知识"},"file":{"path":"ElasitcSearch/基础常用指令.md","mtime":"2022-07-05T06:30:48.580Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2022-07-05T06:33:22.152Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"基础常用指令","level":"1.2.2","depth":2,"next":{"title":"ELK","level":"1.3","depth":1,"path":"ELK/README.md","ref":"ELK/README.md","articles":[{"title":"1.安装ElasticSearch7.7.1单节点","level":"1.3.1","depth":2,"path":"ELK/1.安装ElasticSearch7.7.1单节点.md","ref":"ELK/1.安装ElasticSearch7.7.1单节点.md","articles":[]},{"title":"安装filbeat","level":"1.3.2","depth":2,"path":"ELK/安装filbeat.md","ref":"ELK/安装filbeat.md","articles":[]},{"title":"安装Kibana","level":"1.3.3","depth":2,"path":"ELK/安装Kibana.md","ref":"ELK/安装Kibana.md","articles":[]},{"title":"附加Logstash安装","level":"1.3.4","depth":2,"path":"ELK/附加Logstash安装.md","ref":"ELK/附加Logstash安装.md","articles":[]},{"title":"附加supervisor进程管理","level":"1.3.5","depth":2,"path":"ELK/附加supervisor进程管理.md","ref":"ELK/附加supervisor进程管理.md","articles":[]}]},"previous":{"title":"ES跨集群迁移","level":"1.2.1","depth":2,"path":"ElasitcSearch/ES跨集群迁移.md","ref":"ElasitcSearch/ES跨集群迁移.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-lunr","-search","search-pro","chapter-fold","splitter","back-to-top-button","code","copy-code-button","donate","tbfed-pagefooter","insert-logo","favicon","popup","meta"],"ignores":["node_modules"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"tbfed-pagefooter":{"copyright":"Copyright &copy 运维知识库","modify_label":"文件修订时间：","modify_format":"YYYY-MM-DD HH:mm:ss"},"chapter-fold":{},"meta":{"content":"","data":[{"name":"description","content":"运维知识库是运维知识收集记录平台,是一个记录系统运维、系统安全配置、应用优化、自动化运维、监控、Python运维开发、Shell脚本等知识的IT资料库"},{"name":"keywords","content":"运维知识库,系统安全配置,系统运维,应用优化,自动化运维,监控,Python,Shell脚本,Python运维自动化,运维笔记"},{"name":"referrer","content":"origin"}],"name":""},"splitter":{},"search-pro":{},"popup":{},"code":{"copyButtons":true},"donate":{"alipay":"/static/img/zhi.jpg","alipayText":"支付宝打赏","button":"打赏一下","title":"","wechat":"/static/img/we.png","wechatText":"微信打赏"},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"favicon":{"shortcut":"/static/img/favicon.ico","bookmark":"/static/img/favicon.ico","appleTouch":"/staic/img/favicon.png","appleTouchMore":{"120x120":"img/apple-touch-icon-120x120.png","180x180":"img/apple-touch-icon-180x180.png"}},"back-to-top-button":{},"copy-code-button":{},"sharing":{"facebook":false,"twitter":false,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":[]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"insert-logo":{"style":"background: none; max-height: 30px; min-height: 30px","url":"/static/img/logo.png"}},"theme":"default","author":"BigHead","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"运维知识库","language":"zh-hans","links":{"gitbook":false,"sharing":{"google":false,"facebook":false,"twitter":false,"all":false},"sidebar":{"返回首页":"/"}},"gitbook":"*","description":"运维知识库是运维知识收集记录平台,记录系统安全配置、应用优化、自动化运维、监控、Python、Shell脚本等知识"},"file":{"path":"ElasitcSearch/基础常用指令.md","mtime":"2022-07-20T15:27:31.766Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2022-07-20T15:27:37.388Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
