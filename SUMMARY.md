@@ -14,7 +14,7 @@
 - [K 8 S](K8S/README.md)
   * [1、安装K8S](K8S/1、安装K8S.md)
   * [10、容器抓包](K8S/10、容器抓包.md)
-  * [全链路灰度发布](K8S/全链路灰度发布.md)
+  * [全链路灰度发布](K8S/全链路灰度发布/2、全链路灰度发布.md)
   * [动态pv](K8S/动态pv.md)
   * [安装Helm](K8S/安装Helm.md)
   * [安装jenkins](K8S/安装jenkins.md)
