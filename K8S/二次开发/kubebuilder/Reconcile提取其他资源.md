@@ -1,6 +1,6 @@
 
 
-## 获取huise名称空间下的所有deployment(client.InNamespace可以不指定)
+## admisstion webhook 获取huise名称空间下的所有deployment(client.InNamespace可以不指定)
 ```
 func (r *SnapshotReconciler) Reconcile(ctx context.Context, req ctrl.Request) (ctrl.Result, error) {
 	log2 := log.FromContext(ctx)
