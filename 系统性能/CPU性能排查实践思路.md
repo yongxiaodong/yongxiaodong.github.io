@@ -26,16 +26,18 @@ top命令查看CPU使用率、IO等待情况
 通过原生top命令，然后按p通过CPU使用率排序，尝试定位高CPU开销进程
 
 - 一般正常进程都可以直接通过top看到明显的cpu消耗比例
-- 如果是木马类隐藏的进程，通过top是看不到的,可以尝试使用htop和busybox top命令（这里涉及到一个top的原理，top是通过遍历/proc/<PID>的方式去统计每个进程对CPU的消耗，如果这个进程没有在/proc下生成pid，那么top是统计不到的）
-
-
-
-
-
-
+- 如果是木马类隐藏的进程，通过top是看不到的,可以尝试使用htop和busybox top命令（这里涉及到一个top的原理，top是通过遍历/proc/<PID>的方式去统计每个进程对CPU的消耗，如果这个进程没有在/proc下生成pid，那么top是统计不到的）  
+- 用户进程可以使用perf定位性能开销函数`https://www.itgod.org/archives/113  
 
 
 ### IO性能开销定位
+
+- iostat -x 1 查看IO负载和当前iops
+- pidstat -d 1 展示io统计
+- fio 磁盘性能测试  
+`fio -direct=1 -iodepth=32 -rw=randwrite -ioengine=libaio -bs=4k -numjobs=4 -time_based=1 -runtime=1000 -group_reporting -filename=./a -name=test`
+  
+
 
 
 
