@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>UWSGI · 运维知识库</title>
+        <title>CPU性能排查实践思路 · 运维知识库</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -95,10 +95,10 @@
     <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="Uwsgi+Flask.html" />
+    <link rel="next" href="系统繁忙指标的意义.html" />
     
     
-    <link rel="prev" href="../Nginx/Nginx限流.html" />
+    <link rel="prev" href="Buffer和Cache.html" />
     
 
 
@@ -927,9 +927,9 @@
             
         </li>
     
-        <li class="chapter active" data-level="1.7" data-path="./">
+        <li class="chapter " data-level="1.7" data-path="../UWSGI/">
             
-                <a href="./">
+                <a href="../UWSGI/">
             
                     
                     UWSGI
@@ -941,9 +941,9 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="1.7.1" data-path="Uwsgi+Flask.html">
+        <li class="chapter " data-level="1.7.1" data-path="../UWSGI/Uwsgi+Flask.html">
             
-                <a href="Uwsgi+Flask.html">
+                <a href="../UWSGI/Uwsgi+Flask.html">
             
                     
                     Uwsgi Flask
@@ -1435,9 +1435,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.10" data-path="../系统性能/">
+        <li class="chapter " data-level="1.10" data-path="./">
             
-                <a href="../系统性能/">
+                <a href="./">
             
                     
                     系统性能
@@ -1449,9 +1449,9 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="1.10.1" data-path="../系统性能/Buffer和Cache.html">
+        <li class="chapter " data-level="1.10.1" data-path="Buffer和Cache.html">
             
-                <a href="../系统性能/Buffer和Cache.html">
+                <a href="Buffer和Cache.html">
             
                     
                     Buffer和Cache
@@ -1462,9 +1462,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.10.2" data-path="../系统性能/CPU性能排查实践思路.html">
+        <li class="chapter active" data-level="1.10.2" data-path="CPU性能排查实践思路.html">
             
-                <a href="../系统性能/CPU性能排查实践思路.html">
+                <a href="CPU性能排查实践思路.html">
             
                     
                     CPU性能排查实践思路
@@ -1475,9 +1475,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.10.3" data-path="../系统性能/系统繁忙指标的意义.html">
+        <li class="chapter " data-level="1.10.3" data-path="系统繁忙指标的意义.html">
             
-                <a href="../系统性能/系统繁忙指标的意义.html">
+                <a href="系统繁忙指标的意义.html">
             
                     
                     系统繁忙指标的意义
@@ -1488,9 +1488,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.10.4" data-path="../系统性能/零侵入应用性能瓶颈分析.html">
+        <li class="chapter " data-level="1.10.4" data-path="零侵入应用性能瓶颈分析.html">
             
-                <a href="../系统性能/零侵入应用性能瓶颈分析.html">
+                <a href="零侵入应用性能瓶颈分析.html">
             
                     
                     零侵入应用性能瓶颈分析
@@ -1536,7 +1536,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href=".." >UWSGI</a>
+        <a href=".." >CPU性能排查实践思路</a>
     </h1>
 </div>
 
@@ -1551,9 +1551,44 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h2 id=""> </h2>
+                                <p>top&#x547D;&#x4EE4;&#x67E5;&#x770B;CPU&#x4F7F;&#x7528;&#x7387;&#x3001;IO&#x7B49;&#x5F85;&#x60C5;&#x51B5;</p>
+<h2 id="&#x7B2C;&#x4E00;&#x6B65;&#xFF1A;-&#x660E;&#x786E;&#x5207;&#x5165;&#x70B9;">&#x7B2C;&#x4E00;&#x6B65;&#xFF1A; &#x660E;&#x786E;&#x5207;&#x5165;&#x70B9;</h2>
+<ul>
+<li><p>CPU&#x4F7F;&#x7528;&#x7387;&#x9AD8;&#xFF0C;io&#x7B49;&#x5F85;&#x9AD8;  </p>
+<blockquote>
+<p> CPU&#x4F7F;&#x7528;&#x7387;&#x4E0D;&#x9AD8;&#xFF0C;&#x4F46;&#x662F;&#x8D1F;&#x8F7D;&#x9AD8;&#x7684;&#x60C5;&#x51B5;&#xFF0C;&#x4E00;&#x822C;&#x90FD;&#x662F;IO&#x7B49;&#x5F85;&#x5F15;&#x8D77;&#x7684;
+ &#x8BC1;&#x660E;&#x6027;&#x80FD;&#x74F6;&#x9888;&#x53EF;&#x80FD;&#x51FA;&#x73B0;&#x5728;IO&#x4E0A;&#x9762;&#xFF0C; &#x5E94;&#x5C1D;&#x8BD5;&#x628A;&#x6392;&#x67E5;&#x91CD;&#x70B9;&#x5207;&#x5165;&#x5230;IO&#x6027;&#x80FD;&#x6392;&#x67E5;
+ iostat -x &#x7EE7;&#x7EED;&#x89C2;&#x5BDF;&#x8BFB;&#x5199;&#x901F;&#x5EA6;&#x3001;IOPS</p>
+</blockquote>
+</li>
+<li><p>CPU&#x4F7F;&#x7528;&#x7387;&#x9AD8;&#xFF0C;io&#x7B49;&#x5F85;&#x4F4E;  </p>
+<blockquote>
+<p>&#x8BC1;&#x660E;&#x6027;&#x80FD;&#x74F6;&#x9888;&#x4E0D;&#x5728;IO&#x4E0A;<br>&#x8FD8;&#x662F;&#x628A;&#x91CD;&#x70B9;&#x653E;&#x5728;CPU&#x8BA1;&#x7B97;&#x80FD;&#x529B;&#x74F6;&#x9888;&#x4E0A;</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="&#x7B2C;&#x4E8C;&#x6B65;&#xFF1A;-&#x6027;&#x80FD;&#x5F00;&#x9500;&#x5B9A;&#x4F4D;">&#x7B2C;&#x4E8C;&#x6B65;&#xFF1A; &#x6027;&#x80FD;&#x5F00;&#x9500;&#x5B9A;&#x4F4D;</h2>
+<h3 id="cpu&#x6027;&#x80FD;&#x5F00;&#x9500;&#x5B9A;&#x4F4D;">CPU&#x6027;&#x80FD;&#x5F00;&#x9500;&#x5B9A;&#x4F4D;</h3>
+<ul>
+<li>&#x6982;&#x5FF5;&#x660E;&#x786E;<blockquote>
+<p>CPU&#x8D1F;&#x8F7D;&#x9AD8;&#x548C;CPU&#x4F7F;&#x7528;&#x7387;&#x9AD8;&#x662F;&#x4E0D;&#x540C;&#x7684;&#x4E24;&#x4E2A;&#x6982;&#x5FF5;(&#x6BD4;&#x5982;<code>w</code>&#x6216;&#x8005;<code>sar -q</code>&#x770B;&#x5230;&#x7684;<code>load average</code>&#x662F;CPU&#x8D1F;&#x8F7D;)</p>
+</blockquote>
+</li>
+</ul>
+<p>&#x901A;&#x8FC7;&#x539F;&#x751F;top&#x547D;&#x4EE4;&#xFF0C;&#x7136;&#x540E;&#x6309;p&#x901A;&#x8FC7;CPU&#x4F7F;&#x7528;&#x7387;&#x6392;&#x5E8F;&#xFF0C;&#x5C1D;&#x8BD5;&#x5B9A;&#x4F4D;&#x9AD8;CPU&#x5F00;&#x9500;&#x8FDB;&#x7A0B;</p>
+<ul>
+<li>&#x4E00;&#x822C;&#x6B63;&#x5E38;&#x8FDB;&#x7A0B;&#x90FD;&#x53EF;&#x4EE5;&#x76F4;&#x63A5;&#x901A;&#x8FC7;top&#x770B;&#x5230;&#x660E;&#x663E;&#x7684;cpu&#x6D88;&#x8017;&#x6BD4;&#x4F8B;</li>
+<li>&#x5982;&#x679C;&#x662F;&#x6728;&#x9A6C;&#x7C7B;&#x9690;&#x85CF;&#x7684;&#x8FDB;&#x7A0B;&#xFF0C;&#x901A;&#x8FC7;top&#x662F;&#x770B;&#x4E0D;&#x5230;&#x7684;,&#x53EF;&#x4EE5;&#x5C1D;&#x8BD5;&#x4F7F;&#x7528;htop&#x548C;busybox top&#x547D;&#x4EE4;&#xFF08;&#x8FD9;&#x91CC;&#x6D89;&#x53CA;&#x5230;&#x4E00;&#x4E2A;top&#x7684;&#x539F;&#x7406;&#xFF0C;top&#x662F;&#x901A;&#x8FC7;&#x904D;&#x5386;/proc/<pid>&#x7684;&#x65B9;&#x5F0F;&#x53BB;&#x7EDF;&#x8BA1;&#x6BCF;&#x4E2A;&#x8FDB;&#x7A0B;&#x5BF9;CPU&#x7684;&#x6D88;&#x8017;&#xFF0C;&#x5982;&#x679C;&#x8FD9;&#x4E2A;&#x8FDB;&#x7A0B;&#x6CA1;&#x6709;&#x5728;/proc&#x4E0B;&#x751F;&#x6210;pid&#xFF0C;&#x90A3;&#x4E48;top&#x662F;&#x7EDF;&#x8BA1;&#x4E0D;&#x5230;&#x7684;&#xFF09;  </pid></li>
+<li>&#x7528;&#x6237;&#x8FDB;&#x7A0B;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;perf&#x5B9A;&#x4F4D;&#x6027;&#x80FD;&#x5F00;&#x9500;&#x51FD;&#x6570;`<a href="https://www.itgod.org/archives/113" target="_blank">https://www.itgod.org/archives/113</a>  </li>
+</ul>
+<h3 id="io&#x6027;&#x80FD;&#x5F00;&#x9500;&#x5B9A;&#x4F4D;">IO&#x6027;&#x80FD;&#x5F00;&#x9500;&#x5B9A;&#x4F4D;</h3>
+<ul>
+<li>iostat -x 1 &#x67E5;&#x770B;IO&#x8D1F;&#x8F7D;&#x548C;&#x5F53;&#x524D;iops</li>
+<li>pidstat -d 1 &#x5C55;&#x793A;io&#x7EDF;&#x8BA1;</li>
+<li>fio &#x78C1;&#x76D8;&#x6027;&#x80FD;&#x6D4B;&#x8BD5;<br><code>fio -direct=1 -iodepth=32 -rw=randwrite -ioengine=libaio -bs=4k -numjobs=4 -time_based=1 -runtime=1000 -group_reporting -filename=./a -name=test</code></li>
+</ul>
 <footer class="page-footer"><span class="copyright">Copyright &#xA9; &#x8FD0;&#x7EF4;&#x77E5;&#x8BC6;&#x5E93; all right reserved. &#x8700;ICP&#x5907;16012425&#x53F7;</span><span class="footer-modification">&#x6587;&#x4EF6;&#x4FEE;&#x8BA2;&#x65F6;&#x95F4;&#xFF1A;
-2022-05-20 05:31:21
+2022-09-27 04:13:37
 </span></footer>
 <script>console.log("plugin-popup....");document.onclick = function(e){ e.target.tagName === "IMG" && window.open(e.target.src,e.target.src)}</script><style>img{cursor:pointer}</style>
                                 
@@ -1582,12 +1617,12 @@
 
             
                 
-                <a href="../Nginx/Nginx限流.html" class="navigation navigation-prev " aria-label="Previous page: Nginx限流">
+                <a href="Buffer和Cache.html" class="navigation navigation-prev " aria-label="Previous page: Buffer和Cache">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
                 
-                <a href="Uwsgi+Flask.html" class="navigation navigation-next " aria-label="Next page: Uwsgi Flask">
+                <a href="系统繁忙指标的意义.html" class="navigation navigation-next " aria-label="Next page: 系统繁忙指标的意义">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -1598,7 +1633,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"UWSGI","level":"1.7","depth":1,"next":{"title":"Uwsgi Flask","level":"1.7.1","depth":2,"path":"UWSGI/Uwsgi+Flask.md","ref":"UWSGI/Uwsgi+Flask.md","articles":[]},"previous":{"title":"Nginx限流","level":"1.6.11","depth":2,"path":"Nginx/Nginx限流.md","ref":"Nginx/Nginx限流.md","articles":[]},"dir":"neutral"},"config":{"plugins":["-lunr","-search","search-pro","chapter-fold","splitter","back-to-top-button","code","copy-code-button","donate","tbfed-pagefooter","insert-logo","favicon","popup","meta"],"ignores":["node_modules"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"tbfed-pagefooter":{"copyright":"Copyright &copy 运维知识库","modify_label":"文件修订时间：","modify_format":"YYYY-MM-DD HH:mm:ss"},"chapter-fold":{},"meta":{"content":"","data":[{"name":"description","content":"运维知识库是运维知识收集记录平台,是一个记录系统运维、系统安全配置、应用优化、自动化运维、监控、Python运维开发、Shell脚本等知识的IT资料库"},{"name":"keywords","content":"运维知识库,系统安全配置,系统运维,应用优化,自动化运维,监控,Python,Shell脚本,Python运维自动化,运维笔记"},{"name":"referrer","content":"origin"}],"name":""},"splitter":{},"search-pro":{},"popup":{},"code":{"copyButtons":true},"donate":{"alipay":"/static/img/zhi.jpg","alipayText":"支付宝打赏","button":"打赏一下","title":"","wechat":"/static/img/we.png","wechatText":"微信打赏"},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"favicon":{"shortcut":"/static/img/favicon.ico","bookmark":"/static/img/favicon.ico","appleTouch":"/staic/img/favicon.png","appleTouchMore":{"120x120":"img/apple-touch-icon-120x120.png","180x180":"img/apple-touch-icon-180x180.png"}},"back-to-top-button":{},"copy-code-button":{},"sharing":{"facebook":false,"twitter":false,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":[]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"insert-logo":{"style":"background: none; max-height: 30px; min-height: 30px","url":"/static/img/logo.png"}},"theme":"default","author":"BigHead","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"运维知识库","language":"zh-hans","links":{"gitbook":false,"sharing":{"google":false,"facebook":false,"twitter":false,"all":false},"sidebar":{"返回首页":"/"}},"gitbook":"*","description":"运维知识库是运维知识收集记录平台,记录系统安全配置、应用优化、自动化运维、监控、Python、Shell脚本等知识"},"file":{"path":"UWSGI/README.md","mtime":"2022-05-20T09:31:21.318Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2022-09-27T08:13:40.349Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"CPU性能排查实践思路","level":"1.10.2","depth":2,"next":{"title":"系统繁忙指标的意义","level":"1.10.3","depth":2,"path":"系统性能/系统繁忙指标的意义.md","ref":"系统性能/系统繁忙指标的意义.md","articles":[]},"previous":{"title":"Buffer和Cache","level":"1.10.1","depth":2,"path":"系统性能/Buffer和Cache.md","ref":"系统性能/Buffer和Cache.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-lunr","-search","search-pro","chapter-fold","splitter","back-to-top-button","code","copy-code-button","donate","tbfed-pagefooter","insert-logo","favicon","popup","meta"],"ignores":["node_modules"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"tbfed-pagefooter":{"copyright":"Copyright &copy 运维知识库","modify_label":"文件修订时间：","modify_format":"YYYY-MM-DD HH:mm:ss"},"chapter-fold":{},"meta":{"content":"","data":[{"name":"description","content":"运维知识库是运维知识收集记录平台,是一个记录系统运维、系统安全配置、应用优化、自动化运维、监控、Python运维开发、Shell脚本等知识的IT资料库"},{"name":"keywords","content":"运维知识库,系统安全配置,系统运维,应用优化,自动化运维,监控,Python,Shell脚本,Python运维自动化,运维笔记"},{"name":"referrer","content":"origin"}],"name":""},"splitter":{},"search-pro":{},"popup":{},"code":{"copyButtons":true},"donate":{"alipay":"/static/img/zhi.jpg","alipayText":"支付宝打赏","button":"打赏一下","title":"","wechat":"/static/img/we.png","wechatText":"微信打赏"},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"favicon":{"shortcut":"/static/img/favicon.ico","bookmark":"/static/img/favicon.ico","appleTouch":"/staic/img/favicon.png","appleTouchMore":{"120x120":"img/apple-touch-icon-120x120.png","180x180":"img/apple-touch-icon-180x180.png"}},"back-to-top-button":{},"copy-code-button":{},"sharing":{"facebook":false,"twitter":false,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":[]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"insert-logo":{"style":"background: none; max-height: 30px; min-height: 30px","url":"/static/img/logo.png"}},"theme":"default","author":"BigHead","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"运维知识库","language":"zh-hans","links":{"gitbook":false,"sharing":{"google":false,"facebook":false,"twitter":false,"all":false},"sidebar":{"返回首页":"/"}},"gitbook":"*","description":"运维知识库是运维知识收集记录平台,记录系统安全配置、应用优化、自动化运维、监控、Python、Shell脚本等知识"},"file":{"path":"系统性能/CPU性能排查实践思路.md","mtime":"2022-09-27T08:13:37.301Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2022-09-27T08:13:40.349Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
