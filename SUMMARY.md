@@ -87,5 +87,7 @@
     * [2.RabbitMQ部署](应用类基操/RabbitMQ/2.RabbitMQ部署.md)
     * [RabbitMq镜像集群部署](应用类基操/RabbitMQ/RabbitMq镜像集群部署.md)
 - [系统性能](系统性能/README.md)
+  * [Buffer和Cache](系统性能/Buffer和Cache.md)
+  * [CPU性能排查实践思路](系统性能/CPU性能排查实践思路.md)
   * [系统繁忙指标的意义](系统性能/系统繁忙指标的意义.md)
   * [零侵入应用性能瓶颈分析](系统性能/零侵入应用性能瓶颈分析.md)
