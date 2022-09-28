@@ -17,4 +17,5 @@
 - Buffer除了作为临时存放IO数据的作用外，还可以消峰，而Cache是为了提高性能而生  
 - Buffer中的数据不能被清除，一旦被清除可能意味着IO Error； Cache可以被清除，只是清除后需要重新从磁盘寻找数据  
 - 由于CPU不能直接操作内存，所以每次IO一定会产生buffer，而不一定产生Cache，是否产生Cache取决于特定的算法  
-Cache又分为ReadCache和WriteCache，比如在WriteCache时，又属于是buffer的一种形式。所以Buffer和Cache常常一起出现。很多时候Write Cache同时也可以作为Read Cache使用，但在分布式系统中，则需要考虑Cache一致性的问题
+Cache又分为ReadCache和WriteCache，比如在WriteCache时，又属于是buffer的一种形式。所以Buffer和Cache常常一起出现。很多时候Write Cache同时也可以作为Read Cache使用，但在分布式系统中，则需要考虑Cache一致性的问题  
+- Buffer和Cache非常相似，它们都存储数据。特定场合它们也有区别，Buffer的主要目的是在不同应用、线程、进程之间共享字节数据，例如为了让不同速度的设备能够进行数据同步，就会使用共享 Buffer；  
