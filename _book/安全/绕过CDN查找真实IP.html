@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>Buffer和Cache · 运维知识库</title>
+        <title>绕过CDN查找真实IP · 运维知识库</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -95,10 +95,8 @@
     <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="CPU性能排查实践思路.html" />
+    <link rel="next" href="../实用Demo/" />
     
-    
-    <link rel="prev" href="./" />
     
 
 
@@ -999,9 +997,9 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="1.8.1" data-path="../安全/绕过CDN查找真实IP.html">
+        <li class="chapter active" data-level="1.8.1" data-path="绕过CDN查找真实IP.html">
             
-                <a href="../安全/绕过CDN查找真实IP.html">
+                <a href="绕过CDN查找真实IP.html">
             
                     
                     绕过CDN查找真实IP
@@ -1506,9 +1504,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.11" data-path="./">
+        <li class="chapter " data-level="1.11" data-path="../系统性能/">
             
-                <a href="./">
+                <a href="../系统性能/">
             
                     
                     系统性能
@@ -1520,9 +1518,9 @@
             <ul class="articles">
                 
     
-        <li class="chapter active" data-level="1.11.1" data-path="Buffer和Cache.html">
+        <li class="chapter " data-level="1.11.1" data-path="../系统性能/Buffer和Cache.html">
             
-                <a href="Buffer和Cache.html">
+                <a href="../系统性能/Buffer和Cache.html">
             
                     
                     Buffer和Cache
@@ -1533,9 +1531,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.11.2" data-path="CPU性能排查实践思路.html">
+        <li class="chapter " data-level="1.11.2" data-path="../系统性能/CPU性能排查实践思路.html">
             
-                <a href="CPU性能排查实践思路.html">
+                <a href="../系统性能/CPU性能排查实践思路.html">
             
                     
                     CPU性能排查实践思路
@@ -1546,9 +1544,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.11.3" data-path="基准测试.html">
+        <li class="chapter " data-level="1.11.3" data-path="../系统性能/基准测试.html">
             
-                <a href="基准测试.html">
+                <a href="../系统性能/基准测试.html">
             
                     
                     基准测试
@@ -1559,9 +1557,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.11.4" data-path="深拷贝&浅拷贝&零拷贝.html">
+        <li class="chapter " data-level="1.11.4" data-path="../系统性能/深拷贝&浅拷贝&零拷贝.html">
             
-                <a href="深拷贝&浅拷贝&零拷贝.html">
+                <a href="../系统性能/深拷贝&浅拷贝&零拷贝.html">
             
                     
                     深拷贝&浅拷贝&零拷贝
@@ -1572,9 +1570,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.11.5" data-path="系统繁忙指标的意义.html">
+        <li class="chapter " data-level="1.11.5" data-path="../系统性能/系统繁忙指标的意义.html">
             
-                <a href="系统繁忙指标的意义.html">
+                <a href="../系统性能/系统繁忙指标的意义.html">
             
                     
                     系统繁忙指标的意义
@@ -1585,9 +1583,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.11.6" data-path="进程与线程.html">
+        <li class="chapter " data-level="1.11.6" data-path="../系统性能/进程与线程.html">
             
-                <a href="进程与线程.html">
+                <a href="../系统性能/进程与线程.html">
             
                     
                     进程与线程
@@ -1598,9 +1596,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.11.7" data-path="零侵入应用性能瓶颈分析.html">
+        <li class="chapter " data-level="1.11.7" data-path="../系统性能/零侵入应用性能瓶颈分析.html">
             
-                <a href="零侵入应用性能瓶颈分析.html">
+                <a href="../系统性能/零侵入应用性能瓶颈分析.html">
             
                     
                     零侵入应用性能瓶颈分析
@@ -1646,7 +1644,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href=".." >Buffer和Cache</a>
+        <a href=".." >绕过CDN查找真实IP</a>
     </h1>
 </div>
 
@@ -1661,23 +1659,14 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h2 id="buffer">Buffer</h2>
-<p>&#x8BCD;&#x4E49;&#xFF1A; &#x7F13;&#x51B2;&#x533A;
-&#x6BD4;&#x5982;&#x9700;&#x8981;&#x5BF9;&#x78C1;&#x76D8;&#x8FDB;&#x884C;10&#x6B21;&#x5199;&#x5165;&#xFF0C;&#x524D;9&#x6B21;&#x5199;&#x5165;&#x90FD;&#x6682;&#x4E14;&#x88AB;&#x5B58;&#x5728;&#x5185;&#x5B58;&#x4E2D;&#xFF0C;&#x76F4;&#x5230;&#x7B2C;10&#x6B21;&#x5199;&#x5165;&#x65F6;&#x3002;&#x624D;&#x5C06;&#x8FD9;10&#x6B21;&#x5199;&#x5165;&#x7684;&#x6570;&#x636E;&#x4E00;&#x6B21;&#x6027;&#x5199;&#x5165;&#x5230;&#x78C1;&#x76D8;&#xFF0C;&#x4EE5;&#x6B64;&#x6765;&#x51CF;&#x5C11;IO&#x7684;&#x64CD;&#x4F5C;&#x6B21;&#x6570;&#xFF0C;&#x6709;&#x6D88;&#x5CF0;&#x7684;&#x6548;&#x679C;</p>
-<h2 id="cache">Cache</h2>
-<p>&#x8BCD;&#x4E49;&#xFF1A; &#x7F13;&#x5B58;&#x533A;
-&#x5047;&#x8BBE;&#x6211;&#x4EEC;&#x9700;&#x8981;&#x4ECE;&#x4E00;&#x5757;4K&#x5BF9;&#x9F50;&#x7684;&#x78C1;&#x76D8;&#x4E2D;&#x8BFB;&#x53D6;9KB&#x7684;&#x6587;&#x4EF6;&#x6570;&#x636E;&#xFF0C;&#x6700;&#x7EC8;&#x5C31;&#x4F1A;&#x8BFB;&#x53D6;&#x5230;&#x78C1;&#x76D8;&#x7684;3&#x4E2A;&#x6247;&#x533A;&#xFF08;&#x56E0;&#x4E3A;&#x4E00;&#x4E2A;&#x6247;&#x533A;&#x662F;4K&#xFF0C;&#x6240;&#x4EE5;9K&#x6570;&#x636E;&#x4F1A;&#x6709;3&#x4E2A;&#x6247;&#x533A;&#xFF09;&#x5230;&#x5185;&#x5B58;&#x4E2D;&#xFF0C;&#x5B58;&#x653E;&#x8FD9;3&#x4E2A;&#x6247;&#x533A;&#x6570;&#x636E;&#x7684;&#x5185;&#x5B58;&#x7A7A;&#x95F4;&#xFF0C;&#x5C31;&#x662F;buffer&#xFF0C;CPU&#x53EF;&#x4EE5;&#x76F4;&#x63A5;&#x64CD;&#x4F5C;&#x8FD9;&#x4E00;&#x7EC4;Buffer&#xFF0C;&#x64CD;&#x4F5C;&#x5B8C;&#x6210;&#x540E;&#xFF0C;Buffer&#x4F1A;&#x88AB;&#x91CA;&#x653E;    </p>
-<p>&#x5982;&#x679C;&#x5E94;&#x7528;&#x9700;&#x8981;&#x91CD;&#x590D;&#x7684;&#x8BFB;&#x53D6;&#x8FD9;&#x4E2A;9KB&#x7684;&#x6587;&#x4EF6;&#xFF0C;&#x6BCF;&#x6B21;&#x90FD;&#x8981;&#x4ECE;&#x78C1;&#x76D8;&#x8BFB;&#x53D6;&#x663E;&#x7136;&#x5F88;&#x6162;&#xFF0C;&#x5982;&#x679C;&#x7B2C;&#x4E00;&#x6B21;&#x8BFB;&#x53D6;&#x540E;&#xFF0C;&#x6CA1;&#x6709;&#x76F4;&#x63A5;&#x6E05;&#x7A7A;buffer&#xFF0C;&#x800C;&#x662F;&#x628A;&#x8FD9;&#x6BB5;&#x5185;&#x5B58;&#x4FDD;&#x5B58;&#x4E0B;&#x6765;&#x6216;&#x8005;&#x590D;&#x5236;&#xFF0C;&#x4EE5;&#x540E;&#x8BFB;&#x53D6;&#x8FD9;&#x4E2A;&#x6587;&#x4EF6;&#x5C31;&#x53EF;&#x4EE5;&#x76F4;&#x63A5;&#x4ECE;&#x5185;&#x5B58;&#x8BFB;&#x53D6;&#xFF0C;&#x8FD9;&#x5C31;&#x662F;Cache,&#x4E25;&#x8C28;&#x6765;&#x8BF4;&#xFF0C;&#x4E0A;&#x8FF0;&#x8FD9;&#x79CD;&#x5C5E;&#x4E8E;ReadCache  </p>
-<p>&#x65E2;&#x7136;&#x6709;ReadCache&#xFF0C;&#x90A3;&#x5C31;&#x6709;WriteCache&#x3002;<br>&#x5047;&#x8BBE;&#x5E94;&#x7528;&#x5BF9;&#x521A;&#x521A;&#x8BFB;&#x53D6;&#x7684;4&#x4E2A;&#x6247;&#x533A;&#x6570;&#x636E;&#xFF0C;&#x5728;&#x5185;&#x5B58;&#x4E2D;&#x4FEE;&#x6539;&#x4E86;&#x7B2C;&#x4E00;&#x4E2A;&#x6247;&#x533A;&#x7684;&#x6570;&#x636E;&#xFF0C;&#x7136;&#x540E;&#x53C8;&#x4FEE;&#x6539;&#x4E86;&#x7B2C;&#x4E8C;&#x4E2A;&#x6247;&#x533A;&#x7684;&#x6570;&#x636E;&#xFF0C;&#x7D27;&#x63A5;&#x7740;&#x53C8;&#x4FEE;&#x6539;&#x4E86;&#x7B2C;&#x4E09;&#x4E2A;&#x6247;&#x533A;&#x7684;&#x6570;&#x636E;&#x3002;&#x8FD9;3&#x6B21;&#x4FEE;&#x6539;&#x88AB;&#x5408;&#x5E76;&#x4E3A;&#x4E86;&#x4E00;&#x6B21;IO&#x64CD;&#x4F5C;&#x5E76;&#x5199;&#x5165;&#x78C1;&#x76D8;&#xFF0C;&#x8FD9;&#x5C31;&#x662F;WriteCache&#xFF0C;&#x4E5F;&#x662F;Buffer&#x7684;&#x4E00;&#x79CD;&#x5F62;&#x5F0F;</p>
-<h2 id="&#x533A;&#x522B;&#x603B;&#x7ED3;">&#x533A;&#x522B;&#x603B;&#x7ED3;</h2>
-<ul>
-<li>Buffer&#x9664;&#x4E86;&#x4F5C;&#x4E3A;&#x4E34;&#x65F6;&#x5B58;&#x653E;IO&#x6570;&#x636E;&#x7684;&#x4F5C;&#x7528;&#x5916;&#xFF0C;&#x8FD8;&#x53EF;&#x4EE5;&#x6D88;&#x5CF0;&#xFF0C;&#x800C;Cache&#x662F;&#x4E3A;&#x4E86;&#x63D0;&#x9AD8;&#x6027;&#x80FD;&#x800C;&#x751F;  </li>
-<li>Buffer&#x4E2D;&#x7684;&#x6570;&#x636E;&#x4E0D;&#x80FD;&#x88AB;&#x6E05;&#x9664;&#xFF0C;&#x4E00;&#x65E6;&#x88AB;&#x6E05;&#x9664;&#x53EF;&#x80FD;&#x610F;&#x5473;&#x7740;IO Error&#xFF1B; Cache&#x53EF;&#x4EE5;&#x88AB;&#x6E05;&#x9664;&#xFF0C;&#x53EA;&#x662F;&#x6E05;&#x9664;&#x540E;&#x9700;&#x8981;&#x91CD;&#x65B0;&#x4ECE;&#x78C1;&#x76D8;&#x5BFB;&#x627E;&#x6570;&#x636E;  </li>
-<li>&#x7531;&#x4E8E;CPU&#x4E0D;&#x80FD;&#x76F4;&#x63A5;&#x64CD;&#x4F5C;&#x5185;&#x5B58;&#xFF0C;&#x6240;&#x4EE5;&#x6BCF;&#x6B21;IO&#x4E00;&#x5B9A;&#x4F1A;&#x4EA7;&#x751F;buffer&#xFF0C;&#x800C;&#x4E0D;&#x4E00;&#x5B9A;&#x4EA7;&#x751F;Cache&#xFF0C;&#x662F;&#x5426;&#x4EA7;&#x751F;Cache&#x53D6;&#x51B3;&#x4E8E;&#x7279;&#x5B9A;&#x7684;&#x7B97;&#x6CD5;<br>Cache&#x53C8;&#x5206;&#x4E3A;ReadCache&#x548C;WriteCache&#xFF0C;&#x6BD4;&#x5982;&#x5728;WriteCache&#x65F6;&#xFF0C;&#x53C8;&#x5C5E;&#x4E8E;&#x662F;buffer&#x7684;&#x4E00;&#x79CD;&#x5F62;&#x5F0F;&#x3002;&#x6240;&#x4EE5;Buffer&#x548C;Cache&#x5E38;&#x5E38;&#x4E00;&#x8D77;&#x51FA;&#x73B0;&#x3002;&#x5F88;&#x591A;&#x65F6;&#x5019;Write Cache&#x540C;&#x65F6;&#x4E5F;&#x53EF;&#x4EE5;&#x4F5C;&#x4E3A;Read Cache&#x4F7F;&#x7528;&#xFF0C;&#x4F46;&#x5728;&#x5206;&#x5E03;&#x5F0F;&#x7CFB;&#x7EDF;&#x4E2D;&#xFF0C;&#x5219;&#x9700;&#x8981;&#x8003;&#x8651;Cache&#x4E00;&#x81F4;&#x6027;&#x7684;&#x95EE;&#x9898;  </li>
-<li>Buffer&#x548C;Cache&#x975E;&#x5E38;&#x76F8;&#x4F3C;&#xFF0C;&#x5B83;&#x4EEC;&#x90FD;&#x5B58;&#x50A8;&#x6570;&#x636E;&#x3002;&#x7279;&#x5B9A;&#x573A;&#x5408;&#x5B83;&#x4EEC;&#x4E5F;&#x6709;&#x533A;&#x522B;&#xFF0C;Buffer&#x7684;&#x4E3B;&#x8981;&#x76EE;&#x7684;&#x662F;&#x5728;&#x4E0D;&#x540C;&#x5E94;&#x7528;&#x3001;&#x7EBF;&#x7A0B;&#x3001;&#x8FDB;&#x7A0B;&#x4E4B;&#x95F4;&#x5171;&#x4EAB;&#x5B57;&#x8282;&#x6570;&#x636E;&#xFF0C;&#x4F8B;&#x5982;&#x4E3A;&#x4E86;&#x8BA9;&#x4E0D;&#x540C;&#x901F;&#x5EA6;&#x7684;&#x8BBE;&#x5907;&#x80FD;&#x591F;&#x8FDB;&#x884C;&#x6570;&#x636E;&#x540C;&#x6B65;&#xFF0C;&#x5C31;&#x4F1A;&#x4F7F;&#x7528;&#x5171;&#x4EAB; Buffer&#xFF1B;   </li>
-</ul>
+                                <h2 id="&#x5229;&#x7528;ssl&#x8BC1;&#x4E66;">&#x5229;&#x7528;SSL&#x8BC1;&#x4E66;</h2>
+<blockquote>
+<blockquote>
+<p>1&#x3001;&#x67E5;&#x770B;&#x8BC1;&#x4E66;SHA-256&#x6307;&#x7EB9;<br>2&#x3001;&#x901A;&#x8FC7;crt.sh&#x641C;&#x7D22;sha-256&#x6307;&#x7EB9;&#xFF0C;&#x83B7;&#x5F97;&#x8BC1;&#x4E66;&#x6307;&#x7EB9;&#xFF08;Certificate Fingerprints&#xFF09;<br>3&#x3001;&#x901A;&#x8FC7;<a href="https://search.censys.io/search&#x641C;&#x7D22;&#x8BC1;&#x4E66;&#x6307;&#x7EB9;&#x83B7;&#x5F97;&#x771F;&#x5B9E;IP" target="_blank">https://search.censys.io/search&#x641C;&#x7D22;&#x8BC1;&#x4E66;&#x6307;&#x7EB9;&#x83B7;&#x5F97;&#x771F;&#x5B9E;IP</a>  </p>
+</blockquote>
+</blockquote>
 <footer class="page-footer"><span class="copyright">Copyright &#xA9; &#x8FD0;&#x7EF4;&#x77E5;&#x8BC6;&#x5E93; all right reserved. &#x8700;ICP&#x5907;16012425&#x53F7;</span><span class="footer-modification">&#x6587;&#x4EF6;&#x4FEE;&#x8BA2;&#x65F6;&#x95F4;&#xFF1A;
-2022-09-28 03:14:34
+2022-10-10 23:37:31
 </span></footer>
 <script>console.log("plugin-popup....");document.onclick = function(e){ e.target.tagName === "IMG" && window.open(e.target.src,e.target.src)}</script><style>img{cursor:pointer}</style>
                                 
@@ -1706,12 +1695,8 @@
 
             
                 
-                <a href="./" class="navigation navigation-prev " aria-label="Previous page: 系统性能">
-                    <i class="fa fa-angle-left"></i>
-                </a>
                 
-                
-                <a href="CPU性能排查实践思路.html" class="navigation navigation-next " aria-label="Next page: CPU性能排查实践思路">
+                <a href="../实用Demo/" class="navigation navigation-next navigation-unique" aria-label="Next page: 实用Demo">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -1722,7 +1707,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Buffer和Cache","level":"1.11.1","depth":2,"next":{"title":"CPU性能排查实践思路","level":"1.11.2","depth":2,"path":"系统性能/CPU性能排查实践思路.md","ref":"系统性能/CPU性能排查实践思路.md","articles":[]},"previous":{"title":"系统性能","level":"1.11","depth":1,"path":"系统性能/README.md","ref":"系统性能/README.md","articles":[{"title":"Buffer和Cache","level":"1.11.1","depth":2,"path":"系统性能/Buffer和Cache.md","ref":"系统性能/Buffer和Cache.md","articles":[]},{"title":"CPU性能排查实践思路","level":"1.11.2","depth":2,"path":"系统性能/CPU性能排查实践思路.md","ref":"系统性能/CPU性能排查实践思路.md","articles":[]},{"title":"基准测试","level":"1.11.3","depth":2,"path":"系统性能/基准测试.md","ref":"系统性能/基准测试.md","articles":[]},{"title":"深拷贝&浅拷贝&零拷贝","level":"1.11.4","depth":2,"path":"系统性能/深拷贝&浅拷贝&零拷贝.md","ref":"系统性能/深拷贝&浅拷贝&零拷贝.md","articles":[]},{"title":"系统繁忙指标的意义","level":"1.11.5","depth":2,"path":"系统性能/系统繁忙指标的意义.md","ref":"系统性能/系统繁忙指标的意义.md","articles":[]},{"title":"进程与线程","level":"1.11.6","depth":2,"path":"系统性能/进程与线程.md","ref":"系统性能/进程与线程.md","articles":[]},{"title":"零侵入应用性能瓶颈分析","level":"1.11.7","depth":2,"path":"系统性能/零侵入应用性能瓶颈分析.md","ref":"系统性能/零侵入应用性能瓶颈分析.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":["-lunr","-search","search-pro","chapter-fold","splitter","back-to-top-button","code","copy-code-button","donate","tbfed-pagefooter","insert-logo","favicon","popup","meta"],"ignores":["node_modules"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"tbfed-pagefooter":{"copyright":"Copyright &copy 运维知识库","modify_label":"文件修订时间：","modify_format":"YYYY-MM-DD HH:mm:ss"},"chapter-fold":{},"meta":{"content":"","data":[{"name":"description","content":"运维知识库是运维知识收集记录平台,是一个记录系统运维、系统安全配置、应用优化、自动化运维、监控、Python运维开发、Shell脚本等知识的IT资料库"},{"name":"keywords","content":"运维知识库,系统安全配置,系统运维,应用优化,自动化运维,监控,Python,Shell脚本,Python运维自动化,运维笔记"},{"name":"referrer","content":"origin"}],"name":""},"splitter":{},"search-pro":{},"popup":{},"code":{"copyButtons":true},"donate":{"alipay":"/static/img/zhi.jpg","alipayText":"支付宝打赏","button":"打赏一下","title":"","wechat":"/static/img/we.png","wechatText":"微信打赏"},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"favicon":{"shortcut":"/static/img/favicon.ico","bookmark":"/static/img/favicon.ico","appleTouch":"/staic/img/favicon.png","appleTouchMore":{"120x120":"img/apple-touch-icon-120x120.png","180x180":"img/apple-touch-icon-180x180.png"}},"back-to-top-button":{},"copy-code-button":{},"sharing":{"facebook":false,"twitter":false,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":[]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"insert-logo":{"style":"background: none; max-height: 30px; min-height: 30px","url":"/static/img/logo.png"}},"theme":"default","author":"BigHead","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"运维知识库","language":"zh-hans","links":{"gitbook":false,"sharing":{"google":false,"facebook":false,"twitter":false,"all":false},"sidebar":{"返回首页":"/"}},"gitbook":"*","description":"运维知识库是运维知识收集记录平台,记录系统安全配置、应用优化、自动化运维、监控、Python、Shell脚本等知识"},"file":{"path":"系统性能/Buffer和Cache.md","mtime":"2022-09-28T07:14:34.573Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2022-10-11T03:42:15.640Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"绕过CDN查找真实IP","level":"1.8.1","depth":2,"next":{"title":"实用Demo","level":"1.9","depth":1,"path":"实用Demo/README.md","ref":"实用Demo/README.md","articles":[{"title":"Golang","level":"1.9.1","depth":2,"path":"实用Demo/golang/README.md","ref":"实用Demo/golang/README.md","articles":[{"title":"Kafka Demo","level":"1.9.1.1","depth":3,"path":"实用Demo/golang/kafka-demo.md","ref":"实用Demo/golang/kafka-demo.md","articles":[]}]},{"title":"Python","level":"1.9.2","depth":2,"path":"实用Demo/Python/README.md","ref":"实用Demo/Python/README.md","articles":[{"title":"Hashlib","level":"1.9.2.1","depth":3,"path":"实用Demo/Python/hashlib.md","ref":"实用Demo/Python/hashlib.md","articles":[]},{"title":"Python生产消费","level":"1.9.2.2","depth":3,"path":"实用Demo/Python/Python生产消费.md","ref":"实用Demo/Python/Python生产消费.md","articles":[]},{"title":"时间操作","level":"1.9.2.3","depth":3,"path":"实用Demo/Python/时间操作.md","ref":"实用Demo/Python/时间操作.md","articles":[]}]},{"title":"ES跨集群迁移索引","level":"1.9.3","depth":2,"path":"实用Demo/ES跨集群迁移索引.md","ref":"实用Demo/ES跨集群迁移索引.md","articles":[]},{"title":"expect批量建立ssh互信","level":"1.9.4","depth":2,"path":"实用Demo/expect批量建立ssh互信.md","ref":"实用Demo/expect批量建立ssh互信.md","articles":[]},{"title":"Linux新系统初始化","level":"1.9.5","depth":2,"path":"实用Demo/Linux新系统初始化.md","ref":"实用Demo/Linux新系统初始化.md","articles":[]},{"title":"Makefile Doc","level":"1.9.6","depth":2,"path":"实用Demo/MakefileDoc.md","ref":"实用Demo/MakefileDoc.md","articles":[]}]},"previous":{"title":"安全","level":"1.8","depth":1,"ref":"","articles":[{"title":"绕过CDN查找真实IP","level":"1.8.1","depth":2,"path":"安全/绕过CDN查找真实IP.md","ref":"安全/绕过CDN查找真实IP.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":["-lunr","-search","search-pro","chapter-fold","splitter","back-to-top-button","code","copy-code-button","donate","tbfed-pagefooter","insert-logo","favicon","popup","meta"],"ignores":["node_modules"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"tbfed-pagefooter":{"copyright":"Copyright &copy 运维知识库","modify_label":"文件修订时间：","modify_format":"YYYY-MM-DD HH:mm:ss"},"chapter-fold":{},"meta":{"content":"","data":[{"name":"description","content":"运维知识库是运维知识收集记录平台,是一个记录系统运维、系统安全配置、应用优化、自动化运维、监控、Python运维开发、Shell脚本等知识的IT资料库"},{"name":"keywords","content":"运维知识库,系统安全配置,系统运维,应用优化,自动化运维,监控,Python,Shell脚本,Python运维自动化,运维笔记"},{"name":"referrer","content":"origin"}],"name":""},"splitter":{},"search-pro":{},"popup":{},"code":{"copyButtons":true},"donate":{"alipay":"/static/img/zhi.jpg","alipayText":"支付宝打赏","button":"打赏一下","title":"","wechat":"/static/img/we.png","wechatText":"微信打赏"},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"favicon":{"shortcut":"/static/img/favicon.ico","bookmark":"/static/img/favicon.ico","appleTouch":"/staic/img/favicon.png","appleTouchMore":{"120x120":"img/apple-touch-icon-120x120.png","180x180":"img/apple-touch-icon-180x180.png"}},"back-to-top-button":{},"copy-code-button":{},"sharing":{"facebook":false,"twitter":false,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":[]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"insert-logo":{"style":"background: none; max-height: 30px; min-height: 30px","url":"/static/img/logo.png"}},"theme":"default","author":"BigHead","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"运维知识库","language":"zh-hans","links":{"gitbook":false,"sharing":{"google":false,"facebook":false,"twitter":false,"all":false},"sidebar":{"返回首页":"/"}},"gitbook":"*","description":"运维知识库是运维知识收集记录平台,记录系统安全配置、应用优化、自动化运维、监控、Python、Shell脚本等知识"},"file":{"path":"安全/绕过CDN查找真实IP.md","mtime":"2022-10-11T03:37:31.886Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2022-10-11T03:42:15.640Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
