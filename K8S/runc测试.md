@@ -30,5 +30,5 @@ docker export $(docker create busybox) | tar -C rootfs -xvf -
 
 `runc run mycontainerid`
 
-
 >> 比如内存控制，实际上是通过/sys/fs/cgroup/memory/容器名称/limit文件限制内存使用
+
