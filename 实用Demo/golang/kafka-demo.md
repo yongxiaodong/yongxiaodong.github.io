@@ -1,3 +1,38 @@
+
+## producer 示例（partition 负载均衡）
+
+```
+package main
+
+import (
+	"context"
+	"fmt"
+	"github.com/segmentio/kafka-go"
+	"strconv"
+)
+
+func main() {
+	conn := kafka.Writer{
+		Addr:     kafka.TCP("192.168.14.82:9092"),
+		Topic:    "yxdtest",
+		Balancer: &kafka.RoundRobin{},
+	}
+	c := 0
+	for {
+		if err := conn.WriteMessages(context.Background(),
+			kafka.Message{
+				Value: []byte(strconv.Itoa(c)),
+			},
+		); err != nil {
+			fmt.Println(err)
+		}
+		c += 1
+		fmt.Println(c)
+	}
+}
+```
+
+
 ## producer示例
 
 ```
@@ -37,6 +72,7 @@ func main() {
 
 }
 ```
+
 
 ## consumer示例
 

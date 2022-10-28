@@ -1,5 +1,11 @@
 ### istio 的证书颁发脚本
 
+>> 安装证书管理器  
+
+`kubectl apply -f https://github.com/cert-manager/cert-manager/releases/download/v1.10.0/cert-manager.yaml`
+
+
+
 >> service名字必须跟controller的svc名字一致
 
 原脚本链接： `https://github.com/istio/istio/blob/release-0.7/install/kubernetes/webhook-create-signed-cert.sh`
