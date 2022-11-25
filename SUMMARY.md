@@ -56,7 +56,7 @@
   * [Nginx限流](Nginx/Nginx限流.md)
 - [UWSGI](UWSGI/README.md)
   * [Uwsgi Flask](UWSGI/Uwsgi+Flask.md)
-- 安全
+- [安全](安全/README.md)
   * [绕过CDN查找真实IP](安全/绕过CDN查找真实IP.md)
 - [实用Demo](实用Demo/README.md)
   - [Golang](实用Demo/golang/README.md)
