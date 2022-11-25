@@ -1,5 +1,8 @@
 # 运维知识库
 
+- EBPF
+  * [1.简介](EBPF/1.简介.md)
+  * [2.入门：bpftrace](EBPF/2.入门：bpftrace.md)
 - [Elasitc Search](ElasitcSearch/README.md)
   * [ES跨集群迁移](ElasitcSearch/ES跨集群迁移.md)
   * [基础常用指令](ElasitcSearch/基础常用指令.md)
@@ -94,7 +97,9 @@
 - [系统性能](系统性能/README.md)
   * [Buffer和Cache](系统性能/Buffer和Cache.md)
   * [CPU性能排查实践思路](系统性能/CPU性能排查实践思路.md)
+  * [Epoll](系统性能/epoll.md)
   * [基准测试](系统性能/基准测试.md)
+  * [快排](系统性能/快排.md)
   * [深拷贝&浅拷贝&零拷贝](系统性能/深拷贝&浅拷贝&零拷贝.md)
   * [系统繁忙指标的意义](系统性能/系统繁忙指标的意义.md)
   * [进程与线程](系统性能/进程与线程.md)
