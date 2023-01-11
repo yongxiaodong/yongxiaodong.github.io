@@ -7,7 +7,7 @@ sysctl -p
 ````
 ## 配置iptables
 
-> 配置nat吧表，所有来源通过192.168.16.70这个IP代理出去
+> 配置nat表，所有来源通过192.168.16.70这个IP代理出去
 ```
 iptables -t nat -I POSTROUTING -s 0.0.0.0/0 -j SNAT --to-source 192.168.16.70
 ```
