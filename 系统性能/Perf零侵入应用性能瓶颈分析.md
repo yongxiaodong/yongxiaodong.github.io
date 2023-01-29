@@ -25,10 +25,65 @@ perf采样理念诞生于2009年，采样这个方式在现分布式系统中也
 
 
 
-## Perf体验--开启零侵入式应用分析
+## Perf开启零侵入式应用分析
 
-### 性能记录采样
+![ReadHat的Perf文档地址](https://access.redhat.com/documentation/zh-cn/red_hat_enterprise_linux/8/html/monitoring_and_managing_system_status_and_performance/generating-a-perf-data-file-that-is-readable-on-a-different-device_recording-and-analyzing-performance-profiles-with-perf)
 
+> Perf 分析一个正在运行的程序
+
+1.获得在运行的进程PID  
+![img_1.png](img_2.png)
+
+2.开始采样  
+`perf record -g -p <PID>`  
+![img_4.png](img_5.png)
+
+3. 根据采样数据分析性能热点  
+   `perf report`
+
+![img_6.png](img_6.png)
+
+图中可以看出88%的性能开销来自main.Fun3函数，10%的性能损耗来自Main.fun1函数  
+输出结果：
+- Overhead：指出了该Symbol采样在总采样中所占的百分比。在当前场景下，表示了该Symbol消耗的CPU时间占总CPU时间的百分比
+- Command：进程名
+- Shared Object：模块名， 比如具体哪个共享库，哪个可执行程序。
+- Symbol：二进制模块中的符号名，如果是高级语言，比如C语言编写的程序，等价于函数名。
+
+4. 分析函数中代码性能
+
+我们光标移动到main.func3处，按回车会出现如下内容，然后再按回车
+
+![img_7.png](img_7.png)
+
+
+出现了具体的函数内容，内容是通过反汇编方式展示。这里可以看着我们99%的性能损耗来自for循环  
+![img_8.png](img_8.png)
+
+5. 附加：生成火焰图
+
+>> 命令git仓库：https://github.com/brendangregg/FlameGraph.git
+
+```
+1.用perf script工具对perf.data进行解析  
+`perf script -i perf.data &> perf.unfold`  
+2.将perf.unfold中的符号进行折叠  
+`./stackcollapse-perf.pl perf.unfold &> perf.folded`  
+3.最后生成svg图：  
+`./flamegraph.pl perf.folded > perf.svg`  
+```
+
+![img_9.png](img_9.png)
+
+![img_10.png](img_10.png)
+
+
+
+## 测试程序
+
+## 分析测试程序
+
+test测试程序[下载地址](https://itgod.org/book/test "下载"):  `https://itgod.org/book/test`
 采样后会在当前目录下生成一个perf.data文件， Ctrl+C终止采样
 
 - 启动./test应用，并开始性能采样  
@@ -62,54 +117,3 @@ perf采样理念诞生于2009年，采样这个方式在现分布式系统中也
 `./stackcollapse-perf.pl perf.unfold &> perf.folded`  
 3.最后生成svg图：  
 `./flamegraph.pl perf.folded > perf.svg`  
-
-
-## 操作样例
-
-test测试程序[下载地址](https://itgod.org/book/test "下载"):  `https://itgod.org/book/test`  
-
-1.获得在运行的进程PID  
-![img_1.png](img_2.png)
-
-2.开始采样  
-`perf record -g -p <PID>`  
-![img_4.png](img_5.png)
-
-3. 根据采样数据分析性能热点  
-`perf report`  
-
-![img_6.png](img_6.png)  
-
-图中可以看出88%的性能开销来自main.Fun3函数，10%的性能损耗来自Main.fun1函数  
-输出结果：
-- Overhead：指出了该Symbol采样在总采样中所占的百分比。在当前场景下，表示了该Symbol消耗的CPU时间占总CPU时间的百分比
-- Command：进程名
-- Shared Object：模块名， 比如具体哪个共享库，哪个可执行程序。
-- Symbol：二进制模块中的符号名，如果是高级语言，比如C语言编写的程序，等价于函数名。
-
-4. 分析函数中代码性能  
-
-我们光标移动到main.func3处，按回车会出现如下内容，然后再按回车
-
-![img_7.png](img_7.png)    
-
-
-出现了具体的函数内容，内容是通过反汇编方式展示。这里可以看着我们99%的性能损耗来自for循环  
-![img_8.png](img_8.png)    
-
-5. 附加：生成火焰图   
-
->> 命令git仓库：https://github.com/brendangregg/FlameGraph.git  
-
-```
-1.用perf script工具对perf.data进行解析  
-`perf script -i perf.data &> perf.unfold`  
-2.将perf.unfold中的符号进行折叠  
-`./stackcollapse-perf.pl perf.unfold &> perf.folded`  
-3.最后生成svg图：  
-`./flamegraph.pl perf.folded > perf.svg`  
-```
-
-![img_9.png](img_9.png)  
-
-![img_10.png](img_10.png)  
