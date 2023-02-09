@@ -28,8 +28,8 @@ Docker依赖Namespace和Cgroup实现了容器机制，namespace负责多个进�
   
 
 ### Network namespace  
-Docker利用Network Namespace实现的4种网络模式
-host模式: 容器不会创建独立的网络环境，不会虚拟出自己的网卡，而是使用宿主机的IP和端口
-container模式： 和一个已经存在的容器共享IP和网卡。两个容器除了网络方面，其它如进程列表、文件系统还是独立的。两个容器都可以通过lo网络通信
-none模式： 容器拥有自己的network namespace，但是并不为容器进行任何网络配置，需要自己为容器添加网络和配置ip
-bridge模式: docker默认的网络设置，容器获得的网段与宿主机Docker0一致
+Docker利用Network Namespace实现的4种网络模式  
+host模式: 容器不会创建独立的网络环境，不会虚拟出自己的网卡，而是使用宿主机的IP和端口  
+container模式： 和一个已经存在的容器共享IP和网卡。两个容器除了网络方面，其它如进程列表、文件系统还是独立的。两个容器都可以通过lo网络通信  
+none模式： 容器拥有自己的network namespace，但是并不为容器进行任何网络配置，需要自己为容器添加网络和配置ip  
+bridge模式: docker默认的网络设置，容器获得的网段与宿主机Docker0一致  
