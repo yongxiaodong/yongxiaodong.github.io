@@ -31,3 +31,37 @@ systemctl restart ${service_name}
 ```
 
 >> ExecStart处必须写绝对路径
+
+
+
+----
+
+#### 一键生成示例
+```
+
+tsname='v2r'
+cat << EOF >> /usr/lib/systemd/system/${tsname}.service
+[Unit]
+Description=${tsname} 
+After=network.target
+[Service]
+Type=simple
+PIDFile=/var/log/${tsname}.pid 
+ExecStart=/data/soft/XrayR --config /data/soft/config.yml
+TimeoutStopSec=5
+KillMode=mixed
+Restart=always 
+LimitNOFILE=100000
+LimitNPROC=100000
+[Install]
+WantedBy=multi-user.target
+EOF
+
+## 启动
+systemctl daemon-reload
+systemctl enable ${tsname} --now
+systemctl status ${tsname}
+
+
+
+```

@@ -47,7 +47,7 @@ sar -n TCP,ETCP 1 ： TCP统计，连接率和重传
 - 错误
 - 系统调用频率  
 - 资源上下文切换频率  
-- 中断频率  
+- 中断频率  `cat /proc/softirqs`
 - 中断的CPU用量是多少 
 
 ### 零侵入CPU剖析
