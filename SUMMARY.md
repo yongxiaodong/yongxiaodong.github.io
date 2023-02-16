@@ -72,6 +72,7 @@
   * [Nginx限流](Nginx/Nginx限流.md)
   * [try_files踩坑](Nginx/try_files踩坑.md)
 - [SSR](SSR/README.md)
+  * [V 2 Ray](SSR/v2ray.md)
   * [使用](SSR/使用.md)
 - [UWSGI](UWSGI/README.md)
   * [Uwsgi Flask](UWSGI/Uwsgi+Flask.md)
