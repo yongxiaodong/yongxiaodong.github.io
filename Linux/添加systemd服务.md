@@ -36,7 +36,7 @@ systemctl restart ${service_name}
 
 ----
 
-#### 一键生成示例
+## 一键生成一个名为v2r的服务示例
 ```
 
 tsname='v2r'
