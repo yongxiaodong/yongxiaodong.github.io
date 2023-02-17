@@ -1,5 +1,5 @@
 
-
+## Windows配置
 1、网页上复制你的订阅地址
 
 ![img_7.png](img_7.png)  
@@ -15,3 +15,13 @@
 
 ### 图标右键，系统代理设置为自动配置系统代理
 ![img_6.png](img_6.png)
+
+## Android配置
+1、点击左侧设置，进入订阅分组设置后点右上角加号
+![img_8.png](img_8.png)
+2、添加订阅地址
+![img_9.png](img_9.png)
+3、回到首页，点击更新
+![img_10.png](img_10.png)
+4、启动服务后访问Google测试
+![img_11.png](img_11.png)
