@@ -4,6 +4,7 @@ https://github.com/Fndroid/clash_for_windows_pkg/releases
 
 
 ## 复制订阅地址
+登陆ssp.itgod.org复制订阅地址  
 ![img_12.png](img_12.png)
 ## 配置客户端
 ![img_13.png](img_13.png)
