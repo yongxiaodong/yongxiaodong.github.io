@@ -45,7 +45,7 @@
   * [安装Helm](K8S/安装Helm.md)
   * [安装jenkins](K8S/安装jenkins.md)
   * [安装K8S](K8S/安装K8S.md)
-  * [常用镜像库](K8S/常用镜像库.md)
+  * [常用镜像库](K8S/Docker/常用镜像库.md)
   * [建立普通User](K8S/建立普通User.md)
   * [网络通信](K8S/网络通信.md)
   * [零中断滚动更新](K8S/零中断滚动更新.md)
