@@ -5,4 +5,13 @@
 
 
 
-## 
+
+## 本地修改冲突时利用暂存区合并
+
+```
+git stash
+
+git pull 
+
+git stash pop
+```

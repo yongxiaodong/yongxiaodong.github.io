@@ -40,7 +40,7 @@
     * [2、全链路灰度发布](K8S/全链路灰度发布/2、全链路灰度发布.md)
   * [1、安装K8S](K8S/1、安装K8S.md)
   * [10、容器抓包](K8S/10、容器抓包.md)
-  * [Docker术语&原理](K8S/Docker术语&原理.md)
+  * [Docker术语&原理](K8S/Docker/Docker术语&原理.md)
   * [runc测试](K8S/runc测试.md)
   * [动态pv](K8S/动态pv.md)
   * [安装Helm](K8S/安装Helm.md)
