@@ -18,4 +18,4 @@ location / {
     proxy_pass http://$backend;
 }
 ```
-在这样的配置中，foo.example.com的IP地址将会被动态查询，结果将会被缓存5s
+在这样的配置中，foo.example.com的IP地址将会通过114.114.114.114这个DNS服务器动态查询，结果将会被缓存5s
