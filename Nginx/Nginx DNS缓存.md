@@ -14,6 +14,8 @@ proxy_pass http://foo.example.com;
 ```
 resolver 114.114.114.114 ipv6=off valid=5s;
 set $backend "foo.example.com";
-proxy_pass http://$backend;
+location / {
+    proxy_pass http://$backend;
+}
 ```
 在这样的配置中，foo.example.com的IP地址将会被动态查询，结果将会被缓存5s
