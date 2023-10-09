@@ -37,6 +37,8 @@ nginx返回用于调试的header头
 
 ### 上线CSP策略  
 通过上述的调试策略分析所有的错误信息，并进行修复后，可以直接将Content-Security-Policy-Report-Only头修改为Content-Security-Policy头，这样浏览器就会强制阻止规则以外的资源加载了。  
+
+
 nginx 添加返回头:
     `more_set_headers "Content-Security-Policy: default-src 'self' *.baidu.com;  style-src 'self' *.baidu.com; script-src 'self'; report-uri  https://9d4e-43-154-200-149.ngrok-free.app/csp";`
 
