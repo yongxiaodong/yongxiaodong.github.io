@@ -62,6 +62,4 @@ systemctl daemon-reload
 systemctl enable ${tsname} --now
 systemctl status ${tsname}
 
-
-
 ```
