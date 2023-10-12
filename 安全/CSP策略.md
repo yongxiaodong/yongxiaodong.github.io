@@ -48,3 +48,4 @@ nginx 添加返回头:
 > 3、Content-Security-Policy也支持指定report-uri，注意时刻收集线上的csp错误并及时处理  
 
 参考: https://developer.mozilla.org/zh-CN/docs/Web/HTTP/CSP  
+

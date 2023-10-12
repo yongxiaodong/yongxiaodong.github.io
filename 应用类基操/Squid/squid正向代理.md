@@ -1,6 +1,6 @@
 ## Squid正向代理
 
-需求： 代理部分Windows终端的部分流量，客户指定使用squid  
+需求： 代理部分Windows终端的部分流量，指定使用squid  
 方案：Windows代理时使用PAC白名单代理部分流量，部署基于用户验证的squid服务  
 
 ### 服务端
@@ -32,12 +32,11 @@ http_access allow auth_users # 仅允许通过登录验证的用户使用代理
 
 ### 客户端
 
-> 仅代理1.1.1.1和baidu.com域名  
-> 文件必须放到http服务器上进行引用
+> 1、仅代理1.1.1.1和baidu.com域名  
+> 2、文件必须放到http服务器上进行引用
  
 PAC白名单文件样例:  
 ```
-
 function FindProxyForURL(url, host) {
   if (shExpMatch(url,"*baidu.com*")) {
     return "PROXY 47.93.12.112:3128";
@@ -49,4 +48,4 @@ function FindProxyForURL(url, host) {
 }
 ```
 
-win10 -> 设置 -> 网络和Internet -> 代理 -> 自动设置代理 -> 自动检测设置打开填入脚本的http地址（不能放本地）  
+win10 -> 设置 -> 网络和Internet -> 代理 -> 自动设置代理 -> 自动检测设置打开填入脚本的http地址（PAC不能放本地）  
