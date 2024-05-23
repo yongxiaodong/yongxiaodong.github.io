@@ -19,10 +19,16 @@
 		}
 	},
 	"plugins": [
-
-
+		"copy-code-button",
+		"edit-link",
+		"chapter-fold",
+		"tbfed-pagefooter"
 	],
 	"pluginsConfig": {
+		      "edit-link": {
+                "base": "https://github.com/yongxiaodong/book/blob/main/",
+                "label": "编辑这个页面"
+            },
 		"meta": {
 			"data": [
 				{

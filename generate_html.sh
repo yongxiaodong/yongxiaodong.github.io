@@ -1,6 +1,6 @@
 git pull
 book sm
-gitbook build
+honkit build ./ ./docs
 git add .
 git commit -m 'zuto'
 git push 
