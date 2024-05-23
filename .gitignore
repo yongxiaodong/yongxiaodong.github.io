@@ -1081,4 +1081,7 @@ abstract.record*
 ### GPG template
 secring.*
 
+node_modules/*
 
+/node_modules/
+/.idea/
