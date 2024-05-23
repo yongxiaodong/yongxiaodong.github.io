@@ -1,0 +1,4036 @@
+
+<!DOCTYPE HTML>
+<html lang="ch" >
+    <head>
+        <meta charset="UTF-8">
+        <title>一个推荐的ElasticSearch配置 · 运维知识库</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="HonKit 5.1.4">
+        <meta name="author" content="BigHead">
+        
+        
+    
+    <link rel="stylesheet" href="../../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-chapter-fold/chapter-fold.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-tbfed-pagefooter/footer.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/@honkit/honkit-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="ES跨集群迁移.html" />
+    
+    
+    <link rel="prev" href="基础常用指令.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book honkit-cloak">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+    
+        
+        <li>
+            <a href="/" target="_blank" class="custom-link">返回首页</a>
+        </li>
+    
+    
+
+    
+    <li class="divider"></li>
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../../">
+            
+                <a href="../../">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="../../安全/">
+            
+                <a href="../../安全/">
+            
+                    
+                    安全
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.1" data-path="../../安全/跨域策略.html">
+            
+                <a href="../../安全/跨域策略.html">
+            
+                    
+                    跨域策略
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.2" data-path="../../安全/绕过CDN查找真实IP.html">
+            
+                <a href="../../安全/绕过CDN查找真实IP.html">
+            
+                    
+                    绕过CDN查找真实IP
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.3" data-path="../../安全/CSP策略.html">
+            
+                <a href="../../安全/CSP策略.html">
+            
+                    
+                    CSP策略
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="../../网络/">
+            
+                <a href="../../网络/">
+            
+                    
+                    网络
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.1" data-path="../../网络/协议/">
+            
+                <a href="../../网络/协议/">
+            
+                    
+                    协议
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.1.1" data-path="../../网络/协议/GRPC.html">
+            
+                <a href="../../网络/协议/GRPC.html">
+            
+                    
+                    GRPC
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.1.2" data-path="../../网络/协议/TCP.html">
+            
+                <a href="../../网络/协议/TCP.html">
+            
+                    
+                    TCP
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.2" data-path="../../网络/一次HTTPS请求过程.html">
+            
+                <a href="../../网络/一次HTTPS请求过程.html">
+            
+                    
+                    一次HTTPS请求过程
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.3" data-path="../../网络/MTU.html">
+            
+                <a href="../../网络/MTU.html">
+            
+                    
+                    MTU
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="../../系统性能/">
+            
+                <a href="../../系统性能/">
+            
+                    
+                    系统性能
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.1" data-path="../../系统性能/1、分析工具.html">
+            
+                <a href="../../系统性能/1、分析工具.html">
+            
+                    
+                    1、分析工具
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2" data-path="../../系统性能/2、perf剖析器.html">
+            
+                <a href="../../系统性能/2、perf剖析器.html">
+            
+                    
+                    2、perf剖析器
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.3" data-path="../../系统性能/3.strace.html">
+            
+                <a href="../../系统性能/3.strace.html">
+            
+                    
+                    3.strace
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.4" data-path="../../系统性能/4.execsnoop.html">
+            
+                <a href="../../系统性能/4.execsnoop.html">
+            
+                    
+                    4.execsnoop
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.5" data-path="../../系统性能/磁盘IO静态调优篇.html">
+            
+                <a href="../../系统性能/磁盘IO静态调优篇.html">
+            
+                    
+                    磁盘IO静态调优篇
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.6" data-path="../../系统性能/基准测试.html">
+            
+                <a href="../../系统性能/基准测试.html">
+            
+                    
+                    基准测试
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.7" data-path="../../系统性能/进程与线程.html">
+            
+                <a href="../../系统性能/进程与线程.html">
+            
+                    
+                    进程与线程
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.8" data-path="../../系统性能/内存.html">
+            
+                <a href="../../系统性能/内存.html">
+            
+                    
+                    内存
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.9" data-path="../../系统性能/深拷贝&浅拷贝&零拷贝.html">
+            
+                <a href="../../系统性能/深拷贝&浅拷贝&零拷贝.html">
+            
+                    
+                    深拷贝&浅拷贝&零拷贝
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.10" data-path="../../系统性能/文件系统.html">
+            
+                <a href="../../系统性能/文件系统.html">
+            
+                    
+                    文件系统
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.11" data-path="../../系统性能/系统繁忙指标的意义.html">
+            
+                <a href="../../系统性能/系统繁忙指标的意义.html">
+            
+                    
+                    系统繁忙指标的意义
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.12" data-path="../../系统性能/bpftrace.html">
+            
+                <a href="../../系统性能/bpftrace.html">
+            
+                    
+                    Bpftrace
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.13" data-path="../../系统性能/Buffer和Cache.html">
+            
+                <a href="../../系统性能/Buffer和Cache.html">
+            
+                    
+                    Buffer和Cache
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.14" data-path="../../系统性能/CPU.html">
+            
+                <a href="../../系统性能/CPU.html">
+            
+                    
+                    CPU
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.15" data-path="../../系统性能/epoll.html">
+            
+                <a href="../../系统性能/epoll.html">
+            
+                    
+                    Epoll
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.16" data-path="../../系统性能/Perf零侵入应用性能瓶颈分析.html">
+            
+                <a href="../../系统性能/Perf零侵入应用性能瓶颈分析.html">
+            
+                    
+                    Perf零侵入应用性能瓶颈分析
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.17" data-path="../../系统性能/SRE体系.html">
+            
+                <a href="../../系统性能/SRE体系.html">
+            
+                    
+                    SRE体系
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" data-path="../../应用类基操/">
+            
+                <a href="../../应用类基操/">
+            
+                    
+                    应用类基操
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.1" data-path="../../应用类基操/实用Demo/">
+            
+                <a href="../../应用类基操/实用Demo/">
+            
+                    
+                    实用Demo
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.1.1" data-path="../../应用类基操/实用Demo/golang/">
+            
+                <a href="../../应用类基操/实用Demo/golang/">
+            
+                    
+                    Golang
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.1.1.1" data-path="../../应用类基操/实用Demo/golang/交叉编译.html">
+            
+                <a href="../../应用类基操/实用Demo/golang/交叉编译.html">
+            
+                    
+                    交叉编译
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.1.1.2" data-path="../../应用类基操/实用Demo/golang/GRPC.html">
+            
+                <a href="../../应用类基操/实用Demo/golang/GRPC.html">
+            
+                    
+                    GRPC
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.1.1.3" data-path="../../应用类基操/实用Demo/golang/kafka-demo.html">
+            
+                <a href="../../应用类基操/实用Demo/golang/kafka-demo.html">
+            
+                    
+                    Kafka Demo
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.1.2" data-path="../../应用类基操/实用Demo/Python/">
+            
+                <a href="../../应用类基操/实用Demo/Python/">
+            
+                    
+                    Python
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.1.2.1" data-path="../../应用类基操/实用Demo/Python/时间操作.html">
+            
+                <a href="../../应用类基操/实用Demo/Python/时间操作.html">
+            
+                    
+                    时间操作
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.1.2.2" data-path="../../应用类基操/实用Demo/Python/hashlib.html">
+            
+                <a href="../../应用类基操/实用Demo/Python/hashlib.html">
+            
+                    
+                    Hashlib
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.1.2.3" data-path="../../应用类基操/实用Demo/Python/Python生产消费.html">
+            
+                <a href="../../应用类基操/实用Demo/Python/Python生产消费.html">
+            
+                    
+                    Python生产消费
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.1.3" data-path="../../应用类基操/实用Demo/ES跨集群迁移索引.html">
+            
+                <a href="../../应用类基操/实用Demo/ES跨集群迁移索引.html">
+            
+                    
+                    ES跨集群迁移索引
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.1.4" data-path="../../应用类基操/实用Demo/expect批量建立ssh互信.html">
+            
+                <a href="../../应用类基操/实用Demo/expect批量建立ssh互信.html">
+            
+                    
+                    expect批量建立ssh互信
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.1.5" data-path="../../应用类基操/实用Demo/Linux新系统初始化.html">
+            
+                <a href="../../应用类基操/实用Demo/Linux新系统初始化.html">
+            
+                    
+                    Linux新系统初始化
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.1.6" data-path="../../应用类基操/实用Demo/MakefileDoc.html">
+            
+                <a href="../../应用类基操/实用Demo/MakefileDoc.html">
+            
+                    
+                    Makefile Doc
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2" data-path="../../应用类基操/Clickhouse/">
+            
+                <a href="../../应用类基操/Clickhouse/">
+            
+                    
+                    Clickhouse
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.2.1" data-path="../../应用类基操/Clickhouse/kafka引擎.html">
+            
+                <a href="../../应用类基操/Clickhouse/kafka引擎.html">
+            
+                    
+                    kafka引擎
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.3" data-path="../../应用类基操/ELK/">
+            
+                <a href="../../应用类基操/ELK/">
+            
+                    
+                    ELK
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.3.1" data-path="../../应用类基操/ELK/1.安装ElasticSearch7.7.1单节点.html">
+            
+                <a href="../../应用类基操/ELK/1.安装ElasticSearch7.7.1单节点.html">
+            
+                    
+                    1.安装ElasticSearch7.7.1单节点
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.3.2" data-path="../../应用类基操/ELK/安装filbeat.html">
+            
+                <a href="../../应用类基操/ELK/安装filbeat.html">
+            
+                    
+                    安装filbeat
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.3.3" data-path="../../应用类基操/ELK/安装Kibana.html">
+            
+                <a href="../../应用类基操/ELK/安装Kibana.html">
+            
+                    
+                    安装Kibana
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.3.4" data-path="../../应用类基操/ELK/附加Logstash安装.html">
+            
+                <a href="../../应用类基操/ELK/附加Logstash安装.html">
+            
+                    
+                    附加Logstash安装
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.3.5" data-path="../../应用类基操/ELK/附加supervisor进程管理.html">
+            
+                <a href="../../应用类基操/ELK/附加supervisor进程管理.html">
+            
+                    
+                    附加supervisor进程管理
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.4" data-path="../../应用类基操/Kafka/">
+            
+                <a href="../../应用类基操/Kafka/">
+            
+                    
+                    Kafka
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.4.1" data-path="../../应用类基操/Kafka/基础操作.html">
+            
+                <a href="../../应用类基操/Kafka/基础操作.html">
+            
+                    
+                    基础操作
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.5" data-path="../../应用类基操/KVM/">
+            
+                <a href="../../应用类基操/KVM/">
+            
+                    
+                    KVM
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.5.1" data-path="../../应用类基操/KVM/在线扩容.html">
+            
+                <a href="../../应用类基操/KVM/在线扩容.html">
+            
+                    
+                    在线扩容
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.5.2" data-path="../../应用类基操/KVM/kvm迁移esxi.html">
+            
+                <a href="../../应用类基操/KVM/kvm迁移esxi.html">
+            
+                    
+                    kvm迁移esxi
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.6" data-path="../../应用类基操/OpenVPN部署/">
+            
+                <a href="../../应用类基操/OpenVPN部署/">
+            
+                    
+                    OpenVPN部署
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.6.1" data-path="../../应用类基操/OpenVPN部署/OPenVPN部署.html">
+            
+                <a href="../../应用类基操/OpenVPN部署/OPenVPN部署.html">
+            
+                    
+                    OPenVPN部署
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.7" data-path="../../应用类基操/Prometheus+Grafana/">
+            
+                <a href="../../应用类基操/Prometheus+Grafana/">
+            
+                    
+                    Prometheus Grafana
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.7.1" data-path="../../应用类基操/Prometheus+Grafana/Grafana.html">
+            
+                <a href="../../应用类基操/Prometheus+Grafana/Grafana.html">
+            
+                    
+                    Grafana
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.7.2" data-path="../../应用类基操/Prometheus+Grafana/Prometheus_grafana.html">
+            
+                <a href="../../应用类基操/Prometheus+Grafana/Prometheus_grafana.html">
+            
+                    
+                    Prometheus Grafana
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.7.3" data-path="../../应用类基操/Prometheus+Grafana/Supervisior管理进程.html">
+            
+                <a href="../../应用类基操/Prometheus+Grafana/Supervisior管理进程.html">
+            
+                    
+                    Supervisior管理进程
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.8" >
+            
+                <span>
+            
+                    
+                    Python
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.8.1" data-path="../../应用类基操/Python/UWSGI/">
+            
+                <a href="../../应用类基操/Python/UWSGI/">
+            
+                    
+                    UWSGI
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.8.1.1" data-path="../../应用类基操/Python/UWSGI/Uwsgi+Flask.html">
+            
+                <a href="../../应用类基操/Python/UWSGI/Uwsgi+Flask.html">
+            
+                    
+                    Uwsgi Flask
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.8.2" data-path="../../应用类基操/Python/虚拟环境.html">
+            
+                <a href="../../应用类基操/Python/虚拟环境.html">
+            
+                    
+                    虚拟环境
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.9" data-path="../../应用类基操/RabbitMQ/">
+            
+                <a href="../../应用类基操/RabbitMQ/">
+            
+                    
+                    Rabbit MQ
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.9.1" data-path="../../应用类基操/RabbitMQ/1.erlang部署.html">
+            
+                <a href="../../应用类基操/RabbitMQ/1.erlang部署.html">
+            
+                    
+                    1.erlang部署
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.9.2" data-path="../../应用类基操/RabbitMQ/2.RabbitMQ部署.html">
+            
+                <a href="../../应用类基操/RabbitMQ/2.RabbitMQ部署.html">
+            
+                    
+                    2.RabbitMQ部署
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.9.3" data-path="../../应用类基操/RabbitMQ/RabbitMq镜像集群部署.html">
+            
+                <a href="../../应用类基操/RabbitMQ/RabbitMq镜像集群部署.html">
+            
+                    
+                    RabbitMq镜像集群部署
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.10" data-path="../../应用类基操/Squid/">
+            
+                <a href="../../应用类基操/Squid/">
+            
+                    
+                    Squid
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.10.1" data-path="../../应用类基操/Squid/squid正向代理.html">
+            
+                <a href="../../应用类基操/Squid/squid正向代理.html">
+            
+                    
+                    squid正向代理
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    中间件
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.6.1" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    Elasitc Search
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.6.1.1" data-path="基础常用指令.html">
+            
+                <a href="基础常用指令.html">
+            
+                    
+                    基础常用指令
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.6.1.2" data-path="一个推荐的ElasticSearch配置.html">
+            
+                <a href="一个推荐的ElasticSearch配置.html">
+            
+                    
+                    一个推荐的ElasticSearch配置
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.1.3" data-path="ES跨集群迁移.html">
+            
+                <a href="ES跨集群迁移.html">
+            
+                    
+                    ES跨集群迁移
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.1.4" data-path="ES冷热数据架构.html">
+            
+                <a href="ES冷热数据架构.html">
+            
+                    
+                    ES冷热数据架构
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.2" data-path="../Mysql/">
+            
+                <a href="../Mysql/">
+            
+                    
+                    Mysql
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.6.2.1" data-path="../Mysql/事务.html">
+            
+                <a href="../Mysql/事务.html">
+            
+                    
+                    事务
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.2.2" data-path="../Mysql/索引.html">
+            
+                <a href="../Mysql/索引.html">
+            
+                    
+                    索引
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.2.3" data-path="../Mysql/锁.html">
+            
+                <a href="../Mysql/锁.html">
+            
+                    
+                    锁
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.2.4" data-path="../Mysql/一次被SQL注入的经历.html">
+            
+                <a href="../Mysql/一次被SQL注入的经历.html">
+            
+                    
+                    一次被SQL注入的经历
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.3" data-path="../Nginx/">
+            
+                <a href="../Nginx/">
+            
+                    
+                    Nginx
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.6.3.1" data-path="../Nginx/Lua/">
+            
+                <a href="../Nginx/Lua/">
+            
+                    
+                    Lua
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.6.3.1.1" data-path="../Nginx/Lua/二开apisix之body-tranformer插件/">
+            
+                <a href="../Nginx/Lua/二开apisix之body-tranformer插件/">
+            
+                    
+                    二开apisix之body-tranformer插件
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.6.3.1.1.1" data-path="../Nginx/Lua/二开apisix之body-tranformer插件/支持解码urlencoded数据.html">
+            
+                <a href="../Nginx/Lua/二开apisix之body-tranformer插件/支持解码urlencoded数据.html">
+            
+                    
+                    支持解码urlencoded数据
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.3.1.1.2" data-path="../Nginx/Lua/二开apisix之body-tranformer插件/支持上游返回gzip解码.html">
+            
+                <a href="../Nginx/Lua/二开apisix之body-tranformer插件/支持上游返回gzip解码.html">
+            
+                    
+                    支持上游返回gzip解码
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.3.1.1.3" data-path="../Nginx/Lua/二开apisix之body-tranformer插件/支持异步上报.html">
+            
+                <a href="../Nginx/Lua/二开apisix之body-tranformer插件/支持异步上报.html">
+            
+                    
+                    支持异步上报
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.3.1.1.4" data-path="../Nginx/Lua/二开apisix之body-tranformer插件/支持body条件判断.html">
+            
+                <a href="../Nginx/Lua/二开apisix之body-tranformer插件/支持body条件判断.html">
+            
+                    
+                    支持body条件判断
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.3.1.2" data-path="../Nginx/Lua/1.执行阶段.html">
+            
+                <a href="../Nginx/Lua/1.执行阶段.html">
+            
+                    
+                    1.执行阶段
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.3.1.3" data-path="../Nginx/Lua/常用语法demo.html">
+            
+                <a href="../Nginx/Lua/常用语法demo.html">
+            
+                    
+                    常用语法demo
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.3.2" data-path="../Nginx/1.Nginx安全策略.html">
+            
+                <a href="../Nginx/1.Nginx安全策略.html">
+            
+                    
+                    1.Nginx安全策略
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.3.3" data-path="../Nginx/10.强制https.html">
+            
+                <a href="../Nginx/10.强制https.html">
+            
+                    
+                    10.强制https
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.3.4" data-path="../Nginx/2.性能优化.html">
+            
+                <a href="../Nginx/2.性能优化.html">
+            
+                    
+                    2.性能优化
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.3.5" data-path="../Nginx/3.Nginx黑名单.html">
+            
+                <a href="../Nginx/3.Nginx黑名单.html">
+            
+                    
+                    3.Nginx黑名单
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.3.6" data-path="../Nginx/4.Nginx反向代理配置.html">
+            
+                <a href="../Nginx/4.Nginx反向代理配置.html">
+            
+                    
+                    4.Nginx反向代理配置
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.3.7" data-path="../Nginx/5.location规则.html">
+            
+                <a href="../Nginx/5.location规则.html">
+            
+                    
+                    5.location规则
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.3.8" data-path="../Nginx/6.日志格式化.html">
+            
+                <a href="../Nginx/6.日志格式化.html">
+            
+                    
+                    6.日志格式化
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.3.9" data-path="../Nginx/7.反向代理获取真实IP.html">
+            
+                <a href="../Nginx/7.反向代理获取真实IP.html">
+            
+                    
+                    7.反向代理获取真实IP
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.3.10" data-path="../Nginx/8.嵌入Lua定制高级功能.html">
+            
+                <a href="../Nginx/8.嵌入Lua定制高级功能.html">
+            
+                    
+                    8.嵌入Lua定制高级功能
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.3.11" data-path="../Nginx/9.实现宕机静态容灾.html">
+            
+                <a href="../Nginx/9.实现宕机静态容灾.html">
+            
+                    
+                    9.实现宕机静态容灾
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.3.12" data-path="../Nginx/Nginx%20DNS缓存.html">
+            
+                <a href="../Nginx/Nginx%20DNS缓存.html">
+            
+                    
+                    Nginx DNS缓存
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.3.13" data-path="../Nginx/Nginx代理第三方域名.html">
+            
+                <a href="../Nginx/Nginx代理第三方域名.html">
+            
+                    
+                    Nginx代理第三方域名
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.3.14" data-path="../Nginx/Nginx限流.html">
+            
+                <a href="../Nginx/Nginx限流.html">
+            
+                    
+                    Nginx限流
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.3.15" data-path="../Nginx/try_files踩坑.html">
+            
+                <a href="../Nginx/try_files踩坑.html">
+            
+                    
+                    try_files踩坑
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.4" data-path="../Redis/">
+            
+                <a href="../Redis/">
+            
+                    
+                    Redis
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.6.4.1" data-path="../Redis/1、数据结构和应用场景.html">
+            
+                <a href="../Redis/1、数据结构和应用场景.html">
+            
+                    
+                    1、数据结构和应用场景
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.4.2" data-path="../Redis/2、主从&哨兵&Cluster.html">
+            
+                <a href="../Redis/2、主从&哨兵&Cluster.html">
+            
+                    
+                    2、主从&哨兵&Cluster
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.4.3" data-path="../Redis/面试题.html">
+            
+                <a href="../Redis/面试题.html">
+            
+                    
+                    面试题
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.4.4" data-path="../Redis/数据持久化.html">
+            
+                <a href="../Redis/数据持久化.html">
+            
+                    
+                    数据持久化
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.4.5" data-path="../Redis/已过期Key占用大量内存.html">
+            
+                <a href="../Redis/已过期Key占用大量内存.html">
+            
+                    
+                    已过期Key占用大量内存
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7" data-path="../../CICD/">
+            
+                <a href="../../CICD/">
+            
+                    
+                    CICD
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.7.1" data-path="../../CICD/git.html">
+            
+                <a href="../../CICD/git.html">
+            
+                    
+                    Git
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8" >
+            
+                <span>
+            
+                    
+                    Docs
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.8.1" data-path="../../docs/2023-10-09-test.md">
+            
+                <span>
+            
+                    
+                    2023 10 09 Test
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.2" data-path="../../docs/t1.md">
+            
+                <span>
+            
+                    
+                    T 1
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.3" data-path="../../docs/t2.md">
+            
+                <span>
+            
+                    
+                    T 2
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9" data-path="../../EBPF/">
+            
+                <a href="../../EBPF/">
+            
+                    
+                    EBPF
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.9.1" data-path="../../EBPF/1.简介.html">
+            
+                <a href="../../EBPF/1.简介.html">
+            
+                    
+                    1.简介
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.2" data-path="../../EBPF/2.入门：bpftrace.html">
+            
+                <a href="../../EBPF/2.入门：bpftrace.html">
+            
+                    
+                    2.入门：bpftrace
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.3" data-path="../../EBPF/3.BCC.html">
+            
+                <a href="../../EBPF/3.BCC.html">
+            
+                    
+                    3.BCC
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10" data-path="../../K8S/">
+            
+                <a href="../../K8S/">
+            
+                    
+                    K 8 S
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.10.1" data-path="../../K8S/二次开发/">
+            
+                <a href="../../K8S/二次开发/">
+            
+                    
+                    二次开发
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.10.1.1" data-path="../../K8S/二次开发/client-go/">
+            
+                <a href="../../K8S/二次开发/client-go/">
+            
+                    
+                    Client Go
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.10.1.1.1" data-path="../../K8S/二次开发/client-go/doc.html">
+            
+                <a href="../../K8S/二次开发/client-go/doc.html">
+            
+                    
+                    Doc
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10.1.1.2" data-path="../../K8S/二次开发/client-go/pod内使用client-go操作集群.html">
+            
+                <a href="../../K8S/二次开发/client-go/pod内使用client-go操作集群.html">
+            
+                    
+                    pod内使用client-go操作集群
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10.1.2" data-path="../../K8S/二次开发/kubebuilder/">
+            
+                <a href="../../K8S/二次开发/kubebuilder/">
+            
+                    
+                    Kubebuilder
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.10.1.2.1" data-path="../../K8S/二次开发/kubebuilder/开发环境准备工作.html">
+            
+                <a href="../../K8S/二次开发/kubebuilder/开发环境准备工作.html">
+            
+                    
+                    开发环境准备工作
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10.1.2.2" data-path="../../K8S/二次开发/kubebuilder/Reconcile提取其他资源.html">
+            
+                <a href="../../K8S/二次开发/kubebuilder/Reconcile提取其他资源.html">
+            
+                    
+                    Reconcile提取其他资源
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10.1.3" data-path="../../K8S/二次开发/基础概念.html">
+            
+                <a href="../../K8S/二次开发/基础概念.html">
+            
+                    
+                    基础概念
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10.1.4" data-path="../../K8S/二次开发/webhook证书颁发.html">
+            
+                <a href="../../K8S/二次开发/webhook证书颁发.html">
+            
+                    
+                    webhook证书颁发
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10.2" data-path="../../K8S/故障排除/">
+            
+                <a href="../../K8S/故障排除/">
+            
+                    
+                    故障排除
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.10.2.1" data-path="../../K8S/故障排除/10、容器抓包.html">
+            
+                <a href="../../K8S/故障排除/10、容器抓包.html">
+            
+                    
+                    10、容器抓包
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10.2.2" data-path="../../K8S/故障排除/获取容器连接情况.html">
+            
+                <a href="../../K8S/故障排除/获取容器连接情况.html">
+            
+                    
+                    获取容器连接情况
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10.2.3" data-path="../../K8S/故障排除/基础镜像排障工具包.html">
+            
+                <a href="../../K8S/故障排除/基础镜像排障工具包.html">
+            
+                    
+                    基础镜像排障工具包
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10.3" data-path="../../K8S/全链路灰度发布/">
+            
+                <a href="../../K8S/全链路灰度发布/">
+            
+                    
+                    全链路灰度发布
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.10.3.1" data-path="../../K8S/全链路灰度发布/1、发布类型.html">
+            
+                <a href="../../K8S/全链路灰度发布/1、发布类型.html">
+            
+                    
+                    1、发布类型
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10.3.2" data-path="../../K8S/全链路灰度发布/2、全链路灰度发布.html">
+            
+                <a href="../../K8S/全链路灰度发布/2、全链路灰度发布.html">
+            
+                    
+                    2、全链路灰度发布
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10.4" data-path="../../K8S/Docker/">
+            
+                <a href="../../K8S/Docker/">
+            
+                    
+                    Docker
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.10.4.1" data-path="../../K8S/Docker/1、Namespace.html">
+            
+                <a href="../../K8S/Docker/1、Namespace.html">
+            
+                    
+                    1、Namespace
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10.4.2" data-path="../../K8S/Docker/2、Cgroup.html">
+            
+                <a href="../../K8S/Docker/2、Cgroup.html">
+            
+                    
+                    2、Cgroup
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10.4.3" data-path="../../K8S/Docker/常用镜像库.html">
+            
+                <a href="../../K8S/Docker/常用镜像库.html">
+            
+                    
+                    常用镜像库
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10.4.4" data-path="../../K8S/Docker/容器网络代理.html">
+            
+                <a href="../../K8S/Docker/容器网络代理.html">
+            
+                    
+                    容器网络代理
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10.4.5" data-path="../../K8S/Docker/时区.html">
+            
+                <a href="../../K8S/Docker/时区.html">
+            
+                    
+                    时区
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10.4.6" data-path="../../K8S/Docker/Containerd.html">
+            
+                <a href="../../K8S/Docker/Containerd.html">
+            
+                    
+                    Containerd
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10.4.7" data-path="../../K8S/Docker/Docker术语&原理.html">
+            
+                <a href="../../K8S/Docker/Docker术语&原理.html">
+            
+                    
+                    Docker术语&原理
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10.5" >
+            
+                <span>
+            
+                    
+                    Helm
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.10.5.1" data-path="../../K8S/helm/制作helm包.html">
+            
+                <a href="../../K8S/helm/制作helm包.html">
+            
+                    
+                    制作helm包
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10.6" data-path="../../K8S/ingress/">
+            
+                <a href="../../K8S/ingress/">
+            
+                    
+                    Ingress
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.10.6.1" data-path="../../K8S/ingress/server-snippet.html">
+            
+                <a href="../../K8S/ingress/server-snippet.html">
+            
+                    
+                    Server Snippet
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10.7" data-path="../../K8S/ingressNginx/">
+            
+                <a href="../../K8S/ingressNginx/">
+            
+                    
+                    Ingress Nginx
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.10.7.1" data-path="../../K8S/ingressNginx/ingress透传代理https请求.html">
+            
+                <a href="../../K8S/ingressNginx/ingress透传代理https请求.html">
+            
+                    
+                    ingress透传代理https请求
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10.7.2" data-path="../../K8S/ingressNginx/Nginx配置注入.html">
+            
+                <a href="../../K8S/ingressNginx/Nginx配置注入.html">
+            
+                    
+                    Nginx配置注入
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10.8" data-path="../../K8S/kong/">
+            
+                <a href="../../K8S/kong/">
+            
+                    
+                    Kong
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.10.8.1" data-path="../../K8S/kong/JWT+ACL.html">
+            
+                <a href="../../K8S/kong/JWT+ACL.html">
+            
+                    
+                    JWT ACL
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10.9" data-path="../../K8S/1、安装K8S-1.30&配置优化.html">
+            
+                <a href="../../K8S/1、安装K8S-1.30&配置优化.html">
+            
+                    
+                    1、安装K8S-1.30&配置优化
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10.10" data-path="../../K8S/1、安装K8S.html">
+            
+                <a href="../../K8S/1、安装K8S.html">
+            
+                    
+                    1、安装K8S
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10.11" data-path="../../K8S/安装Helm.html">
+            
+                <a href="../../K8S/安装Helm.html">
+            
+                    
+                    安装Helm
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10.12" data-path="../../K8S/安装jenkins.html">
+            
+                <a href="../../K8S/安装jenkins.html">
+            
+                    
+                    安装jenkins
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10.13" data-path="../../K8S/安装K8S.html">
+            
+                <a href="../../K8S/安装K8S.html">
+            
+                    
+                    安装K8S
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10.14" data-path="../../K8S/常用命令.html">
+            
+                <a href="../../K8S/常用命令.html">
+            
+                    
+                    常用命令
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10.15" data-path="../../K8S/动态pv.html">
+            
+                <a href="../../K8S/动态pv.html">
+            
+                    
+                    动态pv
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10.16" data-path="../../K8S/建立普通User.html">
+            
+                <a href="../../K8S/建立普通User.html">
+            
+                    
+                    建立普通User
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10.17" data-path="../../K8S/零中断滚动更新.html">
+            
+                <a href="../../K8S/零中断滚动更新.html">
+            
+                    
+                    零中断滚动更新
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10.18" data-path="../../K8S/网络通信.html">
+            
+                <a href="../../K8S/网络通信.html">
+            
+                    
+                    网络通信
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10.19" data-path="../../K8S/Headless本质.html">
+            
+                <a href="../../K8S/Headless本质.html">
+            
+                    
+                    Headless本质
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10.20" data-path="../../K8S/K8S本地联调-本地网络和K8S环境内网穿透.html">
+            
+                <a href="../../K8S/K8S本地联调-本地网络和K8S环境内网穿透.html">
+            
+                    
+                    K8S本地联调-本地网络和K8S环境内网穿透
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10.21" data-path="../../K8S/runc测试.html">
+            
+                <a href="../../K8S/runc测试.html">
+            
+                    
+                    runc测试
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11" data-path="../../Linux/">
+            
+                <a href="../../Linux/">
+            
+                    
+                    Linux
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.11.1" data-path="../../Linux/kali/">
+            
+                <a href="../../Linux/kali/">
+            
+                    
+                    Kali
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.11.1.1" data-path="../../Linux/kali/扫描.html">
+            
+                <a href="../../Linux/kali/扫描.html">
+            
+                    
+                    扫描
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11.2" data-path="../../Linux/LInux后门/">
+            
+                <a href="../../Linux/LInux后门/">
+            
+                    
+                    LInux后门
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.11.2.1" data-path="../../Linux/LInux后门/shell反弹.html">
+            
+                <a href="../../Linux/LInux后门/shell反弹.html">
+            
+                    
+                    shell反弹
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11.3" data-path="../../Linux/rsync_inotify/">
+            
+                <a href="../../Linux/rsync_inotify/">
+            
+                    
+                    Rsync Inotify
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.11.3.1" data-path="../../Linux/rsync_inotify/rsync+inofity实时同步.html">
+            
+                <a href="../../Linux/rsync_inotify/rsync+inofity实时同步.html">
+            
+                    
+                    rsync+inofity实时同步
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11.4" data-path="../../Linux/添加systemd服务.html">
+            
+                <a href="../../Linux/添加systemd服务.html">
+            
+                    
+                    添加systemd服务
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11.5" data-path="../../Linux/自建NAT网关.html">
+            
+                <a href="../../Linux/自建NAT网关.html">
+            
+                    
+                    自建NAT网关
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11.6" data-path="../../Linux/iptables.html">
+            
+                <a href="../../Linux/iptables.html">
+            
+                    
+                    Iptables
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11.7" data-path="../../Linux/nmcli配置网络.html">
+            
+                <a href="../../Linux/nmcli配置网络.html">
+            
+                    
+                    nmcli配置网络
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11.8" data-path="../../Linux/SSH反向隧道.html">
+            
+                <a href="../../Linux/SSH反向隧道.html">
+            
+                    
+                    SSH反向隧道
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12" data-path="../../SSR/">
+            
+                <a href="../../SSR/">
+            
+                    
+                    SSR
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.12.1" data-path="../../SSR/使用.html">
+            
+                <a href="../../SSR/使用.html">
+            
+                    
+                    使用
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12.2" data-path="../../SSR/ClashForAndroid.html">
+            
+                <a href="../../SSR/ClashForAndroid.html">
+            
+                    
+                    Clash For Android
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12.3" data-path="../../SSR/ClashForMac.html">
+            
+                <a href="../../SSR/ClashForMac.html">
+            
+                    
+                    Clash For Mac
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12.4" data-path="../../SSR/ClashForWindows.html">
+            
+                <a href="../../SSR/ClashForWindows.html">
+            
+                    
+                    Clash For Windows
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12.5" data-path="../../SSR/v2ray.html">
+            
+                <a href="../../SSR/v2ray.html">
+            
+                    
+                    V 2 Ray
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12.6" data-path="../../SSR/Xray配置warp.html">
+            
+                <a href="../../SSR/Xray配置warp.html">
+            
+                    
+                    Xray配置warp
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.13" data-path="../../运维知识库.html">
+            
+                <a href="../../运维知识库.html">
+            
+                    
+                    运维知识库
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.14" data-path="../../idea.html">
+            
+                <a href="../../idea.html">
+            
+                    
+                    Idea
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="/"  class="gitbook-link">
+            返回首页
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="../.." >一个推荐的ElasticSearch配置</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h2 id="8核32g内存的es推荐配置">8核32G内存的ES推荐配置</h2>
+<blockquote>
+<p>获取配置<br>`curl -XGET &quot;<a href="http://192.168.11.228:9200/_cluster/settings?include_defaults&amp;flat_settings" target="_blank">http://192.168.11.228:9200/_cluster/settings?include_defaults&amp;flat_settings</a>&quot;  </p>
+</blockquote>
+<p>输出</p>
+<pre><code>{
+    &quot;persistent&quot;: {
+        &quot;monitoring.collector.kmonitor.enabled&quot;: &quot;true&quot;
+    },
+    &quot;transient&quot;: {},
+    &quot;defaults&quot;: {
+        &quot;action.auto_create_index&quot;: &quot;+.*,-*&quot;,
+        &quot;action.destructive_requires_name&quot;: &quot;true&quot;,
+        &quot;action.search.shard_count.limit&quot;: &quot;9223372036854775807&quot;,
+        &quot;ali_version&quot;: &quot;1.8.0.3&quot;,
+        &quot;apack.ali_codec_service.source_reuse_doc_values.enable_for_open_store&quot;: &quot;false&quot;,
+        &quot;apack.ali_codec_service.source_reuse_doc_values.max_fields&quot;: &quot;50&quot;,
+        &quot;apack.ali_codec_service.source_reuse_doc_values.strict_max_fields&quot;: &quot;false&quot;,
+        &quot;apack.analytic_search.doc_concurrency.concurrent.policy&quot;: &quot;80%:4;90%:2&quot;,
+        &quot;apack.analytic_search.doc_concurrency.enabled&quot;: &quot;false&quot;,
+        &quot;apack.analytic_search.doc_concurrency.entry_size&quot;: &quot;200000&quot;,
+        &quot;apack.analytic_search.doc_concurrency.fixed_block_shift&quot;: &quot;0&quot;,
+        &quot;apack.analytic_search.doc_concurrency.fixed_slice_shift&quot;: &quot;0&quot;,
+        &quot;apack.analytic_search.doc_concurrency.max_support_block_size&quot;: &quot;1024&quot;,
+        &quot;apack.analytic_search.doc_concurrency.max_support_cpu_usage&quot;: &quot;90&quot;,
+        &quot;apack.analytic_search.doc_concurrency.max_support_heap_usage&quot;: &quot;80%&quot;,
+        &quot;apack.analytic_search.doc_concurrency.min_support_doc&quot;: &quot;10000&quot;,
+        &quot;apack.analytic_search.doc_concurrency.min_support_processors&quot;: &quot;4&quot;,
+        &quot;apack.analytic_search.doc_concurrency.queue_size&quot;: &quot;16&quot;,
+        &quot;apack.analytic_search.doc_concurrency.skip_list_jump_count&quot;: &quot;5&quot;,
+        &quot;apack.analytic_search.doc_concurrent_search_thread_pool.queue_size&quot;: &quot;100&quot;,
+        &quot;apack.analytic_search.doc_concurrent_search_thread_pool.size&quot;: &quot;16&quot;,
+        &quot;apack.cold_search.check_cancelled.init_interval&quot;: &quot;2048&quot;,
+        &quot;apack.cold_search.check_cancelled.max_interval&quot;: &quot;1048576&quot;,
+        &quot;apack.cold_search.cpu.cold_max&quot;: &quot;0.7&quot;,
+        &quot;apack.cold_search.cpu.cold_share&quot;: &quot;10&quot;,
+        &quot;apack.cold_search.cpu.enabled&quot;: &quot;false&quot;,
+        &quot;apack.cold_search.cpu.normal_share&quot;: &quot;100&quot;,
+        &quot;apack.cold_search.cpu.waitTime_s&quot;: &quot;60&quot;,
+        &quot;apack.cold_search.mem.cold_delay_interval&quot;: &quot;5s&quot;,
+        &quot;apack.cold_search.mem.cold_max_percent&quot;: &quot;80%&quot;,
+        &quot;apack.cold_search.mem.delay_interval&quot;: &quot;2s&quot;,
+        &quot;apack.cold_search.mem.enabled&quot;: &quot;false&quot;,
+        &quot;apack.cold_search.mem.jvm_max_percent&quot;: &quot;90%&quot;,
+        &quot;apack.cold_search.mem.use_ajdk_tenant&quot;: &quot;true&quot;,
+        &quot;apack.cube.bulk.check.index.interval&quot;: &quot;500ms&quot;,
+        &quot;apack.cube.bulk.check.index.retry.count&quot;: &quot;120&quot;,
+        &quot;apack.cube.index_black_setting_list&quot;: [],
+        &quot;apack.cube.shared.delayed_delete_leader_index&quot;: &quot;12h&quot;,
+        &quot;apack.cube.shared.follow_cluster.enabled&quot;: &quot;false&quot;,
+        &quot;apack.cube.syncmeta.ingore_templates&quot;: [],
+        &quot;apack.cube.syncmeta.interval&quot;: &quot;500ms&quot;,
+        &quot;apack.cube.syncmeta_thread_pool.queue_size&quot;: &quot;1&quot;,
+        &quot;apack.cube.syncmeta_thread_pool.size&quot;: &quot;1&quot;,
+        &quot;apack.cube.unfollow.interval&quot;: &quot;0ms&quot;,
+        &quot;apack.cube.unfollow.wait_force_merge_copy_timeout&quot;: &quot;30m&quot;,
+        &quot;apack.doc_values_fetch.queue_size&quot;: &quot;1000&quot;,
+        &quot;apack.doc_values_fetch.size&quot;: &quot;8&quot;,
+        &quot;apack.fasterbulk.combine.enabled&quot;: &quot;false&quot;,
+        &quot;apack.fasterbulk.combine.flush_threshold_size&quot;: &quot;1mb&quot;,
+        &quot;apack.fasterbulk.combine.interval&quot;: &quot;50&quot;,
+        &quot;apack.fasterbulk.response_cropped.enabled&quot;: &quot;false&quot;,
+        &quot;apack.knn.monitoring.collector.kmonitor.enabled&quot;: &quot;true&quot;,
+        &quot;apack.qos.limiter.close_connection&quot;: &quot;false&quot;,
+        &quot;apack.qos.limiter.custom.tags&quot;: [
+            &quot;appName&quot;
+        ],
+        &quot;apack.qos.limiter.enabled&quot;: &quot;false&quot;,
+        &quot;apack.qos.limiter.fast_reject&quot;: &quot;true&quot;,
+        &quot;apack.qos.limiter.ignore_zero_metric_enable&quot;: &quot;false&quot;,
+        &quot;apack.qos.limiter.max.threshold.change.rate&quot;: &quot;10&quot;,
+        &quot;apack.qos.limiter.meta_data.refresh.interval&quot;: &quot;30s&quot;,
+        &quot;apack.qos.limiter.min.threshold&quot;: &quot;1&quot;,
+        &quot;apack.qos.limiter.recycle.period&quot;: &quot;60&quot;,
+        &quot;apack.qos.limiter.stats.collect.interval&quot;: &quot;5s&quot;,
+        &quot;apack.qos.limiter.stats.collect.timeout&quot;: &quot;1s&quot;,
+        &quot;apack.qos.monitoring.collector.kmonitor.enabled&quot;: &quot;true&quot;,
+        &quot;apack.qos.partial_index_report.enable&quot;: &quot;false&quot;,
+        &quot;apack.qos.partial_index_report.interval&quot;: &quot;5&quot;,
+        &quot;apack.qos.partial_index_report.sample_interval&quot;: &quot;40&quot;,
+        &quot;apack.qos.ratelimit.applier.precision&quot;: &quot;0.05&quot;,
+        &quot;apack.qos.ratelimit.coordinator.always_from_stats&quot;: &quot;false&quot;,
+        &quot;apack.qos.ratelimit.enabled&quot;: &quot;false&quot;,
+        &quot;apack.qos.ratelimit.node.bulk.throughput&quot;: &quot;0b&quot;,
+        &quot;apack.qos.ratelimit.node.downgrade.trigger.ratio&quot;: &quot;1.0&quot;,
+        &quot;apack.qos.ratelimit.node.search.qps&quot;: &quot;0&quot;,
+        &quot;apack.qos.ratelimit.stats.collector.interval&quot;: &quot;5s&quot;,
+        &quot;async_search.index_cleanup_interval&quot;: &quot;1h&quot;,
+        &quot;base_path&quot;: &quot;&quot;,
+        &quot;bootstrap.ctrlhandler&quot;: &quot;true&quot;,
+        &quot;bootstrap.memory_lock&quot;: &quot;true&quot;,
+        &quot;bootstrap.system_call_filter&quot;: &quot;true&quot;,
+        &quot;bucket&quot;: &quot;&quot;,
+        &quot;cache.recycler.page.limit.heap&quot;: &quot;10%&quot;,
+        &quot;cache.recycler.page.type&quot;: &quot;CONCURRENT&quot;,
+        &quot;cache.recycler.page.weight.bytes&quot;: &quot;1.0&quot;,
+        &quot;cache.recycler.page.weight.ints&quot;: &quot;1.0&quot;,
+        &quot;cache.recycler.page.weight.longs&quot;: &quot;1.0&quot;,
+        &quot;cache.recycler.page.weight.objects&quot;: &quot;0.1&quot;,
+        &quot;ccr.auto_follow.wait_for_metadata_timeout&quot;: &quot;60s&quot;,
+        &quot;ccr.indices.recovery.chunk_size&quot;: &quot;1mb&quot;,
+        &quot;ccr.indices.recovery.internal_action_timeout&quot;: &quot;60s&quot;,
+        &quot;ccr.indices.recovery.max_bytes_per_sec&quot;: &quot;40mb&quot;,
+        &quot;ccr.indices.recovery.max_concurrent_file_chunks&quot;: &quot;5&quot;,
+        &quot;ccr.indices.recovery.recovery_activity_timeout&quot;: &quot;60s&quot;,
+        &quot;ccr.wait_for_metadata_timeout&quot;: &quot;60s&quot;,
+        &quot;chunk_size&quot;: &quot;1gb&quot;,
+        &quot;client.transport.ignore_cluster_name&quot;: &quot;false&quot;,
+        &quot;client.transport.nodes_sampler_interval&quot;: &quot;5s&quot;,
+        &quot;client.transport.ping_timeout&quot;: &quot;5s&quot;,
+        &quot;client.transport.sniff&quot;: &quot;false&quot;,
+        &quot;client.type&quot;: &quot;node&quot;,
+        &quot;cluster.auto_shrink_voting_configuration&quot;: &quot;true&quot;,
+        &quot;cluster.blocks.read_only&quot;: &quot;false&quot;,
+        &quot;cluster.blocks.read_only_allow_delete&quot;: &quot;false&quot;,
+        &quot;cluster.election.back_off_time&quot;: &quot;100ms&quot;,
+        &quot;cluster.election.duration&quot;: &quot;500ms&quot;,
+        &quot;cluster.election.initial_timeout&quot;: &quot;100ms&quot;,
+        &quot;cluster.election.max_timeout&quot;: &quot;10s&quot;,
+        &quot;cluster.election.strategy&quot;: &quot;supports_voting_only&quot;,
+        &quot;cluster.fault_detection.follower_check.interval&quot;: &quot;1000ms&quot;,
+        &quot;cluster.fault_detection.follower_check.retry_count&quot;: &quot;3&quot;,
+        &quot;cluster.fault_detection.follower_check.timeout&quot;: &quot;10000ms&quot;,
+        &quot;cluster.fault_detection.leader_check.interval&quot;: &quot;1000ms&quot;,
+        &quot;cluster.fault_detection.leader_check.retry_count&quot;: &quot;3&quot;,
+        &quot;cluster.fault_detection.leader_check.timeout&quot;: &quot;10000ms&quot;,
+        &quot;cluster.follower_lag.timeout&quot;: &quot;90000ms&quot;,
+        &quot;cluster.force_merge.max_concurrent&quot;: &quot;-1&quot;,
+        &quot;cluster.force_merge.set_replica_zero_enable&quot;: &quot;false&quot;,
+        &quot;cluster.indices.close.enable&quot;: &quot;true&quot;,
+        &quot;cluster.indices.tombstones.size&quot;: &quot;500&quot;,
+        &quot;cluster.info.update.interval&quot;: &quot;30s&quot;,
+        &quot;cluster.info.update.timeout&quot;: &quot;15s&quot;,
+        &quot;cluster.initial_master_nodes&quot;: [
+            &quot;172.30.141.67&quot;,
+            &quot;172.30.141.65&quot;,
+            &quot;172.30.141.66&quot;
+        ],
+        &quot;cluster.join.timeout&quot;: &quot;60000ms&quot;,
+        &quot;cluster.max_shards_per_node&quot;: &quot;1000&quot;,
+        &quot;cluster.max_voting_config_exclusions&quot;: &quot;10&quot;,
+        &quot;cluster.name&quot;: &quot;es-cn-9lb31hsip000meyx9&quot;,
+        &quot;cluster.no_master_block&quot;: &quot;write&quot;,
+        &quot;cluster.nodes.reconnect_interval&quot;: &quot;10s&quot;,
+        &quot;cluster.openstore.limiter.snapshot_stats&quot;: &quot;10&quot;,
+        &quot;cluster.persistent_tasks.allocation.enable&quot;: &quot;all&quot;,
+        &quot;cluster.persistent_tasks.allocation.recheck_interval&quot;: &quot;30s&quot;,
+        &quot;cluster.publish.info_timeout&quot;: &quot;10000ms&quot;,
+        &quot;cluster.publish.timeout&quot;: &quot;30000ms&quot;,
+        &quot;cluster.raw_indexing_data_request_enable&quot;: &quot;false&quot;,
+        &quot;cluster.remote.connect&quot;: &quot;true&quot;,
+        &quot;cluster.remote.connections_per_cluster&quot;: &quot;3&quot;,
+        &quot;cluster.remote.full_connect_enable&quot;: &quot;false&quot;,
+        &quot;cluster.remote.initial_connect_timeout&quot;: &quot;30s&quot;,
+        &quot;cluster.remote.node.attr&quot;: &quot;&quot;,
+        &quot;cluster.routing.allocation.allow_rebalance&quot;: &quot;indices_all_active&quot;,
+        &quot;cluster.routing.allocation.awareness.attributes&quot;: [],
+        &quot;cluster.routing.allocation.balance.index&quot;: &quot;0.55&quot;,
+        &quot;cluster.routing.allocation.balance.shard&quot;: &quot;0.45&quot;,
+        &quot;cluster.routing.allocation.balance.threshold&quot;: &quot;1.0&quot;,
+        &quot;cluster.routing.allocation.bipartite.graph.enable&quot;: &quot;false&quot;,
+        &quot;cluster.routing.allocation.cluster_concurrent_rebalance&quot;: &quot;2&quot;,
+        &quot;cluster.routing.allocation.compute_cold_data_size.enable&quot;: &quot;false&quot;,
+        &quot;cluster.routing.allocation.directional.flow.enable&quot;: &quot;false&quot;,
+        &quot;cluster.routing.allocation.disk.include_relocations&quot;: &quot;true&quot;,
+        &quot;cluster.routing.allocation.disk.reroute_interval&quot;: &quot;60s&quot;,
+        &quot;cluster.routing.allocation.disk.threshold_enabled&quot;: &quot;true&quot;,
+        &quot;cluster.routing.allocation.disk.watermark.enable_for_single_data_node&quot;: &quot;false&quot;,
+        &quot;cluster.routing.allocation.disk.watermark.flood_stage&quot;: &quot;95%&quot;,
+        &quot;cluster.routing.allocation.disk.watermark.high&quot;: &quot;90%&quot;,
+        &quot;cluster.routing.allocation.disk.watermark.low&quot;: &quot;85%&quot;,
+        &quot;cluster.routing.allocation.enable&quot;: &quot;all&quot;,
+        &quot;cluster.routing.allocation.exclude._tier&quot;: &quot;&quot;,
+        &quot;cluster.routing.allocation.include._tier&quot;: &quot;&quot;,
+        &quot;cluster.routing.allocation.index_create_balance_enable&quot;: &quot;true&quot;,
+        &quot;cluster.routing.allocation.node_concurrent_incoming_recoveries&quot;: &quot;2&quot;,
+        &quot;cluster.routing.allocation.node_concurrent_outgoing_recoveries&quot;: &quot;2&quot;,
+        &quot;cluster.routing.allocation.node_concurrent_recoveries&quot;: &quot;2&quot;,
+        &quot;cluster.routing.allocation.node_initial_primaries_recoveries&quot;: &quot;4&quot;,
+        &quot;cluster.routing.allocation.openstore.watermark&quot;: &quot;20tb&quot;,
+        &quot;cluster.routing.allocation.require._tier&quot;: &quot;&quot;,
+        &quot;cluster.routing.allocation.same_shard.host&quot;: &quot;false&quot;,
+        &quot;cluster.routing.allocation.shard_state.reroute.priority&quot;: &quot;NORMAL&quot;,
+        &quot;cluster.routing.allocation.total_shards_per_node&quot;: &quot;-1&quot;,
+        &quot;cluster.routing.allocation.type&quot;: &quot;balanced&quot;,
+        &quot;cluster.routing.allocation.warm.node.openstore.enable&quot;: &quot;false&quot;,
+        &quot;cluster.routing.rebalance.enable&quot;: &quot;all&quot;,
+        &quot;cluster.routing.unprefer_nodes_replica_selection&quot;: [],
+        &quot;cluster.routing.use_adaptive_replica_selection&quot;: &quot;true&quot;,
+        &quot;cluster.service.slow_master_task_logging_threshold&quot;: &quot;10s&quot;,
+        &quot;cluster.service.slow_task_logging_threshold&quot;: &quot;30s&quot;,
+        &quot;cluster.snapshot.info.max_concurrent_fetches&quot;: &quot;5&quot;,
+        &quot;compress&quot;: &quot;false&quot;,
+        &quot;continue_merge.check_interval&quot;: &quot;600&quot;,
+        &quot;continue_merge.enable&quot;: &quot;false&quot;,
+        &quot;continue_merge.no_write_interval&quot;: &quot;1800&quot;,
+        &quot;discovery.cluster_formation_warning_timeout&quot;: &quot;10000ms&quot;,
+        &quot;discovery.find_peers_interval&quot;: &quot;1000ms&quot;,
+        &quot;discovery.initial_state_timeout&quot;: &quot;30s&quot;,
+        &quot;discovery.probe.connect_timeout&quot;: &quot;3000ms&quot;,
+        &quot;discovery.probe.handshake_timeout&quot;: &quot;1000ms&quot;,
+        &quot;discovery.request_peers_timeout&quot;: &quot;3000ms&quot;,
+        &quot;discovery.seed_hosts&quot;: [
+            &quot;172.30.141.67&quot;,
+            &quot;172.30.141.65&quot;,
+            &quot;172.30.141.66&quot;
+        ],
+        &quot;discovery.seed_providers&quot;: [],
+        &quot;discovery.seed_resolver.max_concurrent_resolvers&quot;: &quot;10&quot;,
+        &quot;discovery.seed_resolver.timeout&quot;: &quot;5s&quot;,
+        &quot;discovery.type&quot;: &quot;zen&quot;,
+        &quot;discovery.unconfigured_bootstrap_timeout&quot;: &quot;3s&quot;,
+        &quot;discovery.zen.bwc_ping_timeout&quot;: &quot;3s&quot;,
+        &quot;discovery.zen.commit_timeout&quot;: &quot;30s&quot;,
+        &quot;discovery.zen.fd.connect_on_network_disconnect&quot;: &quot;false&quot;,
+        &quot;discovery.zen.fd.ping_interval&quot;: &quot;1s&quot;,
+        &quot;discovery.zen.fd.ping_retries&quot;: &quot;3&quot;,
+        &quot;discovery.zen.fd.ping_timeout&quot;: &quot;30s&quot;,
+        &quot;discovery.zen.fd.register_connection_listener&quot;: &quot;true&quot;,
+        &quot;discovery.zen.hosts_provider&quot;: [],
+        &quot;discovery.zen.join_retry_attempts&quot;: &quot;3&quot;,
+        &quot;discovery.zen.join_retry_delay&quot;: &quot;100ms&quot;,
+        &quot;discovery.zen.join_timeout&quot;: &quot;60000ms&quot;,
+        &quot;discovery.zen.master_election.ignore_non_master_pings&quot;: &quot;false&quot;,
+        &quot;discovery.zen.master_election.wait_for_joins_timeout&quot;: &quot;30000ms&quot;,
+        &quot;discovery.zen.max_pings_from_another_master&quot;: &quot;3&quot;,
+        &quot;discovery.zen.minimum_master_nodes&quot;: &quot;-1&quot;,
+        &quot;discovery.zen.no_master_block&quot;: &quot;write&quot;,
+        &quot;discovery.zen.ping.unicast.concurrent_connects&quot;: &quot;10&quot;,
+        &quot;discovery.zen.ping.unicast.hosts&quot;: [],
+        &quot;discovery.zen.ping.unicast.hosts.resolve_timeout&quot;: &quot;5s&quot;,
+        &quot;discovery.zen.ping_timeout&quot;: &quot;3s&quot;,
+        &quot;discovery.zen.publish.max_pending_cluster_states&quot;: &quot;25&quot;,
+        &quot;discovery.zen.publish_diff.enable&quot;: &quot;true&quot;,
+        &quot;discovery.zen.publish_timeout&quot;: &quot;30s&quot;,
+        &quot;discovery.zen.send_leave_request&quot;: &quot;true&quot;,
+        &quot;discovery.zen.unsafe_rolling_upgrades_enabled&quot;: &quot;true&quot;,
+        &quot;endpoint&quot;: &quot;&quot;,
+        &quot;enrich.cleanup_period&quot;: &quot;15m&quot;,
+        &quot;enrich.coordinator_proxy.max_concurrent_requests&quot;: &quot;8&quot;,
+        &quot;enrich.coordinator_proxy.max_lookups_per_request&quot;: &quot;128&quot;,
+        &quot;enrich.coordinator_proxy.queue_capacity&quot;: &quot;1024&quot;,
+        &quot;enrich.fetch_size&quot;: &quot;10000&quot;,
+        &quot;enrich.max_concurrent_policy_executions&quot;: &quot;50&quot;,
+        &quot;enrich.max_force_merge_attempts&quot;: &quot;3&quot;,
+        &quot;gateway.auto_import_dangling_indices&quot;: &quot;false&quot;,
+        &quot;gateway.expected_data_nodes&quot;: &quot;-1&quot;,
+        &quot;gateway.expected_master_nodes&quot;: &quot;-1&quot;,
+        &quot;gateway.expected_nodes&quot;: &quot;-1&quot;,
+        &quot;gateway.recover_after_data_nodes&quot;: &quot;-1&quot;,
+        &quot;gateway.recover_after_master_nodes&quot;: &quot;0&quot;,
+        &quot;gateway.recover_after_nodes&quot;: &quot;-1&quot;,
+        &quot;gateway.recover_after_time&quot;: &quot;0ms&quot;,
+        &quot;gateway.slow_write_logging_threshold&quot;: &quot;10s&quot;,
+        &quot;gateway.write_dangling_indices_info&quot;: &quot;true&quot;,
+        &quot;http.bind_host&quot;: [
+            &quot;_site_&quot;
+        ],
+        &quot;http.compression&quot;: &quot;true&quot;,
+        &quot;http.compression_level&quot;: &quot;3&quot;,
+        &quot;http.content_type.required&quot;: &quot;true&quot;,
+        &quot;http.cors.allow-credentials&quot;: &quot;false&quot;,
+        &quot;http.cors.allow-headers&quot;: &quot;X-Requested-With,Content-Type,Content-Length&quot;,
+        &quot;http.cors.allow-methods&quot;: &quot;OPTIONS,HEAD,GET,POST,PUT,DELETE&quot;,
+        &quot;http.cors.allow-origin&quot;: &quot;&quot;,
+        &quot;http.cors.enabled&quot;: &quot;false&quot;,
+        &quot;http.cors.max-age&quot;: &quot;1728000&quot;,
+        &quot;http.detailed_errors.enabled&quot;: &quot;true&quot;,
+        &quot;http.host&quot;: [
+            &quot;_site_&quot;
+        ],
+        &quot;http.max_chunk_size&quot;: &quot;8kb&quot;,
+        &quot;http.max_content_length&quot;: &quot;100mb&quot;,
+        &quot;http.max_header_size&quot;: &quot;8kb&quot;,
+        &quot;http.max_initial_line_length&quot;: &quot;4kb&quot;,
+        &quot;http.max_warning_header_count&quot;: &quot;-1&quot;,
+        &quot;http.max_warning_header_size&quot;: &quot;-1b&quot;,
+        &quot;http.netty.max_composite_buffer_components&quot;: &quot;69905&quot;,
+        &quot;http.netty.receive_predictor_size&quot;: &quot;64kb&quot;,
+        &quot;http.netty.worker_count&quot;: &quot;0&quot;,
+        &quot;http.pipelining.max_events&quot;: &quot;10000&quot;,
+        &quot;http.port&quot;: &quot;9200&quot;,
+        &quot;http.publish_host&quot;: [
+            &quot;_site_&quot;
+        ],
+        &quot;http.publish_port&quot;: &quot;-1&quot;,
+        &quot;http.read_timeout&quot;: &quot;0ms&quot;,
+        &quot;http.reset_cookies&quot;: &quot;false&quot;,
+        &quot;http.tcp.keep_alive&quot;: &quot;true&quot;,
+        &quot;http.tcp.keep_count&quot;: &quot;-1&quot;,
+        &quot;http.tcp.keep_idle&quot;: &quot;-1&quot;,
+        &quot;http.tcp.keep_interval&quot;: &quot;-1&quot;,
+        &quot;http.tcp.no_delay&quot;: &quot;true&quot;,
+        &quot;http.tcp.receive_buffer_size&quot;: &quot;-1b&quot;,
+        &quot;http.tcp.reuse_address&quot;: &quot;true&quot;,
+        &quot;http.tcp.send_buffer_size&quot;: &quot;-1b&quot;,
+        &quot;http.tcp_no_delay&quot;: &quot;true&quot;,
+        &quot;http.tracer.exclude&quot;: [],
+        &quot;http.tracer.include&quot;: [],
+        &quot;http.type&quot;: &quot;security4&quot;,
+        &quot;http.type.default&quot;: &quot;netty4&quot;,
+        &quot;index.bulk_to_target_node.enable&quot;: &quot;true&quot;,
+        &quot;index.codec&quot;: &quot;default&quot;,
+        &quot;index.direct_routing.global.enable&quot;: &quot;false&quot;,
+        &quot;index.doc_value.compression.block_shift&quot;: &quot;15&quot;,
+        &quot;index.doc_value.compression.default&quot;: &quot;zstd&quot;,
+        &quot;index.doc_value.compression.zstd_level&quot;: &quot;3&quot;,
+        &quot;index.openstore.allocator.name&quot;: &quot;open_store_allocator&quot;,
+        &quot;index.openstore.hybrid.delete.internal_action_timeout&quot;: &quot;10m&quot;,
+        &quot;index.openstore.hybrid.delete.modified_active_timeout&quot;: &quot;120m&quot;,
+        &quot;index.openstore.hybrid.dump.internal_action_timeout&quot;: &quot;60s&quot;,
+        &quot;index.openstore.hybrid.file.dump.block.concurrent.number&quot;: &quot;5&quot;,
+        &quot;index.openstore.hybrid.file.dump.block.store.available.size.threshold.bytes&quot;: &quot;214748364800&quot;,
+        &quot;index.openstore.hybrid.file.dump.file.concurrent.number&quot;: &quot;50&quot;,
+        &quot;index.openstore.hybrid.file.dump.size.high.threshold.bytes&quot;: &quot;9223372036854775807&quot;,
+        &quot;index.openstore.hybrid.file.dump.size.low.threshold.bytes&quot;: &quot;9223372036854775807&quot;,
+        &quot;index.openstore.hybrid.file.dump.time.high.threshold.ms&quot;: &quot;900000&quot;,
+        &quot;index.openstore.hybrid.file.dump.time.low.threshold.ms&quot;: &quot;600000&quot;,
+        &quot;index.openstore.hybrid.init.timeout.ms&quot;: &quot;600000&quot;,
+        &quot;index.openstore.hybrid.openio.local.ufs.path&quot;: &quot;/ssd/1/hippo_slave&quot;,
+        &quot;index.openstore.hybrid.openio.reversed.path&quot;: &quot;/__reversed_for_openio__&quot;,
+        &quot;index.openstore.hybrid.openio.security.authentication.type&quot;: &quot;NOSASL&quot;,
+        &quot;index.openstore.hybrid.openio.ufs_async_block_reader_enabled&quot;: &quot;false&quot;,
+        &quot;index.openstore.hybrid.openio.user_client_cache_async_write_enabled&quot;: &quot;false&quot;,
+        &quot;index.openstore.hybrid.read.cache.enabled&quot;: &quot;true&quot;,
+        &quot;index.openstore.hybrid.write.cache.enabled&quot;: &quot;true&quot;,
+        &quot;index.openstore.index_trash.enable&quot;: &quot;true&quot;,
+        &quot;index.openstore.openio.enable&quot;: &quot;true&quot;,
+        &quot;index.points.same_sort_order_as_index_sort&quot;: &quot;false&quot;,
+        &quot;index.postings.compression&quot;: &quot;zstd&quot;,
+        &quot;index.postings.pfor.enabled&quot;: &quot;false&quot;,
+        &quot;index.recovery.type&quot;: &quot;&quot;,
+        &quot;index.source.compression&quot;: &quot;zstd&quot;,
+        &quot;index.source.compression.zstd_level&quot;: &quot;3&quot;,
+        &quot;index.store.fs.fs_lock&quot;: &quot;native&quot;,
+        &quot;index.store.hybrid.openio.audit_logging_enabled&quot;: &quot;false&quot;,
+        &quot;index.store.hybrid.openio.block_instream_cache_enabled&quot;: &quot;true&quot;,
+        &quot;index.store.hybrid.openio.block_store_quota&quot;: &quot;1200GB&quot;,
+        &quot;index.store.hybrid.openio.block_store_space_maintainer_watermark_high_ratio&quot;: &quot;0.85&quot;,
+        &quot;index.store.hybrid.openio.block_store_space_maintainer_watermark_low_ratio&quot;: &quot;0.75&quot;,
+        &quot;index.store.hybrid.openio.block_worker_client_pool_max&quot;: &quot;10000&quot;,
+        &quot;index.store.hybrid.openio.client_cache_enable&quot;: &quot;true&quot;,
+        &quot;index.store.hybrid.openio.dir_meta_op_audit_enable&quot;: &quot;true&quot;,
+        &quot;index.store.hybrid.openio.ehcache_disk_segments&quot;: &quot;100&quot;,
+        &quot;index.store.hybrid.openio.ehcache_entry_size&quot;: &quot;100&quot;,
+        &quot;index.store.hybrid.openio.ehcache_write_queue_size&quot;: &quot;300&quot;,
+        &quot;index.store.hybrid.openio.fs_lock_enable&quot;: &quot;false&quot;,
+        &quot;index.store.hybrid.openio.job_master_embedded_journal_port&quot;: &quot;20003&quot;,
+        &quot;index.store.hybrid.openio.job_master_rpc_port&quot;: &quot;20001&quot;,
+        &quot;index.store.hybrid.openio.job_master_web_port&quot;: &quot;20002&quot;,
+        &quot;index.store.hybrid.openio.job_worker_data_port&quot;: &quot;30002&quot;,
+        &quot;index.store.hybrid.openio.job_worker_rpc_port&quot;: &quot;30001&quot;,
+        &quot;index.store.hybrid.openio.job_worker_thread_pool_size&quot;: &quot;100&quot;,
+        &quot;index.store.hybrid.openio.job_worker_web_port&quot;: &quot;30003&quot;,
+        &quot;index.store.hybrid.openio.master_embedded_journal_port&quot;: &quot;19200&quot;,
+        &quot;index.store.hybrid.openio.master_rpc_port&quot;: &quot;19998&quot;,
+        &quot;index.store.hybrid.openio.master_web_port&quot;: &quot;19999&quot;,
+        &quot;index.store.hybrid.openio.multi_client_cache_async_load_enable&quot;: &quot;true&quot;,
+        &quot;index.store.hybrid.openio.multi_client_cache_dir&quot;: &quot;/cache/openio/workspace/page_cache_1,/cache/openio/workspace/page_cache_2,/cache/openio/workspace/page_cache_3&quot;,
+        &quot;index.store.hybrid.openio.multi_client_cache_disk_size&quot;: &quot;80GB,1450GB,150GB&quot;,
+        &quot;index.store.hybrid.openio.multi_client_cache_enable&quot;: &quot;true&quot;,
+        &quot;index.store.hybrid.openio.multi_client_cache_mem_size&quot;: &quot;1GB,1GB,1GB&quot;,
+        &quot;index.store.hybrid.openio.multi_client_cache_page_size&quot;: &quot;256KB,256KB,256KB&quot;,
+        &quot;index.store.hybrid.openio.multi_client_cache_quota_enabled&quot;: &quot;true,true,true&quot;,
+        &quot;index.store.hybrid.openio.separate_master_enable&quot;: &quot;false&quot;,
+        &quot;index.store.hybrid.openio.ufs_multipart_upload_enable&quot;: &quot;true&quot;,
+        &quot;index.store.hybrid.openio.ufs_operate_max_retry_count&quot;: &quot;3&quot;,
+        &quot;index.store.hybrid.openio.underfs_object_store_multi_range_chunk_size&quot;: &quot;256KB&quot;,
+        &quot;index.store.hybrid.openio.user_client_local_page_enable&quot;: &quot;false&quot;,
+        &quot;index.store.hybrid.openio.user_multi_client_cache_load_parallelism&quot;: &quot;208&quot;,
+        &quot;index.store.hybrid.openio.work_dir&quot;: &quot;/cache/openio/workspace&quot;,
+        &quot;index.store.hybrid.openio.worker_rpc_port&quot;: &quot;29999&quot;,
+        &quot;index.store.hybrid.openio.worker_web_port&quot;: &quot;30000&quot;,
+        &quot;index.store.hybrid.persist_ratelimit&quot;: &quot;200MB&quot;,
+        &quot;index.store.hybrid.persisted_list_sync_interval&quot;: &quot;30sec&quot;,
+        &quot;index.store.hybrid.persistence_state_syncer_enabled&quot;: &quot;true&quot;,
+        &quot;index.store.hybrid.persistence_state_syncer_interval_ms&quot;: &quot;10min&quot;,
+        &quot;index.store.hybrid.persistence_state_syncer_loop_interval_ms&quot;: &quot;10ms&quot;,
+        &quot;index.store.hybrid.persistence_state_syncer_md5_check_enabled&quot;: &quot;false&quot;,
+        &quot;index.store.hybrid.user_client_local_page_cache_page_size&quot;: &quot;4KB&quot;,
+        &quot;index.store.hybrid.user_client_local_page_cache_size&quot;: &quot;3GB&quot;,
+        &quot;index.store.hybrid.user_client_local_page_ehcache_store_entry_size&quot;: &quot;20000&quot;,
+        &quot;index.store.openio.elastic_cache.config_path&quot;: &quot;elastic-cache.xml&quot;,
+        &quot;index.store.openio.elastic_cache.data_path&quot;: &quot;/cache/ehcache&quot;,
+        &quot;index.store.openio.elastic_cache.min_upgrade_nanos&quot;: &quot;30000000000&quot;,
+        &quot;index.store.openio.elastic_cache.ordered_cache.disk&quot;: &quot;1450GB&quot;,
+        &quot;index.store.openio.elastic_cache.ordered_cache.heap&quot;: &quot;100entries&quot;,
+        &quot;index.store.openio.elastic_cache.ordered_cache.off_heap&quot;: &quot;1GB&quot;,
+        &quot;index.store.openio.elastic_cache.ordered_cache.tti&quot;: &quot;604800&quot;,
+        &quot;index.store.openio.elastic_cache.persistent_cache.disk&quot;: &quot;3GB&quot;,
+        &quot;index.store.openio.elastic_cache.persistent_cache.heap&quot;: &quot;100entries&quot;,
+        &quot;index.store.openio.elastic_cache.persistent_cache.off_heap&quot;: &quot;1GB&quot;,
+        &quot;index.store.openio.elastic_cache.persistent_cache.tti&quot;: &quot;2592000&quot;,
+        &quot;index.store.openio.elastic_cache.read_enable&quot;: &quot;true&quot;,
+        &quot;index.store.openio.elastic_cache.resident_cache.disk&quot;: &quot;80GB&quot;,
+        &quot;index.store.openio.elastic_cache.resident_cache.heap&quot;: &quot;100entries&quot;,
+        &quot;index.store.openio.elastic_cache.resident_cache.off_heap&quot;: &quot;2GB&quot;,
+        &quot;index.store.openio.elastic_cache.resident_cache.tti&quot;: &quot;2592000&quot;,
+        &quot;index.store.openio.elastic_cache.temporary_cache_old.disk&quot;: &quot;100GB&quot;,
+        &quot;index.store.openio.elastic_cache.temporary_cache_old.heap&quot;: &quot;100entries&quot;,
+        &quot;index.store.openio.elastic_cache.temporary_cache_old.off_heap&quot;: &quot;0b&quot;,
+        &quot;index.store.openio.elastic_cache.temporary_cache_old.tti&quot;: &quot;86400&quot;,
+        &quot;index.store.openio.elastic_cache.temporary_cache_young.disk&quot;: &quot;50GB&quot;,
+        &quot;index.store.openio.elastic_cache.temporary_cache_young.heap&quot;: &quot;100entries&quot;,
+        &quot;index.store.openio.elastic_cache.temporary_cache_young.off_heap&quot;: &quot;0b&quot;,
+        &quot;index.store.openio.elastic_cache.temporary_cache_young.tti&quot;: &quot;60&quot;,
+        &quot;index.store.openio.elastic_cache.write_enable&quot;: &quot;true&quot;,
+        &quot;index.store.openio.persist_max_internal&quot;: &quot;1000&quot;,
+        &quot;index.store.openstore.access_key_id&quot;: &quot;&quot;,
+        &quot;index.store.openstore.access_key_secret&quot;: &quot;&quot;,
+        &quot;index.store.openstore.bucket_name&quot;: &quot;oss_bucket&quot;,
+        &quot;index.store.openstore.endpoint&quot;: &quot;&quot;,
+        &quot;index.store.openstore.fs_lock&quot;: &quot;openstore&quot;,
+        &quot;index.store.openstore.index_trash_dir&quot;: &quot;index_trash&quot;,
+        &quot;index.store.openstore.input_bank_num&quot;: &quot;80&quot;,
+        &quot;index.store.openstore.input_block_shift&quot;: &quot;18&quot;,
+        &quot;index.store.openstore.input_blocks_per_bank&quot;: &quot;400&quot;,
+        &quot;index.store.openstore.local_write_file_dir&quot;: &quot;/cache/local_write_file_dir&quot;,
+        &quot;index.store.openstore.metrics_enable&quot;: &quot;false&quot;,
+        &quot;index.store.openstore.ram_name&quot;: &quot;&quot;,
+        &quot;index.store.openstore.search_cache_enable&quot;: &quot;true&quot;,
+        &quot;index.store.openstore.type&quot;: &quot;&quot;,
+        &quot;index.store.oss.block_cache_expire_time_in_millisecond&quot;: &quot;30000&quot;,
+        &quot;index.store.oss.connection_timeout&quot;: &quot;50000&quot;,
+        &quot;index.store.oss.local_disk_cache_enable&quot;: &quot;false&quot;,
+        &quot;index.store.oss.max_connections&quot;: &quot;1024&quot;,
+        &quot;index.store.oss.max_error_entry&quot;: &quot;3&quot;,
+        &quot;index.store.oss.output_buffer_size&quot;: &quot;104857600&quot;,
+        &quot;index.store.oss.part_copy_size&quot;: &quot;536870912&quot;,
+        &quot;index.store.oss.part_upload_size&quot;: &quot;1073741824&quot;,
+        &quot;index.store.oss.root_data_dir&quot;: &quot;&quot;,
+        &quot;index.store.oss.simple_copy_file_size_threshold&quot;: &quot;1073741824&quot;,
+        &quot;index.store.oss.socket_timeout&quot;: &quot;50000&quot;,
+        &quot;index.store.preload&quot;: [],
+        &quot;index.store.snapshot.cache.excluded_file_types&quot;: [],
+        &quot;index.store.snapshot.uncached_chunk_size&quot;: &quot;-1b&quot;,
+        &quot;index.store.type&quot;: &quot;&quot;,
+        &quot;indexing_pressure.memory.limit&quot;: &quot;10%&quot;,
+        &quot;indices.analysis.hunspell.dictionary.ignore_case&quot;: &quot;false&quot;,
+        &quot;indices.analysis.hunspell.dictionary.lazy&quot;: &quot;false&quot;,
+        &quot;indices.breaker.accounting.limit&quot;: &quot;100%&quot;,
+        &quot;indices.breaker.accounting.overhead&quot;: &quot;1.0&quot;,
+        &quot;indices.breaker.fielddata.limit&quot;: &quot;40%&quot;,
+        &quot;indices.breaker.fielddata.overhead&quot;: &quot;1.03&quot;,
+        &quot;indices.breaker.fielddata.type&quot;: &quot;memory&quot;,
+        &quot;indices.breaker.request.limit&quot;: &quot;60%&quot;,
+        &quot;indices.breaker.request.overhead&quot;: &quot;1.0&quot;,
+        &quot;indices.breaker.request.type&quot;: &quot;memory&quot;,
+        &quot;indices.breaker.total.limit&quot;: &quot;95%&quot;,
+        &quot;indices.breaker.total.use_real_memory&quot;: &quot;true&quot;,
+        &quot;indices.breaker.type&quot;: &quot;hierarchy&quot;,
+        &quot;indices.breaker.vector.native.indexing.limit&quot;: &quot;70.0%&quot;,
+        &quot;indices.breaker.vector.native.total.limit&quot;: &quot;80.0%&quot;,
+        &quot;indices.cache.cleanup_interval&quot;: &quot;1m&quot;,
+        &quot;indices.consistency.internal_action_long_timeout&quot;: &quot;1800000ms&quot;,
+        &quot;indices.consistency.internal_action_retry_timeout&quot;: &quot;1m&quot;,
+        &quot;indices.consistency.internal_action_timeout&quot;: &quot;15m&quot;,
+        &quot;indices.consistency.limiter.single_task&quot;: &quot;10&quot;,
+        &quot;indices.consistency.limiter.total_tasks&quot;: &quot;30&quot;,
+        &quot;indices.consistency.recovery_activity_timeout&quot;: &quot;1800000ms&quot;,
+        &quot;indices.csr.max_exception_delay&quot;: &quot;5m&quot;,
+        &quot;indices.csr.max_no_data_delay&quot;: &quot;60s&quot;,
+        &quot;indices.csr.merge.heart_beat_timeout&quot;: &quot;90s&quot;,
+        &quot;indices.csr.read_poll_timeout&quot;: &quot;10s&quot;,
+        &quot;indices.csr.refresh.copy_timeout&quot;: &quot;1200s&quot;,
+        &quot;indices.fielddata.cache.size&quot;: &quot;-1b&quot;,
+        &quot;indices.id_field_data.enabled&quot;: &quot;true&quot;,
+        &quot;indices.lifecycle.history_index_enabled&quot;: &quot;true&quot;,
+        &quot;indices.lifecycle.poll_interval&quot;: &quot;10m&quot;,
+        &quot;indices.lifecycle.step.master_timeout&quot;: &quot;30s&quot;,
+        &quot;indices.mapping.dynamic_timeout&quot;: &quot;30s&quot;,
+        &quot;indices.mapping.max_in_flight_updates&quot;: &quot;10&quot;,
+        &quot;indices.memory.index_buffer_size&quot;: &quot;10%&quot;,
+        &quot;indices.memory.interval&quot;: &quot;5s&quot;,
+        &quot;indices.memory.max_index_buffer_size&quot;: &quot;-1&quot;,
+        &quot;indices.memory.min_index_buffer_size&quot;: &quot;48mb&quot;,
+        &quot;indices.memory.shard_inactive_time&quot;: &quot;5m&quot;,
+        &quot;indices.queries.cache.all_segments&quot;: &quot;false&quot;,
+        &quot;indices.queries.cache.count&quot;: &quot;10000&quot;,
+        &quot;indices.queries.cache.size&quot;: &quot;10%&quot;,
+        &quot;indices.query.bool.max_clause_count&quot;: &quot;1024&quot;,
+        &quot;indices.query.query_string.allowLeadingWildcard&quot;: &quot;true&quot;,
+        &quot;indices.query.query_string.analyze_wildcard&quot;: &quot;false&quot;,
+        &quot;indices.recovery.internal_action_long_timeout&quot;: &quot;1800000ms&quot;,
+        &quot;indices.recovery.internal_action_timeout&quot;: &quot;15m&quot;,
+        &quot;indices.recovery.max_bytes_per_sec&quot;: &quot;40mb&quot;,
+        &quot;indices.recovery.max_concurrent_file_chunks&quot;: &quot;2&quot;,
+        &quot;indices.recovery.max_concurrent_operations&quot;: &quot;1&quot;,
+        &quot;indices.recovery.recovery_activity_timeout&quot;: &quot;1800000ms&quot;,
+        &quot;indices.recovery.retry_delay_network&quot;: &quot;5s&quot;,
+        &quot;indices.recovery.retry_delay_state_sync&quot;: &quot;500ms&quot;,
+        &quot;indices.replication.advance_writer_segment_counter_step&quot;: &quot;20000&quot;,
+        &quot;indices.replication.copy.chunk_size&quot;: &quot;508kb&quot;,
+        &quot;indices.replication.initial_retry_backoff_bound&quot;: &quot;50ms&quot;,
+        &quot;indices.replication.merge.copy_timeout&quot;: &quot;3600s&quot;,
+        &quot;indices.replication.merge.keep_timeout&quot;: &quot;3600s&quot;,
+        &quot;indices.replication.merge.max_copy_bytes_per_sec&quot;: &quot;300mb&quot;,
+        &quot;indices.replication.merge.retry_count&quot;: &quot;1&quot;,
+        &quot;indices.replication.ops_per_segment&quot;: &quot;500&quot;,
+        &quot;indices.replication.refresh.copy_timeout&quot;: &quot;600s&quot;,
+        &quot;indices.replication.refresh.max_copy_bytes_per_sec&quot;: &quot;-1&quot;,
+        &quot;indices.replication.retry_timeout&quot;: &quot;60s&quot;,
+        &quot;indices.requests.cache.expire&quot;: &quot;0ms&quot;,
+        &quot;indices.requests.cache.size&quot;: &quot;1%&quot;,
+        &quot;indices.store.delete.shard.timeout&quot;: &quot;30s&quot;,
+        &quot;indices.vector.cache.expiration.enabled&quot;: &quot;true&quot;,
+        &quot;indices.vector.cache.expire_after_access.duration&quot;: &quot;24h&quot;,
+        &quot;indices.vector.cache.size&quot;: &quot;8650948608b&quot;,
+        &quot;ingest.geoip.cache_size&quot;: &quot;1000&quot;,
+        &quot;ingest.grok.watchdog.interval&quot;: &quot;1s&quot;,
+        &quot;ingest.grok.watchdog.max_execution_time&quot;: &quot;1s&quot;,
+        &quot;ingest.user_agent.cache_size&quot;: &quot;1000&quot;,
+        &quot;kibana.system_indices&quot;: [
+            &quot;.kibana&quot;,
+            &quot;.kibana_*&quot;,
+            &quot;.reporting-*&quot;,
+            &quot;.apm-agent-configuration&quot;,
+            &quot;.apm-custom-link&quot;
+        ],
+        &quot;logger.level&quot;: &quot;INFO&quot;,
+        &quot;monitor.fs.health.enabled&quot;: &quot;true&quot;,
+        &quot;monitor.fs.health.refresh_interval&quot;: &quot;120s&quot;,
+        &quot;monitor.fs.health.slow_path_logging_threshold&quot;: &quot;5s&quot;,
+        &quot;monitor.fs.refresh_interval&quot;: &quot;1s&quot;,
+        &quot;monitor.jvm.gc.enabled&quot;: &quot;true&quot;,
+        &quot;monitor.jvm.gc.overhead.debug&quot;: &quot;10&quot;,
+        &quot;monitor.jvm.gc.overhead.info&quot;: &quot;25&quot;,
+        &quot;monitor.jvm.gc.overhead.warn&quot;: &quot;50&quot;,
+        &quot;monitor.jvm.gc.refresh_interval&quot;: &quot;1s&quot;,
+        &quot;monitor.jvm.refresh_interval&quot;: &quot;1s&quot;,
+        &quot;monitor.os.refresh_interval&quot;: &quot;1s&quot;,
+        &quot;monitor.process.refresh_interval&quot;: &quot;1s&quot;,
+        &quot;network.bind_host&quot;: [
+            &quot;_site_&quot;
+        ],
+        &quot;network.breaker.inflight_requests.limit&quot;: &quot;100%&quot;,
+        &quot;network.breaker.inflight_requests.overhead&quot;: &quot;2.0&quot;,
+        &quot;network.host&quot;: [
+            &quot;_site_&quot;
+        ],
+        &quot;network.publish_host&quot;: [
+            &quot;_site_&quot;
+        ],
+        &quot;network.server&quot;: &quot;true&quot;,
+        &quot;network.tcp.connect_timeout&quot;: &quot;30s&quot;,
+        &quot;network.tcp.keep_alive&quot;: &quot;true&quot;,
+        &quot;network.tcp.keep_count&quot;: &quot;-1&quot;,
+        &quot;network.tcp.keep_idle&quot;: &quot;-1&quot;,
+        &quot;network.tcp.keep_interval&quot;: &quot;-1&quot;,
+        &quot;network.tcp.no_delay&quot;: &quot;true&quot;,
+        &quot;network.tcp.receive_buffer_size&quot;: &quot;-1b&quot;,
+        &quot;network.tcp.reuse_address&quot;: &quot;true&quot;,
+        &quot;network.tcp.send_buffer_size&quot;: &quot;-1b&quot;,
+        &quot;no.model.state.persist&quot;: &quot;false&quot;,
+        &quot;node.attr.ml.machine_memory&quot;: &quot;33021755392&quot;,
+        &quot;node.attr.ml.max_open_jobs&quot;: &quot;20&quot;,
+        &quot;node.attr.transform.node&quot;: &quot;true&quot;,
+        &quot;node.attr.xpack.installed&quot;: &quot;true&quot;,
+        &quot;node.data&quot;: &quot;true&quot;,
+        &quot;node.enable_lucene_segment_infos_trace&quot;: &quot;false&quot;,
+        &quot;node.flow_control.gig.client.timeout&quot;: &quot;1000ms&quot;,
+        &quot;node.flow_control.gig.session_expire.check_interval&quot;: &quot;1m&quot;,
+        &quot;node.flow_control.gig.session_expire.timeout&quot;: &quot;1m&quot;,
+        &quot;node.id.seed&quot;: &quot;0&quot;,
+        &quot;node.ingest&quot;: &quot;true&quot;,
+        &quot;node.local_storage&quot;: &quot;true&quot;,
+        &quot;node.master&quot;: &quot;true&quot;,
+        &quot;node.max_local_storage_nodes&quot;: &quot;1&quot;,
+        &quot;node.ml&quot;: &quot;true&quot;,
+        &quot;node.name&quot;: &quot;es-cn-9lb31hsip000meyx9-3eb54911-0003&quot;,
+        &quot;node.openstore.init&quot;: &quot;false&quot;,
+        &quot;node.pidfile&quot;: &quot;&quot;,
+        &quot;node.portsfile&quot;: &quot;false&quot;,
+        &quot;node.processors&quot;: &quot;8&quot;,
+        &quot;node.remote_cluster_client&quot;: &quot;true&quot;,
+        &quot;node.roles&quot;: [
+            &quot;transform&quot;,
+            &quot;master&quot;,
+            &quot;remote_cluster_client&quot;,
+            &quot;data&quot;,
+            &quot;ml&quot;,
+            &quot;data_content&quot;,
+            &quot;data_hot&quot;,
+            &quot;data_warm&quot;,
+            &quot;data_cold&quot;,
+            &quot;ingest&quot;
+        ],
+        &quot;node.store.allow_mmap&quot;: &quot;true&quot;,
+        &quot;node.store.hybrid.openio.metrics.level&quot;: &quot;INFO&quot;,
+        &quot;node.transform&quot;: &quot;true&quot;,
+        &quot;node.voting_only&quot;: &quot;false&quot;,
+        &quot;openstore.concurrent.search.batch_doc_num_per_thread&quot;: &quot;65536&quot;,
+        &quot;openstore.concurrent.search.doc_array.type&quot;: &quot;big_array&quot;,
+        &quot;openstore.concurrent.search.recycler.limit.heap&quot;: &quot;10%&quot;,
+        &quot;openstore.concurrent.search.recycler.type&quot;: &quot;CONCURRENT&quot;,
+        &quot;openstore.concurrent.search.recycler.weight.ints&quot;: &quot;2.0&quot;,
+        &quot;openstore.concurrent.search.recycler.weight.longs&quot;: &quot;1.0&quot;,
+        &quot;oss.enabled&quot;: &quot;true&quot;,
+        &quot;oss.user.client.async.restore.enabled&quot;: &quot;false&quot;,
+        &quot;oss.user.client.cache.eviction.retries&quot;: &quot;0&quot;,
+        &quot;oss.user.client.cache.local.store.file.buckets&quot;: &quot;1000&quot;,
+        &quot;oss.user.client.cache.page.size&quot;: &quot;32mb&quot;,
+        &quot;oss.user.client.cache.quota.enabled&quot;: &quot;false&quot;,
+        &quot;oss.user.client.cache.size&quot;: &quot;32gb&quot;,
+        &quot;oss.user.client.cache.timeout.duration&quot;: &quot;0ms&quot;,
+        &quot;oss.user.client.cache.timeout.threads&quot;: &quot;32&quot;,
+        &quot;path.data&quot;: [
+            &quot;/ssd/1/hippo_slave/sys_carbon_4_es-cn-9lb31hsip000meyx9_es_worker_i-2zee8unua229cs6fon2l.worker_12_63/es_worker_process/data&quot;
+        ],
+        &quot;path.home&quot;: &quot;/home/admin/packages/elasticsearch&quot;,
+        &quot;path.logs&quot;: &quot;/ssd/1/hippo_slave/sys_carbon_4_es-cn-9lb31hsip000meyx9_es_worker_i-2zee8unua229cs6fon2l.worker_12_63/es_worker_process/logs&quot;,
+        &quot;path.repo&quot;: [],
+        &quot;path.shared_data&quot;: &quot;&quot;,
+        &quot;pidfile&quot;: &quot;&quot;,
+        &quot;plugin.mandatory&quot;: [],
+        &quot;processors&quot;: &quot;8&quot;,
+        &quot;ram_role.credentials_endpoint&quot;: &quot;http://100.100.100.200/latest/meta-data/ram/security-credentials/&quot;,
+        &quot;reindex.remote.whitelist&quot;: [],
+        &quot;repositories.fs.chunk_size&quot;: &quot;9223372036854775807b&quot;,
+        &quot;repositories.fs.compress&quot;: &quot;false&quot;,
+        &quot;repositories.fs.location&quot;: &quot;&quot;,
+        &quot;repositories.url.allowed_urls&quot;: [],
+        &quot;repositories.url.supported_protocols&quot;: [
+            &quot;http&quot;,
+            &quot;https&quot;,
+            &quot;ftp&quot;,
+            &quot;file&quot;,
+            &quot;jar&quot;
+        ],
+        &quot;repositories.url.url&quot;: &quot;http:&quot;,
+        &quot;resource.reload.enabled&quot;: &quot;true&quot;,
+        &quot;resource.reload.interval.high&quot;: &quot;5s&quot;,
+        &quot;resource.reload.interval.low&quot;: &quot;60s&quot;,
+        &quot;resource.reload.interval.medium&quot;: &quot;30s&quot;,
+        &quot;rest.action.multi.allow_explicit_index&quot;: &quot;true&quot;,
+        &quot;script.allowed_contexts&quot;: [],
+        &quot;script.allowed_types&quot;: [],
+        &quot;script.cache.expire&quot;: &quot;0ms&quot;,
+        &quot;script.cache.max_size&quot;: &quot;100&quot;,
+        &quot;script.disable_max_compilations_rate&quot;: &quot;false&quot;,
+        &quot;script.max_compilations_rate&quot;: &quot;use-context&quot;,
+        &quot;script.max_size_in_bytes&quot;: &quot;65535&quot;,
+        &quot;script.painless.regex.enabled&quot;: &quot;limited&quot;,
+        &quot;script.painless.regex.limit-factor&quot;: &quot;6&quot;,
+        &quot;search.aggs.rewrite_to_filter_by_filter&quot;: &quot;true&quot;,
+        &quot;search.aggs.rewrite_to_index_sort_range_min_segment&quot;: &quot;-1&quot;,
+        &quot;search.allow_expensive_queries&quot;: &quot;true&quot;,
+        &quot;search.default_allow_partial_results&quot;: &quot;true&quot;,
+        &quot;search.default_keep_alive&quot;: &quot;5m&quot;,
+        &quot;search.default_search_timeout&quot;: &quot;-1&quot;,
+        &quot;search.docs_per_range_to_use_filters&quot;: &quot;5000&quot;,
+        &quot;search.highlight.term_vector_multi_value&quot;: &quot;true&quot;,
+        &quot;search.isolator.check_interval&quot;: &quot;1s&quot;,
+        &quot;search.isolator.enabled&quot;: &quot;false&quot;,
+        &quot;search.isolator.strategy&quot;: &quot;WEIGHTED_FAIR&quot;,
+        &quot;search.isolator.strategy.weighted_fair.fair_ratio&quot;: &quot;1.0&quot;,
+        &quot;search.isolator.total.heap.usage.limit&quot;: &quot;75%&quot;,
+        &quot;search.isolator.total.mem.limit&quot;: &quot;60%&quot;,
+        &quot;search.isolator.total.tasks.limit&quot;: &quot;1000&quot;,
+        &quot;search.isolator.trigger.task.latency&quot;: &quot;10s&quot;,
+        &quot;search.isolator.trigger.task.mem_cost&quot;: &quot;100mb&quot;,
+        &quot;search.keep_alive_interval&quot;: &quot;1m&quot;,
+        &quot;search.low_level_cancellation&quot;: &quot;true&quot;,
+        &quot;search.max_buckets&quot;: &quot;65535&quot;,
+        &quot;search.max_concurrent_shard_requests&quot;: &quot;5&quot;,
+        &quot;search.max_keep_alive&quot;: &quot;24h&quot;,
+        &quot;search.max_open_scroll_context&quot;: &quot;500&quot;,
+        &quot;search.remote.connect&quot;: &quot;true&quot;,
+        &quot;search.remote.connections_per_cluster&quot;: &quot;3&quot;,
+        &quot;search.remote.initial_connect_timeout&quot;: &quot;30s&quot;,
+        &quot;search.remote.node.attr&quot;: &quot;&quot;,
+        &quot;security.manager.filter_bad_defaults&quot;: &quot;true&quot;,
+        &quot;slm.history_index_enabled&quot;: &quot;true&quot;,
+        &quot;slm.retention_duration&quot;: &quot;1h&quot;,
+        &quot;slm.retention_schedule&quot;: &quot;0 30 1 * * ?&quot;,
+        &quot;snapshot.max_concurrent_operations&quot;: &quot;1000&quot;,
+        &quot;stack.templates.enabled&quot;: &quot;true&quot;,
+        &quot;support_cname&quot;: &quot;false&quot;,
+        &quot;thread_pool.analyze.queue_size&quot;: &quot;16&quot;,
+        &quot;thread_pool.analyze.size&quot;: &quot;1&quot;,
+        &quot;thread_pool.continue_merge.queue_size&quot;: &quot;-1&quot;,
+        &quot;thread_pool.continue_merge.size&quot;: &quot;1&quot;,
+        &quot;thread_pool.estimated_time_interval&quot;: &quot;200ms&quot;,
+        &quot;thread_pool.fetch_shard_started.core&quot;: &quot;1&quot;,
+        &quot;thread_pool.fetch_shard_started.keep_alive&quot;: &quot;5m&quot;,
+        &quot;thread_pool.fetch_shard_started.max&quot;: &quot;16&quot;,
+        &quot;thread_pool.fetch_shard_store.core&quot;: &quot;1&quot;,
+        &quot;thread_pool.fetch_shard_store.keep_alive&quot;: &quot;5m&quot;,
+        &quot;thread_pool.fetch_shard_store.max&quot;: &quot;16&quot;,
+        &quot;thread_pool.flush.core&quot;: &quot;1&quot;,
+        &quot;thread_pool.flush.keep_alive&quot;: &quot;5m&quot;,
+        &quot;thread_pool.flush.max&quot;: &quot;4&quot;,
+        &quot;thread_pool.force_merge.queue_size&quot;: &quot;-1&quot;,
+        &quot;thread_pool.force_merge.size&quot;: &quot;1&quot;,
+        &quot;thread_pool.generic.core&quot;: &quot;4&quot;,
+        &quot;thread_pool.generic.keep_alive&quot;: &quot;30s&quot;,
+        &quot;thread_pool.generic.max&quot;: &quot;128&quot;,
+        &quot;thread_pool.get.queue_size&quot;: &quot;1000&quot;,
+        &quot;thread_pool.get.size&quot;: &quot;8&quot;,
+        &quot;thread_pool.listener.queue_size&quot;: &quot;-1&quot;,
+        &quot;thread_pool.listener.size&quot;: &quot;4&quot;,
+        &quot;thread_pool.management.core&quot;: &quot;1&quot;,
+        &quot;thread_pool.management.keep_alive&quot;: &quot;5m&quot;,
+        &quot;thread_pool.management.max&quot;: &quot;5&quot;,
+        &quot;thread_pool.refresh.core&quot;: &quot;1&quot;,
+        &quot;thread_pool.refresh.keep_alive&quot;: &quot;5m&quot;,
+        &quot;thread_pool.refresh.max&quot;: &quot;4&quot;,
+        &quot;thread_pool.search.auto_queue_frame_size&quot;: &quot;2000&quot;,
+        &quot;thread_pool.search.max_queue_size&quot;: &quot;1000&quot;,
+        &quot;thread_pool.search.min_queue_size&quot;: &quot;1000&quot;,
+        &quot;thread_pool.search.queue_size&quot;: &quot;1000&quot;,
+        &quot;thread_pool.search.size&quot;: &quot;13&quot;,
+        &quot;thread_pool.search.target_response_time&quot;: &quot;1s&quot;,
+        &quot;thread_pool.search_throttled.auto_queue_frame_size&quot;: &quot;200&quot;,
+        &quot;thread_pool.search_throttled.max_queue_size&quot;: &quot;100&quot;,
+        &quot;thread_pool.search_throttled.min_queue_size&quot;: &quot;100&quot;,
+        &quot;thread_pool.search_throttled.queue_size&quot;: &quot;100&quot;,
+        &quot;thread_pool.search_throttled.size&quot;: &quot;1&quot;,
+        &quot;thread_pool.search_throttled.target_response_time&quot;: &quot;1s&quot;,
+        &quot;thread_pool.snapshot.core&quot;: &quot;1&quot;,
+        &quot;thread_pool.snapshot.keep_alive&quot;: &quot;5m&quot;,
+        &quot;thread_pool.snapshot.max&quot;: &quot;4&quot;,
+        &quot;thread_pool.system_read.queue_size&quot;: &quot;2000&quot;,
+        &quot;thread_pool.system_read.size&quot;: &quot;4&quot;,
+        &quot;thread_pool.system_write.queue_size&quot;: &quot;1000&quot;,
+        &quot;thread_pool.system_write.size&quot;: &quot;4&quot;,
+        &quot;thread_pool.warmer.core&quot;: &quot;1&quot;,
+        &quot;thread_pool.warmer.keep_alive&quot;: &quot;5m&quot;,
+        &quot;thread_pool.warmer.max&quot;: &quot;4&quot;,
+        &quot;thread_pool.write.queue_size&quot;: &quot;10000&quot;,
+        &quot;thread_pool.write.size&quot;: &quot;8&quot;,
+        &quot;time_series.poll_interval&quot;: &quot;5m&quot;,
+        &quot;time_stream.force.rollup.delay.flag&quot;: &quot;false&quot;,
+        &quot;time_stream.metadata.check.interval&quot;: &quot;10s&quot;,
+        &quot;time_stream.rollup.delay.time&quot;: &quot;24h&quot;,
+        &quot;transform.task_thread_pool.queue_size&quot;: &quot;4&quot;,
+        &quot;transform.task_thread_pool.size&quot;: &quot;4&quot;,
+        &quot;transport.bind_host&quot;: [
+            &quot;_site_&quot;
+        ],
+        &quot;transport.compress&quot;: &quot;INDEXING_DATA&quot;,
+        &quot;transport.compression_scheme&quot;: &quot;LZ4&quot;,
+        &quot;transport.connect_timeout&quot;: &quot;30s&quot;,
+        &quot;transport.connections_per_node.bulk&quot;: &quot;3&quot;,
+        &quot;transport.connections_per_node.ping&quot;: &quot;1&quot;,
+        &quot;transport.connections_per_node.recovery&quot;: &quot;2&quot;,
+        &quot;transport.connections_per_node.reg&quot;: &quot;6&quot;,
+        &quot;transport.connections_per_node.state&quot;: &quot;1&quot;,
+        &quot;transport.features.x-pack&quot;: &quot;true&quot;,
+        &quot;transport.host&quot;: [
+            &quot;_site_&quot;
+        ],
+        &quot;transport.netty.boss_count&quot;: &quot;1&quot;,
+        &quot;transport.netty.receive_predictor_max&quot;: &quot;64kb&quot;,
+        &quot;transport.netty.receive_predictor_min&quot;: &quot;64kb&quot;,
+        &quot;transport.netty.receive_predictor_size&quot;: &quot;64kb&quot;,
+        &quot;transport.netty.worker_count&quot;: &quot;8&quot;,
+        &quot;transport.ping_schedule&quot;: &quot;-1&quot;,
+        &quot;transport.port&quot;: &quot;9300&quot;,
+        &quot;transport.publish_host&quot;: [
+            &quot;_site_&quot;
+        ],
+        &quot;transport.publish_port&quot;: &quot;-1&quot;,
+        &quot;transport.slow_operation_logging_threshold&quot;: &quot;5s&quot;,
+        &quot;transport.tcp.compress&quot;: &quot;INDEXING_DATA&quot;,
+        &quot;transport.tcp.connect_timeout&quot;: &quot;30s&quot;,
+        &quot;transport.tcp.keep_alive&quot;: &quot;true&quot;,
+        &quot;transport.tcp.keep_count&quot;: &quot;-1&quot;,
+        &quot;transport.tcp.keep_idle&quot;: &quot;-1&quot;,
+        &quot;transport.tcp.keep_interval&quot;: &quot;-1&quot;,
+        &quot;transport.tcp.no_delay&quot;: &quot;true&quot;,
+        &quot;transport.tcp.port&quot;: &quot;9300&quot;,
+        &quot;transport.tcp.receive_buffer_size&quot;: &quot;-1b&quot;,
+        &quot;transport.tcp.reuse_address&quot;: &quot;true&quot;,
+        &quot;transport.tcp.send_buffer_size&quot;: &quot;-1b&quot;,
+        &quot;transport.tcp_no_delay&quot;: &quot;true&quot;,
+        &quot;transport.tracer.exclude&quot;: [
+            &quot;internal:discovery/zen/fd*&quot;,
+            &quot;internal:coordination/fault_detection/*&quot;,
+            &quot;cluster:monitor/nodes/liveness&quot;
+        ],
+        &quot;transport.tracer.include&quot;: [],
+        &quot;transport.type&quot;: &quot;security4&quot;,
+        &quot;transport.type.default&quot;: &quot;netty4&quot;,
+        &quot;xpack.ccr.ccr_thread_pool.queue_size&quot;: &quot;100&quot;,
+        &quot;xpack.ccr.ccr_thread_pool.size&quot;: &quot;32&quot;,
+        &quot;xpack.ccr.enabled&quot;: &quot;true&quot;,
+        &quot;xpack.data_frame.enabled&quot;: &quot;true&quot;,
+        &quot;xpack.enrich.enabled&quot;: &quot;true&quot;,
+        &quot;xpack.eql.enabled&quot;: &quot;true&quot;,
+        &quot;xpack.flattened.enabled&quot;: &quot;true&quot;,
+        &quot;xpack.graph.enabled&quot;: &quot;true&quot;,
+        &quot;xpack.http.default_connection_timeout&quot;: &quot;10s&quot;,
+        &quot;xpack.http.default_read_timeout&quot;: &quot;10s&quot;,
+        &quot;xpack.http.max_response_size&quot;: &quot;10mb&quot;,
+        &quot;xpack.http.proxy.host&quot;: &quot;&quot;,
+        &quot;xpack.http.proxy.port&quot;: &quot;0&quot;,
+        &quot;xpack.http.proxy.scheme&quot;: &quot;&quot;,
+        &quot;xpack.http.whitelist&quot;: [
+            &quot;*&quot;
+        ],
+        &quot;xpack.idp.allowed_nameid_formats&quot;: [
+            &quot;urn:oasis:names:tc:SAML:2.0:nameid-format:transient&quot;
+        ],
+        &quot;xpack.idp.contact.email&quot;: &quot;&quot;,
+        &quot;xpack.idp.contact.given_name&quot;: &quot;&quot;,
+        &quot;xpack.idp.contact.surname&quot;: &quot;&quot;,
+        &quot;xpack.idp.defaults.authn_expiry&quot;: &quot;5m&quot;,
+        &quot;xpack.idp.defaults.nameid_format&quot;: &quot;urn:oasis:names:tc:SAML:2.0:nameid-format:transient&quot;,
+        &quot;xpack.idp.enabled&quot;: &quot;false&quot;,
+        &quot;xpack.idp.entity_id&quot;: &quot;&quot;,
+        &quot;xpack.idp.metadata.signing.keystore.alias&quot;: &quot;&quot;,
+        &quot;xpack.idp.organization.display_name&quot;: &quot;&quot;,
+        &quot;xpack.idp.organization.name&quot;: &quot;&quot;,
+        &quot;xpack.idp.organization.url&quot;: &quot;http:&quot;,
+        &quot;xpack.idp.privileges.application&quot;: &quot;&quot;,
+        &quot;xpack.idp.privileges.cache.size&quot;: &quot;100&quot;,
+        &quot;xpack.idp.privileges.cache.ttl&quot;: &quot;90m&quot;,
+        &quot;xpack.idp.signing.keystore.alias&quot;: &quot;&quot;,
+        &quot;xpack.idp.slo_endpoint.post&quot;: &quot;https:&quot;,
+        &quot;xpack.idp.slo_endpoint.redirect&quot;: &quot;https:&quot;,
+        &quot;xpack.idp.sp.cache.size&quot;: &quot;1000&quot;,
+        &quot;xpack.idp.sp.cache.ttl&quot;: &quot;60m&quot;,
+        &quot;xpack.idp.sp.wildcard.path&quot;: &quot;wildcard_services.json&quot;,
+        &quot;xpack.idp.sso_endpoint.post&quot;: &quot;https:&quot;,
+        &quot;xpack.idp.sso_endpoint.redirect&quot;: &quot;https:&quot;,
+        &quot;xpack.ilm.enabled&quot;: &quot;true&quot;,
+        &quot;xpack.license.self_generated.type&quot;: &quot;trial&quot;,
+        &quot;xpack.license.upload.types&quot;: [
+            &quot;standard&quot;,
+            &quot;gold&quot;,
+            &quot;platinum&quot;,
+            &quot;enterprise&quot;,
+            &quot;trial&quot;
+        ],
+        &quot;xpack.logstash.enabled&quot;: &quot;true&quot;,
+        &quot;xpack.ml.autodetect_process&quot;: &quot;true&quot;,
+        &quot;xpack.ml.datafeed_thread_pool.core&quot;: &quot;1&quot;,
+        &quot;xpack.ml.datafeed_thread_pool.keep_alive&quot;: &quot;1m&quot;,
+        &quot;xpack.ml.datafeed_thread_pool.max&quot;: &quot;512&quot;,
+        &quot;xpack.ml.enable_config_migration&quot;: &quot;true&quot;,
+        &quot;xpack.ml.enabled&quot;: &quot;true&quot;,
+        &quot;xpack.ml.inference_model.cache_size&quot;: &quot;40%&quot;,
+        &quot;xpack.ml.inference_model.time_to_live&quot;: &quot;5m&quot;,
+        &quot;xpack.ml.job_comms_thread_pool.core&quot;: &quot;4&quot;,
+        &quot;xpack.ml.job_comms_thread_pool.keep_alive&quot;: &quot;1m&quot;,
+        &quot;xpack.ml.job_comms_thread_pool.max&quot;: &quot;2048&quot;,
+        &quot;xpack.ml.max_anomaly_records&quot;: &quot;500&quot;,
+        &quot;xpack.ml.max_inference_processors&quot;: &quot;50&quot;,
+        &quot;xpack.ml.max_lazy_ml_nodes&quot;: &quot;0&quot;,
+        &quot;xpack.ml.max_machine_memory_percent&quot;: &quot;30&quot;,
+        &quot;xpack.ml.max_model_memory_limit&quot;: &quot;0b&quot;,
+        &quot;xpack.ml.max_open_jobs&quot;: &quot;20&quot;,
+        &quot;xpack.ml.min_disk_space_off_heap&quot;: &quot;5gb&quot;,
+        &quot;xpack.ml.nightly_maintenance_requests_per_second&quot;: &quot;-1.0&quot;,
+        &quot;xpack.ml.node_concurrent_job_allocations&quot;: &quot;2&quot;,
+        &quot;xpack.ml.persist_results_max_retries&quot;: &quot;20&quot;,
+        &quot;xpack.ml.process_connect_timeout&quot;: &quot;10s&quot;,
+        &quot;xpack.ml.utility_thread_pool.core&quot;: &quot;1&quot;,
+        &quot;xpack.ml.utility_thread_pool.keep_alive&quot;: &quot;10m&quot;,
+        &quot;xpack.ml.utility_thread_pool.max&quot;: &quot;2048&quot;,
+        &quot;xpack.monitoring.collection.ccr.stats.timeout&quot;: &quot;10s&quot;,
+        &quot;xpack.monitoring.collection.cluster.stats.timeout&quot;: &quot;10s&quot;,
+        &quot;xpack.monitoring.collection.enabled&quot;: &quot;true&quot;,
+        &quot;xpack.monitoring.collection.enrich.stats.timeout&quot;: &quot;10s&quot;,
+        &quot;xpack.monitoring.collection.index.recovery.active_only&quot;: &quot;false&quot;,
+        &quot;xpack.monitoring.collection.index.recovery.timeout&quot;: &quot;10s&quot;,
+        &quot;xpack.monitoring.collection.index.stats.timeout&quot;: &quot;10s&quot;,
+        &quot;xpack.monitoring.collection.indices&quot;: [],
+        &quot;xpack.monitoring.collection.interval&quot;: &quot;10s&quot;,
+        &quot;xpack.monitoring.collection.ml.job.stats.timeout&quot;: &quot;10s&quot;,
+        &quot;xpack.monitoring.collection.node.stats.timeout&quot;: &quot;10s&quot;,
+        &quot;xpack.monitoring.elasticsearch.collection.enabled&quot;: &quot;true&quot;,
+        &quot;xpack.monitoring.enabled&quot;: &quot;true&quot;,
+        &quot;xpack.monitoring.history.duration&quot;: &quot;168h&quot;,
+        &quot;xpack.notification.email.default_account&quot;: &quot;&quot;,
+        &quot;xpack.notification.email.html.sanitization.allow&quot;: [
+            &quot;body&quot;,
+            &quot;head&quot;,
+            &quot;_tables&quot;,
+            &quot;_links&quot;,
+            &quot;_blocks&quot;,
+            &quot;_formatting&quot;,
+            &quot;img:embedded&quot;
+        ],
+        &quot;xpack.notification.email.html.sanitization.disallow&quot;: [],
+        &quot;xpack.notification.email.html.sanitization.enabled&quot;: &quot;true&quot;,
+        &quot;xpack.notification.jira.default_account&quot;: &quot;&quot;,
+        &quot;xpack.notification.pagerduty.default_account&quot;: &quot;&quot;,
+        &quot;xpack.notification.reporting.interval&quot;: &quot;15s&quot;,
+        &quot;xpack.notification.reporting.retries&quot;: &quot;40&quot;,
+        &quot;xpack.notification.reporting.warning.enabled&quot;: &quot;true&quot;,
+        &quot;xpack.notification.slack.default_account&quot;: &quot;&quot;,
+        &quot;xpack.rollup.enabled&quot;: &quot;true&quot;,
+        &quot;xpack.rollup.task_thread_pool.queue_size&quot;: &quot;-1&quot;,
+        &quot;xpack.rollup.task_thread_pool.size&quot;: &quot;2&quot;,
+        &quot;xpack.searchable.snapshot.cache.range_size&quot;: &quot;32mb&quot;,
+        &quot;xpack.searchable.snapshot.cache.size&quot;: &quot;9223372036854775807b&quot;,
+        &quot;xpack.searchable_snapshots.cache_fetch_async_thread_pool.core&quot;: &quot;0&quot;,
+        &quot;xpack.searchable_snapshots.cache_fetch_async_thread_pool.keep_alive&quot;: &quot;30s&quot;,
+        &quot;xpack.searchable_snapshots.cache_fetch_async_thread_pool.max&quot;: &quot;32&quot;,
+        &quot;xpack.searchable_snapshots.cache_prewarming_thread_pool.core&quot;: &quot;0&quot;,
+        &quot;xpack.searchable_snapshots.cache_prewarming_thread_pool.keep_alive&quot;: &quot;30s&quot;,
+        &quot;xpack.searchable_snapshots.cache_prewarming_thread_pool.max&quot;: &quot;32&quot;,
+        &quot;xpack.security.audit.enabled&quot;: &quot;false&quot;,
+        &quot;xpack.security.audit.logfile.emit_node_host_address&quot;: &quot;false&quot;,
+        &quot;xpack.security.audit.logfile.emit_node_host_name&quot;: &quot;false&quot;,
+        &quot;xpack.security.audit.logfile.emit_node_id&quot;: &quot;true&quot;,
+        &quot;xpack.security.audit.logfile.emit_node_name&quot;: &quot;false&quot;,
+        &quot;xpack.security.audit.logfile.events.emit_request_body&quot;: &quot;false&quot;,
+        &quot;xpack.security.audit.logfile.events.exclude&quot;: [],
+        &quot;xpack.security.audit.logfile.events.include&quot;: [
+            &quot;ACCESS_DENIED&quot;,
+            &quot;ACCESS_GRANTED&quot;,
+            &quot;ANONYMOUS_ACCESS_DENIED&quot;,
+            &quot;AUTHENTICATION_FAILED&quot;,
+            &quot;CONNECTION_DENIED&quot;,
+            &quot;TAMPERED_REQUEST&quot;,
+            &quot;RUN_AS_DENIED&quot;,
+            &quot;RUN_AS_GRANTED&quot;
+        ],
+        &quot;xpack.security.authc.anonymous.authz_exception&quot;: &quot;true&quot;,
+        &quot;xpack.security.authc.anonymous.roles&quot;: [],
+        &quot;xpack.security.authc.anonymous.username&quot;: &quot;_anonymous&quot;,
+        &quot;xpack.security.authc.api_key.cache.hash_algo&quot;: &quot;ssha256&quot;,
+        &quot;xpack.security.authc.api_key.cache.max_keys&quot;: &quot;10000&quot;,
+        &quot;xpack.security.authc.api_key.cache.ttl&quot;: &quot;24h&quot;,
+        &quot;xpack.security.authc.api_key.delete.interval&quot;: &quot;24h&quot;,
+        &quot;xpack.security.authc.api_key.delete.timeout&quot;: &quot;-1&quot;,
+        &quot;xpack.security.authc.api_key.doc_cache.ttl&quot;: &quot;5m&quot;,
+        &quot;xpack.security.authc.api_key.enabled&quot;: &quot;false&quot;,
+        &quot;xpack.security.authc.api_key.hashing.algorithm&quot;: &quot;pbkdf2&quot;,
+        &quot;xpack.security.authc.password_hashing.algorithm&quot;: &quot;bcrypt&quot;,
+        &quot;xpack.security.authc.realms.file.file1.order&quot;: &quot;0&quot;,
+        &quot;xpack.security.authc.realms.native.native1.order&quot;: &quot;1&quot;,
+        &quot;xpack.security.authc.reserved_realm.enabled&quot;: &quot;false&quot;,
+        &quot;xpack.security.authc.run_as.enabled&quot;: &quot;true&quot;,
+        &quot;xpack.security.authc.success_cache.enabled&quot;: &quot;true&quot;,
+        &quot;xpack.security.authc.success_cache.expire_after_access&quot;: &quot;1h&quot;,
+        &quot;xpack.security.authc.success_cache.size&quot;: &quot;10000&quot;,
+        &quot;xpack.security.authc.token.delete.interval&quot;: &quot;30m&quot;,
+        &quot;xpack.security.authc.token.delete.timeout&quot;: &quot;-1&quot;,
+        &quot;xpack.security.authc.token.enabled&quot;: &quot;false&quot;,
+        &quot;xpack.security.authc.token.thread_pool.queue_size&quot;: &quot;1000&quot;,
+        &quot;xpack.security.authc.token.thread_pool.size&quot;: &quot;1&quot;,
+        &quot;xpack.security.authc.token.timeout&quot;: &quot;20m&quot;,
+        &quot;xpack.security.authz.store.privileges.cache.max_size&quot;: &quot;10000&quot;,
+        &quot;xpack.security.authz.store.privileges.cache.ttl&quot;: &quot;24h&quot;,
+        &quot;xpack.security.authz.store.roles.cache.max_size&quot;: &quot;10000&quot;,
+        &quot;xpack.security.authz.store.roles.field_permissions.cache.max_size_in_bytes&quot;: &quot;104857600&quot;,
+        &quot;xpack.security.authz.store.roles.index.cache.max_size&quot;: &quot;10000&quot;,
+        &quot;xpack.security.authz.store.roles.index.cache.ttl&quot;: &quot;20m&quot;,
+        &quot;xpack.security.authz.store.roles.negative_lookup_cache.max_size&quot;: &quot;10000&quot;,
+        &quot;xpack.security.automata.cache.enabled&quot;: &quot;true&quot;,
+        &quot;xpack.security.automata.cache.size&quot;: &quot;10000&quot;,
+        &quot;xpack.security.automata.cache.ttl&quot;: &quot;48h&quot;,
+        &quot;xpack.security.automata.max_determinized_states&quot;: &quot;100000&quot;,
+        &quot;xpack.security.crypto.thread_pool.queue_size&quot;: &quot;1000&quot;,
+        &quot;xpack.security.crypto.thread_pool.size&quot;: &quot;4&quot;,
+        &quot;xpack.security.dls.bitset.cache.size&quot;: &quot;10%&quot;,
+        &quot;xpack.security.dls.bitset.cache.ttl&quot;: &quot;2h&quot;,
+        &quot;xpack.security.dls_fls.enabled&quot;: &quot;true&quot;,
+        &quot;xpack.security.enabled&quot;: &quot;true&quot;,
+        &quot;xpack.security.encryption.algorithm&quot;: &quot;AES/CTR/NoPadding&quot;,
+        &quot;xpack.security.encryption_key.algorithm&quot;: &quot;AES&quot;,
+        &quot;xpack.security.encryption_key.length&quot;: &quot;128&quot;,
+        &quot;xpack.security.filter.always_allow_bound_address&quot;: &quot;true&quot;,
+        &quot;xpack.security.fips_mode.enabled&quot;: &quot;false&quot;,
+        &quot;xpack.security.http.filter.allow&quot;: [],
+        &quot;xpack.security.http.filter.deny&quot;: [],
+        &quot;xpack.security.http.filter.enabled&quot;: &quot;true&quot;,
+        &quot;xpack.security.http.ssl.enabled&quot;: &quot;false&quot;,
+        &quot;xpack.security.ssl.diagnose.trust&quot;: &quot;true&quot;,
+        &quot;xpack.security.transport.filter.allow&quot;: [],
+        &quot;xpack.security.transport.filter.deny&quot;: [],
+        &quot;xpack.security.transport.filter.enabled&quot;: &quot;true&quot;,
+        &quot;xpack.security.transport.ssl.enabled&quot;: &quot;true&quot;,
+        &quot;xpack.security.user&quot;: null,
+        &quot;xpack.slm.enabled&quot;: &quot;true&quot;,
+        &quot;xpack.sql.enabled&quot;: &quot;true&quot;,
+        &quot;xpack.transform.enabled&quot;: &quot;true&quot;,
+        &quot;xpack.transform.num_transform_failure_retries&quot;: &quot;10&quot;,
+        &quot;xpack.vectors.enabled&quot;: &quot;true&quot;,
+        &quot;xpack.watcher.actions.bulk.default_timeout&quot;: &quot;&quot;,
+        &quot;xpack.watcher.actions.index.default_timeout&quot;: &quot;&quot;,
+        &quot;xpack.watcher.bulk.actions&quot;: &quot;1&quot;,
+        &quot;xpack.watcher.bulk.concurrent_requests&quot;: &quot;0&quot;,
+        &quot;xpack.watcher.bulk.flush_interval&quot;: &quot;1s&quot;,
+        &quot;xpack.watcher.bulk.size&quot;: &quot;1mb&quot;,
+        &quot;xpack.watcher.enabled&quot;: &quot;false&quot;,
+        &quot;xpack.watcher.encrypt_sensitive_data&quot;: &quot;false&quot;,
+        &quot;xpack.watcher.execution.default_throttle_period&quot;: &quot;5s&quot;,
+        &quot;xpack.watcher.execution.scroll.size&quot;: &quot;0&quot;,
+        &quot;xpack.watcher.execution.scroll.timeout&quot;: &quot;&quot;,
+        &quot;xpack.watcher.history.cleaner_service.enabled&quot;: &quot;true&quot;,
+        &quot;xpack.watcher.index.rest.direct_access&quot;: &quot;&quot;,
+        &quot;xpack.watcher.input.search.default_timeout&quot;: &quot;&quot;,
+        &quot;xpack.watcher.internal.ops.bulk.default_timeout&quot;: &quot;&quot;,
+        &quot;xpack.watcher.internal.ops.index.default_timeout&quot;: &quot;&quot;,
+        &quot;xpack.watcher.internal.ops.search.default_timeout&quot;: &quot;&quot;,
+        &quot;xpack.watcher.stop.timeout&quot;: &quot;30s&quot;,
+        &quot;xpack.watcher.transform.search.default_timeout&quot;: &quot;&quot;,
+        &quot;xpack.watcher.trigger.schedule.ticker.tick_interval&quot;: &quot;500ms&quot;,
+        &quot;xpack.watcher.use_ilm_index_management&quot;: &quot;true&quot;,
+        &quot;xpack.watcher.watch.scroll.size&quot;: &quot;0&quot;
+    }
+}
+</code></pre><h2 id="生产重点推荐熔断配置">生产重点推荐熔断配置</h2>
+<pre><code>thread_pool.search.size: 13 #推荐(CPU核数*2)/2+1
+indices.fielddata.cache.size: 20%  
+indices.breaker.fielddata.limit : 40% # 熔断相关配置，增加稳定性
+indices.breaker.request.limit: 40%
+indices.breaker.total.limit: 80%
+http.cors.enabled: true
+http.cors.allow-origin: &quot;*&quot;
+http.max_initial_line_length: 8k
+</code></pre><footer class="page-footer"><span class="copyright">Copyright © 运维知识库 all right reserved，powered by Gitbook</span><span class="footer-modification">文件修订时间：
+2023-09-19 10:45:38
+</span></footer>
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="基础常用指令.html" class="navigation navigation-prev " aria-label="Previous page: 基础常用指令">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="ES跨集群迁移.html" class="navigation navigation-next " aria-label="Next page: ES跨集群迁移">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"一个推荐的ElasticSearch配置","level":"1.6.1.2","depth":3,"next":{"title":"ES跨集群迁移","level":"1.6.1.3","depth":3,"path":"中间件/ElasitcSearch/ES跨集群迁移.md","ref":"中间件/ElasitcSearch/ES跨集群迁移.md","articles":[]},"previous":{"title":"基础常用指令","level":"1.6.1.1","depth":3,"path":"中间件/ElasitcSearch/基础常用指令.md","ref":"中间件/ElasitcSearch/基础常用指令.md","articles":[]},"dir":"ltr"},"config":{"plugins":["copy-code-button","edit-link","chapter-fold","tbfed-pagefooter"],"ignores":["node_modules"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"tbfed-pagefooter":{"copyright":"Copyright &copy 运维知识库","modify_label":"文件修订时间：","modify_format":"YYYY-MM-DD HH:mm:ss"},"chapter-fold":{},"meta":{"data":[{"name":"description","content":"运维知识库是运维知识收集记录平台,是一个记录系统运维、系统安全配置、应用优化、自动化运维、监控、Python运维开发、Shell脚本等知识的IT资料库"},{"name":"keywords","content":"运维知识库,系统安全配置,系统运维,应用优化,自动化运维,监控,Python,Shell脚本,Python运维自动化,运维笔记"},{"name":"referrer","content":"origin"}]},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"donate":{"wechat":"/static/img/we.png","alipay":"/static/img/zhi.jpg","title":"","button":"打赏一下","alipayText":"支付宝打赏","wechatText":"微信打赏"},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"favicon":{"shortcut":"/static/img/favicon.ico","bookmark":"/static/img/favicon.ico","appleTouch":"/staic/img/favicon.png","appleTouchMore":{"120x120":"img/apple-touch-icon-120x120.png","180x180":"img/apple-touch-icon-180x180.png"}},"copy-code-button":{},"edit-link":{"label":"编辑这个页面","base":"https://github.com/yongxiaodong/book/blob/main/"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"insert-logo":{"url":"/static/img/logo.png","style":"background: none; max-height: 30px; min-height: 30px"}},"theme":"default","author":"BigHead","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"运维知识库","language":"ch","links":{"gitbook":false,"sharing":{"google":false,"facebook":false,"twitter":false,"all":false},"sidebar":{"返回首页":"/"}},"gitbook":"*","description":"运维知识库是运维知识收集记录平台,记录系统安全配置、应用优化、自动化运维、监控、Python、Shell脚本等知识"},"file":{"path":"中间件/ElasitcSearch/一个推荐的ElasticSearch配置.md","mtime":"2023-09-19T02:45:38.024Z","type":"markdown"},"gitbook":{"version":"5.1.4","time":"2024-05-23T06:11:52.237Z"},"basePath":"../..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <noscript>
+        <style>
+            .honkit-cloak {
+                display: block !important;
+            }
+        </style>
+    </noscript>
+    <script>
+        // Restore sidebar state as critical path for prevent layout shift
+        function __init__getSidebarState(defaultValue){
+            var baseKey = "";
+            var key = baseKey + ":sidebar";
+            try {
+                var value = localStorage[key];
+                if (value === undefined) {
+                    return defaultValue;
+                }
+                var parsed = JSON.parse(value);
+                return parsed == null ? defaultValue : parsed;
+            } catch (e) {
+                return defaultValue;
+            }
+        }
+        function __init__restoreLastSidebarState() {
+            var isMobile = window.matchMedia("(max-width: 600px)").matches;
+            if (isMobile) {
+                // Init last state if not mobile
+                return;
+            }
+            var sidebarState = __init__getSidebarState(true);
+            var book = document.querySelector(".book");
+            // Show sidebar if it enabled
+            if (sidebarState && book) {
+                book.classList.add("without-animation", "with-summary");
+            }
+        }
+
+        try {
+            __init__restoreLastSidebarState();
+        } finally {
+            var book = document.querySelector(".book");
+            book.classList.remove("honkit-cloak");
+        }
+    </script>
+    <script src="../../gitbook/gitbook.js"></script>
+    <script src="../../gitbook/theme.js"></script>
+    
+        
+        <script src="../../gitbook/gitbook-plugin-copy-code-button/toggle.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-edit-link/plugin.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-chapter-fold/chapter-fold.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+

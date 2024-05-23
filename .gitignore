@@ -406,21 +406,6 @@ translations/*.qm
 
 ### Images template
 # JPEG
-*.jpg
-*.jpeg
-*.jpe
-*.jif
-*.jfif
-*.jfi
-
-# JPEG 2000
-*.jp2
-*.j2k
-*.jpf
-*.jpx
-*.jpm
-*.mj2
-
 # JPEG XR
 *.jxr
 *.hdp
@@ -436,7 +421,6 @@ translations/*.qm
 *.webp
 
 # Portable Network Graphics
-*.png
 
 # Animated Portable Network Graphics
 *.apng
@@ -670,8 +654,6 @@ flycheck_*.el
 *_pad.csv
 *_pad.txt
 *_par.xrpt
-*_summary.html
-*_summary.xml
 *_usage.xml
 *_xst.xrpt
 
@@ -1009,8 +991,6 @@ tmtags
 *.psm
 *.bak
 *.cmp
-*.jpg
-*.html
 *.bsf
 
 # ignore simulation output of ModelSim
@@ -1085,3 +1065,4 @@ node_modules/*
 
 /node_modules/
 /.idea/
+.idea/
