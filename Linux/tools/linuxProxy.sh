@@ -3,8 +3,8 @@ proxy="192.168.14.254:1080"
 no_proxy="localhost, 127.0.0.1, ::1"
 
 function proxyOn() {
-  export http_proxy=$proxy
-  export https_proxy=$proxy
+  export http_proxy=http://$proxy
+  export https_proxy=https://$proxy
   export no_proxy=$no_proxy
 }
 function proxyOff() {
@@ -23,3 +23,6 @@ case $1 in
 esac
 
 # source linuxProxy.sh
+
+
+

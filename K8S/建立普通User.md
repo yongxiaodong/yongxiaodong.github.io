@@ -5,7 +5,7 @@
 openssl genrsa -out dev.key 2048
 # 生成用户等的csr文件
 openssl req -new -key dev.key -out dev.csr -subj "/CN=dev/O=dev"
-# 创建用户的私钥
+# 创建用户的私钥并设置有效期为1000天
 openssl x509 -req -in dev.csr -CA ./ca.crt -CAkey ./ca.key -CAcreateserial -out dev.crt -days 1000
 # 集群内创建用户和生成kubeconfig
 kubectl config set-credentials dev --client-certificate=dev.crt  --client-key=dev.key
