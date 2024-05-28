@@ -4,7 +4,7 @@ no_proxy="localhost, 127.0.0.1, ::1"
 
 function proxyOn() {
   export http_proxy=http://$proxy
-  export https_proxy=https://$proxy
+  export https_proxy=http://$proxy  # https 转向http代理，防止ssl错误发生
   export no_proxy=$no_proxy
 }
 function proxyOff() {
