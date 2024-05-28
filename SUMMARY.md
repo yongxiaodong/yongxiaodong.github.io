@@ -175,6 +175,7 @@
     * [shell反弹](Linux/LInux后门/shell反弹.md)
   - [Rsync Inotify](Linux/rsync_inotify/README.md)
     * [rsync+inofity实时同步](Linux/rsync_inotify/rsync+inofity实时同步.md)
+  - [Tools](Linux/tools/README.md)
   * [添加systemd服务](Linux/添加systemd服务.md)
   * [自建NAT网关](Linux/自建NAT网关.md)
   * [Iptables](Linux/iptables.md)
