@@ -267,88 +267,6 @@ atlassian-ide-plugin.xml
 # SonarLint plugin
 .idea/sonarlint/
 
-# Crashlytics plugin (for Android Studio and IntelliJ)
-com_crashlytics_export_strings.xml
-crashlytics.properties
-crashlytics-build.properties
-fabric.properties
-
-# Editor-based Rest Client
-.idea/httpRequests
-
-# Android studio 3.1+ serialized cache file
-.idea/caches/build_file_checksums.ser
-
-### DartEditor template
-.project
-.buildlog
-
-### Ninja template
-.ninja_deps
-.ninja_log
-
-### Example user template template
-### Example user template
-
-# IntelliJ project files
-.idea
-*.iml
-out
-gen
-### Archives template
-# It's better to unpack these files and commit the raw source because
-# git has its own built in compression methods.
-*.7z
-*.jar
-*.rar
-*.zip
-*.gz
-*.gzip
-*.tgz
-*.bzip
-*.bzip2
-*.bz2
-*.xz
-*.lzma
-*.cab
-*.xar
-
-# Packing-only formats
-*.iso
-*.tar
-
-# Package management formats
-*.dmg
-*.xpi
-*.gem
-*.egg
-*.deb
-*.rpm
-*.msi
-*.msm
-*.msp
-*.txz
-
-### Syncthing template
-# Syncthing caches
-.stversions
-
-### SynopsysVCS template
-# Waveform formats
-*.vcd
-*.vpd
-*.evcd
-*.fsdb
-
-# Default name of the simulation executable.  A different name can be
-# specified with this switch (the associated daidir database name is
-# also taken from here):  -o <path>/<filename>
-simv
-
-# Generated for Verilog and VHDL top configs
-simv.daidir/
-simv.db.dir/
-
 # Infrastructure necessary to co-simulate SystemC models with
 # Verilog/VHDL models.  An alternate directory may be specified with this
 # switch:  -Mdir=<directory_path>
@@ -358,36 +276,6 @@ csrc/
 # used to write all messages from simulation:  -l <filename>
 *.log
 
-# Coverage results (generated with urg) and database location.  The
-# following switch can also be used:  urg -dir <coverage_directory>.vdb
-simv.vdb/
-urgReport/
-
-# DVE and UCLI related files.
-DVEfiles/
-ucli.key
-
-# When the design is elaborated for DirectC, the following file is created
-# with declarations for C/C++ functions.
-vc_hdrs.h
-
-### Tags template
-# Ignore tags created by etags, ctags, gtags (GNU global) and cscope
-TAGS
-.TAGS
-!TAGS/
-tags
-.tags
-!tags/
-gtags.files
-GTAGS
-GRTAGS
-GPATH
-GSYMS
-cscope.files
-cscope.out
-cscope.in.out
-cscope.po.out
 
 
 ### TortoiseGit template
