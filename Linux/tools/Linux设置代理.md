@@ -1,3 +1,4 @@
+cat > linuxProxy.sh << \EOF
 #!/bin/bash
 proxy="192.168.14.254:1080"
 no_proxy="localhost, 127.0.0.1, ::1"
@@ -21,8 +22,8 @@ case $1 in
       proxyOff
       ;;
 esac
+EOF
 
-# source linuxProxy.sh
-
+执行 `source linuxProxy.sh start` 开启代理
 
 

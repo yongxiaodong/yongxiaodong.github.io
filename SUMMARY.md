@@ -176,6 +176,7 @@
   - [Rsync Inotify](Linux/rsync_inotify/README.md)
     * [rsync+inofity实时同步](Linux/rsync_inotify/rsync+inofity实时同步.md)
   - [Tools](Linux/tools/README.md)
+    * [Linux设置代理](Linux/tools/Linux设置代理.md)
   * [添加systemd服务](Linux/添加systemd服务.md)
   * [自建NAT网关](Linux/自建NAT网关.md)
   * [Iptables](Linux/iptables.md)
