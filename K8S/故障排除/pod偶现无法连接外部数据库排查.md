@@ -57,7 +57,7 @@
 在原文`https://serverfault.com/questions/235965/why-would-a-server-not-send-a-syn-ack-packet-in-response-to-a-syn-packet?newreg=72fd3ad776724f3c8d5c33f22c320b1a`
 中看到有关net.ipv4.tcp_timestamps和tcp_tw_recycle的内核参数  
 
-在服务器B上运行`sysctl -p `验证了tcp_tw_recycle=1和tcp_timestamps=1当前都是处于开启状态
+在服务器B上运行` cat /proc/sys/net/ipv4/tcp_tw_recycle `验证了tcp_tw_recycle=1和tcp_timestamps=1当前都是处于开启状态
 
 > 根据个人经验，这两个参数对于处理大量time wait问题有帮助和风险（网上检索到的关于如何解决大量time wait问题的文章基本都是建议开启复用和回收），但Linux 内核4.x以后取消了快速回收选项
 
