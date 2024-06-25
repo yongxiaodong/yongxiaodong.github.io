@@ -2,7 +2,7 @@
 	"title": "SRE驿站",
 	"author": "GG Bound",
 	"description": "SRE驿站收集记录SRE常用操作和踩坑，记录系统安全配置、应用优化、自动化运维、监控、Python、Shell脚本等知识",
-	"language": "ch",
+	"language": "angular2",
 	"ignores": [
 		"node_modules"
 	],

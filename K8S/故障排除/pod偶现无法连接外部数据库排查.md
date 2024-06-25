@@ -14,7 +14,7 @@
 `docker ps | grep $pod_name`查看到pod在主机上的容器ID
 
 ### 进容器所在的network namespace（主机上使用netstat是看不到容器的tcp链接情况的，需要进入namespace）
-`cid=`docker inspect --format '{{.State.Pid}}' $containerId`   &&  nsenter --target  $cid -n`  
+```cid=`docker inspect --format '{{.State.Pid}}' $containerId`   &&  nsenter --target  $cid -n```  
 进入容器后，可以使用`ip add`确认ip是pod的ip地址
 
 ### 测试与外部Mysql服务器的网络连通性
