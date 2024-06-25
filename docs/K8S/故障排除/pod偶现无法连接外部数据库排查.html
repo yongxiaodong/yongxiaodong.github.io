@@ -2953,13 +2953,13 @@
 <p>1、ping 可以正常通信<br>2、telnet 时复现了问题，偶尔可以成功，偶尔失败（此时确认了同一时间点，Mysql可以正常提供服务，也有其它Node可以正常与外部Mysql正常通信）<br>3、怀疑是路由、IP冲突、防火墙策略等问题，导致telnet的流量并没有走向真实的服务器B  </p>
 </blockquote>
 </blockquote>
-<p>双向抓包确认流量走向</p>
+<h3 id="双向抓包确认流量走向">双向抓包确认流量走向</h3>
 <ul>
 <li>服务器A（192.168.0.2）： 运行 <code>tcpdump  -i eth0 host 192.168.11.250 -w 0.2to250.cap</code> 获取与B的通信流量</li>
 <li>服务器B（192.168.11.250）： 运行 <code>tcpdump -i eth0 host 192.168.0.2 -w 250re0.2.cap</code> 获取与A的通信流量</li>
 <li>服务器A（192.168.0.2）： 反复运行 telnet 192.168.11.250 3306 直至出现不通的情况，并运行了ping 192.168.11.250测试icmp通信</li>
 </ul>
-<p>分析抓包结果</p>
+<h3 id="分析抓包结果">分析抓包结果</h3>
 <p>在服务器A中的抓包结果中挑选一个尝试向服务器B发送握手(SYN)请求的包，进行双向分析，如下图<br><img src="img.png" alt="img.png"></p>
 <blockquote>
 <ul>
@@ -2972,7 +2972,8 @@
 <blockquote>
 <p>猜测是被内核级丢弃了流量</p>
 </blockquote>
-<p>验证情况, 执行<code>netstat -s | grep -i drop</code> 输出  </p>
+<h3 id="验证丢包情况">验证丢包情况</h3>
+<p>执行 <code>netstat -s | grep -i drop</code> 输出  </p>
 <pre><code>    341 dropped because of missing route
     173495 SYNs to LISTEN sockets dropped
     TCPBacklogDrop: 135
@@ -2994,7 +2995,7 @@
 <p>将/etc/sysctl.conf中的tcp_tw_recycle修改设置为<code>net.ipv4.tcp_tw_recycle = 0</code>  </p>
 <h3 id="方法二：-统一nat环境中的时间戳（不推荐，很难实现）">方法二： 统一NAT环境中的时间戳（不推荐，很难实现）</h3>
 <footer class="page-footer"><span class="copyright">Copyright © 运维知识库 all right reserved，powered by Gitbook</span><span class="footer-modification">文件修订时间：
-2024-06-25 17:07:15
+2024-06-25 17:34:05
 </span></footer>
                                 
                                 </section>
@@ -3038,7 +3039,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"pod偶现无法连接外部数据库排查","level":"1.10.2.4","depth":3,"next":{"title":"全链路灰度发布","level":"1.10.3","depth":2,"path":"K8S/全链路灰度发布/README.md","ref":"K8S/全链路灰度发布/README.md","articles":[{"title":"1、发布类型","level":"1.10.3.1","depth":3,"path":"K8S/全链路灰度发布/1、发布类型.md","ref":"K8S/全链路灰度发布/1、发布类型.md","articles":[]},{"title":"2、全链路灰度发布","level":"1.10.3.2","depth":3,"path":"K8S/全链路灰度发布/2、全链路灰度发布.md","ref":"K8S/全链路灰度发布/2、全链路灰度发布.md","articles":[]}]},"previous":{"title":"基础镜像排障工具包","level":"1.10.2.3","depth":3,"path":"K8S/故障排除/基础镜像排障工具包.md","ref":"K8S/故障排除/基础镜像排障工具包.md","articles":[]},"dir":"ltr"},"config":{"plugins":["copy-code-button","edit-link","chapter-fold","tbfed-pagefooter"],"ignores":["node_modules"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"tbfed-pagefooter":{"copyright":"Copyright &copy 运维知识库","modify_label":"文件修订时间：","modify_format":"YYYY-MM-DD HH:mm:ss"},"chapter-fold":{},"meta":{"data":[{"name":"description","content":"SRE驿站，运维知识库是运维知识收集记录平台,是一个记录系统运维、系统安全配置、应用优化、自动化运维、监控、Python运维开发、Shell脚本等知识的IT资料库"},{"name":"keywords","content":"SRE驿站，运维知识库,系统安全配置,系统运维,应用优化,自动化运维,监控,Python,Shell脚本,Python运维自动化,运维笔记"},{"name":"referrer","content":"origin"}]},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"donate":{"wechat":"/static/img/we.png","alipay":"/static/img/zhi.jpg","title":"","button":"打赏一下","alipayText":"支付宝打赏","wechatText":"微信打赏"},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"favicon":{"shortcut":"/static/img/favicon.ico","bookmark":"/static/img/favicon.ico","appleTouch":"/staic/img/favicon.png","appleTouchMore":{"120x120":"img/apple-touch-icon-120x120.png","180x180":"img/apple-touch-icon-180x180.png"}},"copy-code-button":{},"edit-link":{"label":"编辑这个页面","base":"https://github.com/yongxiaodong/book/blob/main/"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"insert-logo":{"url":"/static/img/logo.png","style":"background: none; max-height: 30px; min-height: 30px"}},"theme":"default","author":"GG Bound","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"SRE驿站","language":"angular2","links":{"gitbook":false,"sharing":{"google":false,"facebook":false,"twitter":false,"all":false},"sidebar":{"返回首页":"/"}},"gitbook":"*","description":"SRE驿站收集记录SRE常用操作和踩坑，记录系统安全配置、应用优化、自动化运维、监控、Python、Shell脚本等知识"},"file":{"path":"K8S/故障排除/pod偶现无法连接外部数据库排查.md","mtime":"2024-06-25T09:07:15.090Z","type":"markdown"},"gitbook":{"version":"5.1.4","time":"2024-06-25T09:07:23.479Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"pod偶现无法连接外部数据库排查","level":"1.10.2.4","depth":3,"next":{"title":"全链路灰度发布","level":"1.10.3","depth":2,"path":"K8S/全链路灰度发布/README.md","ref":"K8S/全链路灰度发布/README.md","articles":[{"title":"1、发布类型","level":"1.10.3.1","depth":3,"path":"K8S/全链路灰度发布/1、发布类型.md","ref":"K8S/全链路灰度发布/1、发布类型.md","articles":[]},{"title":"2、全链路灰度发布","level":"1.10.3.2","depth":3,"path":"K8S/全链路灰度发布/2、全链路灰度发布.md","ref":"K8S/全链路灰度发布/2、全链路灰度发布.md","articles":[]}]},"previous":{"title":"基础镜像排障工具包","level":"1.10.2.3","depth":3,"path":"K8S/故障排除/基础镜像排障工具包.md","ref":"K8S/故障排除/基础镜像排障工具包.md","articles":[]},"dir":"ltr"},"config":{"plugins":["copy-code-button","edit-link","chapter-fold","tbfed-pagefooter"],"ignores":["node_modules"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"tbfed-pagefooter":{"copyright":"Copyright &copy 运维知识库","modify_label":"文件修订时间：","modify_format":"YYYY-MM-DD HH:mm:ss"},"chapter-fold":{},"meta":{"data":[{"name":"description","content":"SRE驿站，运维知识库是运维知识收集记录平台,是一个记录系统运维、系统安全配置、应用优化、自动化运维、监控、Python运维开发、Shell脚本等知识的IT资料库"},{"name":"keywords","content":"SRE驿站，运维知识库,系统安全配置,系统运维,应用优化,自动化运维,监控,Python,Shell脚本,Python运维自动化,运维笔记"},{"name":"referrer","content":"origin"}]},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"donate":{"wechat":"/static/img/we.png","alipay":"/static/img/zhi.jpg","title":"","button":"打赏一下","alipayText":"支付宝打赏","wechatText":"微信打赏"},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"favicon":{"shortcut":"/static/img/favicon.ico","bookmark":"/static/img/favicon.ico","appleTouch":"/staic/img/favicon.png","appleTouchMore":{"120x120":"img/apple-touch-icon-120x120.png","180x180":"img/apple-touch-icon-180x180.png"}},"copy-code-button":{},"edit-link":{"label":"编辑这个页面","base":"https://github.com/yongxiaodong/book/blob/main/"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"insert-logo":{"url":"/static/img/logo.png","style":"background: none; max-height: 30px; min-height: 30px"}},"theme":"default","author":"GG Bound","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"SRE驿站","language":"angular2","links":{"gitbook":false,"sharing":{"google":false,"facebook":false,"twitter":false,"all":false},"sidebar":{"返回首页":"/"}},"gitbook":"*","description":"SRE驿站收集记录SRE常用操作和踩坑，记录系统安全配置、应用优化、自动化运维、监控、Python、Shell脚本等知识"},"file":{"path":"K8S/故障排除/pod偶现无法连接外部数据库排查.md","mtime":"2024-06-25T09:34:05.118Z","type":"markdown"},"gitbook":{"version":"5.1.4","time":"2024-06-25T09:34:44.800Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>
